@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style></style>
+  </head>
+  <style>
+
+  </style>
+  <body>
+    <div id="app">
+      <!-- <p v-bind:[title]="msg">鼠标秒上来看看</p>
+      <p v-if="seen">现在你看到我了</p>
+      <ul>
+        <li v-for="item in todos">{{item.text}}</li>
+      </ul>
+      <p>{{messageClick}}</p>
+      <button v-on:click="reverseMessage">点击</button>
+      <p v-html="rawHtml"></p>
+     <child @[chufa]="parent"></child> -->
+     <p v-bind:[aaa]='msg'>鼠标上</p>
+     <!-- <div class="static" v-bind:class="{active:isActive,'text-danger':hasError}"> -->
+      <!-- <div class="static" v-bind:class="classObject"></div> -->
+      <!-- <div v-bind:class="classObject"></div> -->
+      <div v-bind:class="[activeClass,errorClass]"></div>
+      <div>{{message | capitalize}}</div>
+      <p @click="add">加载更多</p>
+      <ul>
+        <li v-for="item in filtersList">{{item.id}}</li>
+      </ul>
+      <ul>
+        <li v-for="item in filtersList()">{{item.id}}</li>
+      </ul>
+
+     </div>
+     <!-- <p :title="msg"></p> -->
+    </div>
+    <script>
+    //   	Vue.component('child',{
+    //     template:"<button @click='send'>点击sdssss</button>",
+    //     methods:{
+    //       send(){
+    //         this.$emit('change');
+    //       }
+    //     }
+		// })
+
+      var app3 = new Vue({
+        el: "#app",
+        data:{
+          msg:'看见了吗',
+          aaa:'title',
+          activeClass:'active',
+          errorClass:'text-danger',
+          sum:'',
+          messageD:'',
+          message:'vue中的过滤器',
+          size:5,
+          list:[
+            {
+              id:0,
+              title:'a',
+              cont:'111'
+            },
+            {
+              id:1,
+              title:'b',
+              cont:'111'
+            },
+            {
+              id:6,
+              title:'c',
+              cont:'111'
+            }
+          ]
+          // classObject:{
+          //   // active:true,
+          //   // 'text-danger':false
+          // },
+          // isActive: true,
+          // error: null
+          // message:'页面加载'+ new Date().toLocaleString(),//v-bind
+          // seen:true,//v-if
+          // todos:[ //v-for
+          //   {
+          //     text:'学习JS'
+          //   },
+          //   {
+          //     text:'学习vue'
+          //   },
+          //   {
+          //     text:'项目'
+          //   }
+          // ],
+          // messageClick:"hello vue",
+          // a:1,
+          // rawHtml:'dddddddd',
+          // msg:'看到了',
+          // title:"ps",
+          // chufa:"change"
+        },
+        filters:{
+          capitalize(val){
+            console.log(val)
+            return val? val+'??' : 'NO'
+
+          }
+        },
+        computed:{
+            // filtersList(){
+            //   let sum  = this.size
+            //   return this.list.filter(item=>{
+            //     return item.id <2
+            //   })
+            // }
+            // classObject: function () {
+            //   return {
+            //     active: this.isActive && !this.error,
+            //     'text-danger': this.error && this.error.type === 'fatal'
+            //   }
+            // }
+          },
+        watch:{
+         
+        },
+        // created() {
+        //   console.log(this.a)
+        // },
+        // mounted(){
+         
+        // },
+        methods: {
+          filtersList(){
+            let sum = this.size;
+            return this.list.filter(item=>{
+              return item.id < sum
+            })
+          },
+          
+          add(){
+            this.size = this.size+5
+          }
+        //   reverseMessage:function(){
+        //     this.messageClick = this.messageClick.split('').reverse().join('')
+        //   },
+        //   parent(){
+				// 	console.log("hello world");
+				// },
+         
+          
+        }
+      });
+    </script>
+  </body>
+</html>
