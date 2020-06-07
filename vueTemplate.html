@@ -8,7 +8,28 @@
     <style></style>
   </head>
   <style>
-
+/*     
+    .btn{
+      width:100px;
+      height: 50px;
+      color: rgb(226, 104, 4);
+    }
+    .active{
+      width:100px;
+      height: 50px;
+      color:blueviolet;
+    } */
+    .visible{
+      visibility: visible;
+    }
+    .active{
+      visibility: hidden;
+    }
+    /* .active{
+      width:100px;
+      height: 50px;
+      color: rgb(235, 13, 161);
+    } */
   </style>
   <body>
     <div id="app">
@@ -26,14 +47,24 @@
       <!-- <div class="static" v-bind:class="classObject"></div> -->
       <!-- <div v-bind:class="classObject"></div> -->
       <div v-bind:class="[activeClass,errorClass]"></div>
-      <div>{{message | capitalize}}</div>
-      <p @click="add">加载更多</p>
+      <!-- <div>{{message ? message +'万元' :'--'}}</div> -->
+      <!-- <div>{{todos}}</div> -->
+      <!-- <div>{{todos(message)}}</div> -->
+      <!-- 根据v-model的值进行变换颜色 -->
+      <input type="text" v-model="showHeight">
+      <div></div>
+      <div class="btnSubmit" :class="{'btn':showHeight}"></div>
+      <!-- 点击显示隐藏 -->
+      <!-- <button @click="handelClick">点击</button>  
+      <div :class="[ isShow ? 'visible':'active']">确认</div>  -->
+      <!-- <div class="btnSubmit" :class="{'btn':showHeight}">确认</div> -->
+      <!-- <p @click="add">加载更多</p>
       <ul>
         <li v-for="item in filtersList">{{item.id}}</li>
       </ul>
       <ul>
         <li v-for="item in filtersList()">{{item.id}}</li>
-      </ul>
+      </ul> -->
 
      </div>
      <!-- <p :title="msg"></p> -->
@@ -57,8 +88,10 @@
           errorClass:'text-danger',
           sum:'',
           messageD:'',
-          message:'vue中的过滤器',
+          message:null,
           size:5,
+          showHeight:'',
+          // isShow:true,
           list:[
             {
               id:0,
@@ -76,6 +109,7 @@
               cont:'111'
             }
           ]
+          
           // classObject:{
           //   // active:true,
           //   // 'text-danger':false
@@ -102,14 +136,13 @@
           // title:"ps",
           // chufa:"change"
         },
-        filters:{
-          capitalize(val){
-            console.log(val)
-            return val? val+'??' : 'NO'
-
-          }
-        },
         computed:{
+          // todos(){
+          //   return this.message ? this.message +'万元':'--'
+          // },
+          // btnActive() {
+          //   return this.showHeight;
+          // }
             // filtersList(){
             //   let sum  = this.size
             //   return this.list.filter(item=>{
@@ -133,16 +166,12 @@
          
         // },
         methods: {
-          filtersList(){
-            let sum = this.size;
-            return this.list.filter(item=>{
-              return item.id < sum
-            })
-          },
-          
-          add(){
-            this.size = this.size+5
-          }
+          // todos(val){
+          //   return val ? val + '万元' :'--'
+          // },
+          // handelClick(){
+          //   this.isShow = !this.isShow
+          // }
         //   reverseMessage:function(){
         //     this.messageClick = this.messageClick.split('').reverse().join('')
         //   },
