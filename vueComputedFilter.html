@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习computed、filter方法显示文案的不同方式</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <!-- 根据返回的数据显示单位以及null情况显示'--'' -->
+    <!-- 1.三目的方法 -->
+    <!-- <div>{{message ? message + '万元' : '--'}}</div> -->
+    <!-- 2.使用computed计算属性变换-->
+    <!-- <div>{{format}}</div> -->
+    <!-- 3.使用vue中的filter方法 ，意思是使用totle方法过滤message中的条件-->
+    <!-- <div>{{message | format }}</div>  -->
+    <!-- 4.函数方式 -->
+    <div>{{format(message)}}</div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        message:'76'//三目,有值情况
+        // message:null//三目,为null情况
+      },
+      // 使用computed计算属性变换
+      computed:{
+        format(){
+          return this.message ? this.message + '万元':'--'
+        }
+      },
+      // 使用vue中的filter方法
+      // filters:{
+      //   format(val){
+      //     return val ? val+'万元':'--'
+      //   }
+      // },
+      methods:{
+        // 函数方式
+        format(val){
+          return val ? val + '万元':'--'
+        }
+      }
+    
+    })
+  </script>
+</body>
+</html>

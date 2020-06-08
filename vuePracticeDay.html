@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  .btn{
+    width:100px;
+    height: 50px;
+    color:aquamarine
+  }
+  .btnA{
+    width:100px;
+    height: 50px;
+    color:rgb(206, 17, 17)
+  }
+</style>
+<body>
+  <div id="app">
+    <input type="text" v-model ="showHeight">
+    <!-- <div class="btn" :class="{'btnActive':showHeight}">确认</div> -->
+    <!-- <div :class="['btn',btnActive ? 'active' :'']">1111</div> -->
+    <div class = "btn" :class="{'btnA':btnActive && flag}" @click="handleClick">{{btnMessage}}</div>
+  </div> 
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        showHeight:'',
+        btnMessage:'登录',
+        flag:false
+      },
+      computed:{
+        btnActive(){
+          this.showHeight ? this.flag = true :this.flag = false
+          // if(!this.showHeight){
+          //   this.flag = false
+          // } else {
+          //   this.flag = true 
+          // }
+          return this.showHeight
+        }
+        
+      },
+      methods:{
+        handleClick(){
+          if(!this.showHeight){
+            return false
+          }
+
+          this.btnMessage ='正在登录...'
+          this.flag = true
+          setTimeout(()=>{
+            this.btnMessage ='登录'
+          this.flag = false
+          },1000)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
