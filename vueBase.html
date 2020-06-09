@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style></style>
+  </head>
+  <style>
+    .checkoutS{
+      /* display:block; */
+    }
+  </style>
+  <body>
+    <div id="box">
+      <!-- 定义初始化数据 -->
+      <p>{{message}}</p>  
+      <!-- 点击事件变成反转字符串 -->
+      <button v-on:click="handleClick">点击</button>
+      <!-- 下拉select框，选择对应的值 -->
+      <select v-model='selected'>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+      <span>selected:{{selected}}</span>
+      <!-- v-model 复选框 -->
+      <div class="checkoutS">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+      </div>
+      <!-- v-model 单选按钮 -->
+      <div>
+        <input type="radio" id="small" value="small_value" v-model="picked">
+        <label for="small">small</label>
+        <br>
+        <input type="radio" id="big" value="big_value" v-model="picked">
+        <label for="big">big</label>
+        <span>picked:{{picked}}</span>
+
+      </div>
+      <!-- v-model修饰符-->
+     <input type="text" v-model.number = 'val'>
+     <span>{{val}}</span>
+     <!-- type设置为radio 和checkout-->
+     男：<input v-model="sexual_orientation" type="checkbox" value="male">
+     女：<input v-model="sexual_orientation" type="checkbox" value="famale">
+     <span> {{ sexual_orientation }} </span>
+     <!-- vue动态参数 -->
+     <p :[title]='msg'>鼠标上</p>
+     <!-- 计算属性和监听器 -->
+     <p>computed:{{attribute}}</p>
+     <p>reverse:{{attributeReserve}}</p>
+     <!-- 也可以用这种调用方法得形式 -->
+     <!-- <p>reverse:{{attributeReserve()}}</p> -->
+     <!-- 监听属性watch -->
+     <div>{{fullName}}</div>
+ 
+
+
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#box",
+        data:{
+          message:'hello',//定义初始化数据
+          selected:[],//下拉选择
+          checked:false, //复选框
+          picked:'',
+          val:'',
+          sexual_orientation:[],
+          msg:'看见了吗', //vue动态参数
+          title:'title',//vue动态参数
+          attribute:'计算属性检测',
+          firstName :'Foo',
+          lastName : 'Bar',
+          // totalData:''
+          // fullName :'Foo Bar'
+        },
+        // watch:{
+        //   firstName:function(val){
+        //     this.fullName = val + '' + this.lastName
+        //   },
+        //   lastName:function(val){
+        //     this.fullName = this.firstName + ''+ val
+        //   }
+        // },
+        created(){
+          // var a = [
+          //   {name:'su',age:13},
+          //   {name:'xs',age:13},
+          //   {name:'cs',age:13},
+          //   {name:'vd',age:13},
+          // ]
+          // var a= {name:'fgd',age:12}
+          // for(var key in a){
+          //   console.log(a[key])
+          // }
+          // for(var i = 0 ; i <a.length; i++){
+          //   console.log(a.length)
+          //   console.log(a[i])
+          // }
+          
+        },
+        computed:{
+          attributeReserve(){
+            return this.attribute.split('').reverse().join('')
+          },
+          fullName:{
+            get:function(){
+              return this.firstName + '' + this.lastName
+            },
+            set:function(newValue){
+              console.log(newValue,'新的值')
+              var names = newValue.split('')
+              this.firstName =names[0]
+              this.lastName =names[names.length -1]
+            }
+          },
+       
+        },
+      
+        methods:{
+          // 点击事件变成反转字符串
+          handleClick:function(){
+            this.message = this.message.split('').reverse().join('')
+          },
+        }
+     
+   
+      });
+    </script>
+  </body>
+</html>

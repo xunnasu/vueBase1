@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style></style>
+  </head>
+  <style>
+
+  </style>
+  <body>
+    <div id="app">
+    </div>
+    </div>
+    <script>
+      var app3 = new Vue({
+        el: "#app",
+        created(){
+          // js时间戳转换
+          // var myDate1 = (new Date()).valueOf()//会精确到毫秒
+          // console.log(myDate1)
+          // var myDate2 = new Date().getTime() //会精确到毫秒
+          // console.log(myDate2)
+          // var myDate3 = Number(new Date())
+          // console.log(myDate3)
+          var date = Date.parse('2018/07/11') //只能精确到秒，毫秒将用0来代替
+          var time = Date.parse('2019-08-09T18:23:27.000+0800') //只能精确到秒，毫秒将用0来代替
+          console.log('date',date) 
+          console.log('time',time)
+          // var myDate4 = new Date(1591673454094)
+          // console.log(myDate4.toLocaleDateString().replace(/\//g,'-') + '-' + myDate4.toTimeString().substr(0,8)) //可以获取正确的时间日期以及
+         
+          // var date = new Date(1591673454094);
+          //   Y = date.getFullYear() + '-';
+          //   M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-'; //判断月份是不是小于10,是的话就前面加0,不是就正常显示
+          //   D = date.getDate() ? '0'+date.getDate() : date.getDate()  + ' ';
+          //   h = date.getHours() + ':';
+          //   m = date.getMinutes() + ':';
+          //   s = date.getSeconds(); 
+          //   console.log('Y :>> ', Y);//2020-
+          //   console.log('M :>> ', M);//06-
+          //   console.log('D :>> ', D);//9
+          //   console.log(Y+M+D+h+m+s); 
+        },
+      });
+    </script>
+  </body>
+</html>
