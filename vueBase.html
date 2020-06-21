@@ -10,6 +10,7 @@
     .checkoutS{
       /* display:block; */
     }
+    
   </style>
   <body>
     <div id="box">
@@ -55,9 +56,13 @@
      <!-- <p>reverse:{{attributeReserve()}}</p> -->
      <!-- 监听属性watch -->
      <div>{{fullName}}</div>
- 
-
-
+     <!-- 动态绑定class -->
+     <div v-bind:style="{color:activeColor,fontSize: fontSize + 'px' }">111</div>
+     <!-- v-if -->
+     <div v-if="!asw">12</div>
+     <div v-else>13</div>
+     <!-- v-for -->
+    
     </div>
     <script>
       var vm = new Vue({
@@ -74,6 +79,22 @@
           attribute:'计算属性检测',
           firstName :'Foo',
           lastName : 'Bar',
+          activeColor:'red',
+          fontSize:40,
+          asw:true,
+          obj:[
+            {
+              name:'aaa',
+              age:12,
+              job:'it'
+            },
+            {
+              name:'bbb',
+              age:22,
+              job:'iet'
+            }
+          ],
+          // arrb:''
           // totalData:''
           // fullName :'Foo Bar'
         },
@@ -86,6 +107,18 @@
         //   }
         // },
         created(){
+        //   let arrc = [1,'',4]
+          // let arrFilter = [...new Set(arrc)]
+          // document.write(arrFilter)
+        //   let arr = ['1', '2', '3', '', null, undefined, '  ', '4']
+        // // let arrFilter = arr.filter((ele, index, arr) => {
+        // //   return ele && ele.trim()
+        // // })
+        // let arrFilter = arr.filter((item)=>{
+        //   return item && item.trim()
+        // })
+        // console.log(arrFilter)
+
           // var a = [
           //   {name:'su',age:13},
           //   {name:'xs',age:13},
@@ -106,6 +139,9 @@
           attributeReserve(){
             return this.attribute.split('').reverse().join('')
           },
+          // handleItem(){
+          //   return this.item.push({name:'dds'})
+          // },
           fullName:{
             get:function(){
               return this.firstName + '' + this.lastName
@@ -125,9 +161,8 @@
           handleClick:function(){
             this.message = this.message.split('').reverse().join('')
           },
+        
         }
-     
-   
       });
     </script>
   </body>

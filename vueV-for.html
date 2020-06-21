@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style></style>
+  </head>
+  <style>
+ 
+  </style>
+  <body>
+    <div id="box">
+     <!-- v-for, 再给数组中添加或删除一项 -->
+     <div v-for="item in obj">{{item.name}}</div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#box",
+        data:{
+          
+          obj:[
+            {
+              name:'aaa',
+              age:12,
+              job:'it'
+            },
+            {
+              name:'bbb',
+              age:22,
+              job:'iet'
+            }
+          ]
+        
+        },
+        created(){
+          this.listAdd()
+          
+        },
+        methods:{
+          listAdd(){
+            let objs ={
+              name:'sss'
+            }
+            // this.obj.push(objs) //后增
+            this.obj.unshift(objs)//前增
+            // this.obj.pop()//后删,删除最后一项
+            // this.obj.shift()//前删,删除第一项
+            this.obj.splice(0,1) //splice方法向/从数组中添加/删除项目，然后返回被删除的项目。会改变原数组, 从下标0的位置截取1个元素，即bbb , 原对象中this.obj则为剩下的元素就是 aaa
+            this.obj.splice(0,1,{name:'ddd'}) //删除下标为0 的第一个元素, 并添加一个新元素来替代被删除的元素：
+            // 详情 https://blog.csdn.net/uuihoo/article/details/79552852
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
