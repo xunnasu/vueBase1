@@ -14,23 +14,40 @@
     <!-- <div>{{message ? message + '万元' : '--'}}</div> -->
     <!-- 2.使用computed计算属性变换-->
     <!-- <div>{{format}}</div> -->
-    <!-- 3.使用vue中的filter方法 ，意思是使用totle方法过滤message中的条件-->
+    <!-- 3.使用vue中的filter方法 ，意思是使用format方法过滤message中的条件-->
     <!-- <div>{{message | format }}</div>  -->
     <!-- 4.函数方式 -->
     <div>{{format(message)}}</div>
+    <!-- 5.filter练习 -->
+    <div v-for="(item,index) in obj">{{item.age}}
+      <button @click="test(item,index)">测试函数加括号传参</button>
+    </div>
   </div>
   <script>
     var vm = new Vue({
       el:"#app",
       data:{
-        message:'76'//三目,有值情况
-        // message:null//三目,为null情况
+        message:'76',//三目,有值情况
+        // message:null,//三目,为null情况
+        obj:[
+          {
+            name:'js',
+            age:12,
+          },
+          {
+            name:'vue',
+            age:22,
+          }
+        ],
       },
       // 使用computed计算属性变换
       computed:{
         format(){
           return this.message ? this.message + '万元':'--'
         }
+      },
+      created() {
+        this.objFilter()
       },
       // 使用vue中的filter方法
       // filters:{
@@ -42,6 +59,15 @@
         // 函数方式
         format(val){
           return val ? val + '万元':'--'
+        },
+        // filter练习
+        objFilter(){
+          let obj2 = this.obj.filter(item=>item.age>15)
+           document.write(JSON.stringify(obj2))
+        },
+        // 点击事件传参
+        test(item,index){
+          console.log(item,index)
         }
       }
     
