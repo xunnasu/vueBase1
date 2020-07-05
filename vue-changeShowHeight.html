@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习动态class</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  /* 定义全局样式 */
+  /* body{
+    margin:0;
+    padding:0;
+  }
+  /* 有值才显示高亮,勾选协议才能提交 */
+  .inputBtn{
+    width:200px;
+    height: 80px;
+    color:aquamarine;
+    background:url(./images/ccc.png)no-repeat;
+    background-size: 100%;
+  }
+  .inputActive{
+    width:200px;
+    height: 80px;
+    background:url(./images/activation.png)no-repeat;
+    background-size: 100%;
+  }
+
+</style>
+<body>
+  <div id="app">
+    <input type="text" v-model ="showHeight11" >
+    <input type="checkbox" v-model="checkboxA">
+    <div :class="['inputBtn',inputBtnActive ? 'inputActive':'']" @click="inputSubmit"></div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        checkboxA:false,//有值才显示高亮,勾选协议才能提交
+        showHeight11:'',//有值才显示高亮,勾选协议才能提交
+      },
+      computed:{
+        //有值才显示高亮,勾选协议才能提交
+        inputBtnActive(){
+          return this.showHeight11
+        }
+      },
+      methods: {
+        // 有值才显示高亮,勾选协议才能提交
+          inputSubmit(){
+            if(!this.showHeight11){
+              alert('请填写姓名')
+            }
+            if(!this.checkboxA) {
+              alert('勾选一下')
+              return false
+            } else {
+              alert('成功')
+            }
+          }
+      },
+      
+    })
+  </script>
+  
+</body>
+</html>

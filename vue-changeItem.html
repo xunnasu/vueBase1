@@ -92,7 +92,42 @@
   .actives{
     visibility:hidden;
   }
-
+  /* 点击收起展开(背景图) */
+  /* .open{
+    display: flex;
+    justify-content: space-between;
+  }
+  .develop{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .icon-arr{
+    display: inline-block;
+    width:20px;
+    height: 20px;
+  }
+  .icon-arr-down{
+    background: url(../images/help_center_icon2.png)no-repeat;
+    background-size: 100%;
+  }
+  .icon-arr-up{
+    background: url(../images/help_center_icon1.png)no-repeat;
+    background-size: 100%; */
+  /* } */
+  .setting{
+      display: flex;
+      justify-content: space-between;
+      margin:0 15px;
+  }
+  .settingImg{
+      width:20px;
+      height: 20px;
+    }
+    .settingImg img{
+        width:100%
+    }
+ 
 </style>
 <body>
   <div id="app">
@@ -128,13 +163,34 @@
     </div>
     <!-- class数组的形式实现点击显示隐藏 -->
     <button @click="handleShow">点击</button>  
-    <div :class="[ isShow ? 'visible':'actives']">确认</div> 
+    <div :class="[ isShow ? 'visible':'actives']">确认</div>
+    <!-- 收起展开（第一种: 背景图） -->
+    <!-- <div class="open" @click="handleClose">
+      <span v-if="showDevelop" class="develop">展开
+        <i class="icon-arr icon-arr-down"></i>
+      </span>
+      <span v-else class="develop">收起
+        <i class="icon-arr icon-arr-up"></i>
+      </span>
+    </div>
+    <div v-show="showDevelop">列表列表</div> -->
+    <!--  收起展开（第二种: 两个图片imange） -->
+    <div class="setting">
+      <span>移动端设置</span>
+      <div class="settingImg" @click="hendleSetting">
+        <img src="../images/help_center_icon2.png" alt="" v-if="!showDetail">
+        <img src="../images/help_center_icon1.png" alt="" v-if="showDetail">
+      </div>
+   </div>
+   <div v-show="showDetail">列表列表列表列表</div>
 
   </div>
   <script>
     var vm = new Vue({
       el:'#app',
       data:{
+        showDevelop:false, // 收起展开（第一种: 背景图）
+        showDetail:false, // 收起展开（第二种: 两个图片imange）
         // showHeightColor:'', //展示高亮颜色
         // phone:'',//根据条件展示文案(登陆,正在登陆...)
         // btnMessage:'登陆',//根据条件展示文案(登陆,正在登陆...)
@@ -207,13 +263,22 @@
         //     this.flag = false
         //   },1000)
         // }
-        // 点击切换选项卡
+        // 动态切换class选项卡
         handleChange(index){
           this.changeId = index
         },
+        // class数组的形式实现点击显示隐藏 
         handleShow(){
             this.isShow = !this.isShow
-          }
+        },
+        // 收起展开（第一种: 背景图）
+        handleClose(){ 
+          this.showDevelop = !this.showDevelop
+        },
+        // 收起展开（第二种: 两个图片imange）
+        hendleSetting(){
+          this.showDetail = !this.showDetail
+        }
       },
       
     })
