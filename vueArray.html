@@ -58,14 +58,15 @@
       <button @click="handleShow(item,index)">{{item.isShow?'隐藏':'显示'}}</button>
     </div>
     <div>原始值{{array}}</div>
+    <!-- 1.join把数组转成字符串，可以规定个链接字符,默认是逗号 -->
     <div>处理过后的值{{arrayString}}</div>
     <div>for方法: 求1+2+3+4的和是:{{forNum}}</div>
+    <div>for方法: 求每个数字乘积:{{arr5}}</div>
     <div>forEach方法: 求1+2+3+4的和是:{{forEachNum}}</div>
-    <div>forEach方法给每个数字乘以2:{{arr4}}</div>
+    <div>forEach方法给每个数字乘以2(index方法):{{arr4}}</div>
+    <div>forEach方法给每个数字乘以2(push方法):{{arr4}}</div>
+    <div>forEach方法给每个数字乘以2(map方法):{{arr6}}</div>
 
-    <!-- 所有的数组的方法 -->
-    <!-- 1.join把数组转成字符串，可以规定个链接字符,默认是逗号 -->
-    <div>{{arr}}</div>
      </div>
      <!-- <p :title="msg"></p> -->
     </div>
@@ -107,12 +108,13 @@
             }
           ],
           showList:[],//练习显示隐藏功能
-          arrayString:'',
-          array:['aaa','bbb'],
-          arr:[1,2,3],
+          arrayString:'',//处理过后的值
+          array:['aaa','bbb'],//原始值
           arr3 : [1,2,4],//求和
+          arr4:[],
           forNum:0,//求和
-          forEachNum:0,
+          forEachNum:0,//求和
+          arr5: [1,2,4],//乘积
           
           // classObject:{
           //   // active:true,
@@ -145,37 +147,22 @@
           for(let i = 0 ; i <this.arr3.length;i++){
             this.forNum += this.arr3[i]
           }
+          // for循环方法数组的乘积
+          for(let i = 0; i<this.arr5.length;i++){
+            this.arr5[i] = this.arr5[i]*2
+          }
           // forEach方法求和
-          // this.arr3.forEach(item=>{
-          //   this.forEachNum += item
-          // })
+          this.arr3.forEach(item=>{
+            this.forEachNum += item
+          })
           // forEach方法给每个数字乘以2(index方法)
           // this.arr3.forEach((item,index)=>{
           //   this.arr3[index] = item*2
           // })
            // forEach方法给每个数字乘以2(push方法)
-          // let arr4 =[]
-          //  this.arr3.forEach((item,index)=>{
-          //   this.arr3[index] = item*2
-          // })
-
-         
-         
-         
-          // for(let i =0;i<arr3.length;i++){
-          //   arr3[i]*=2 
-          // }
-          // console.log(arr3)
-          
-
-        //  let arr4= arr3.map((item,index)=>{
-        //     return num =num +  item 
-        //   })
-        //   // console.log(arr4)
-        //   console.log(arr4)
-          
-
-          // console.log(num)
+          this.arr3.forEach((item,index)=>{
+            this.arr4.push(item*2)
+          })
           this.showList = [
             {
               isShow:1,
@@ -187,21 +174,16 @@
             }
           ]
           // 数组转字符串用分号拼接起来
-          this.arrayString = this.array.join(';')+';'//第一种方式
-          // this.array.forEach((item,index)=> {
-          //   console.log(item)
-          //   // this.arrayString += item + ';' 
-          //   this.arrayString =this.arrayString +  item + ';' //第二种方式
-          // })
-          // this.arrayString = this.arrayString.slice(0,-1)//第三种方式去掉最后一个分号
+          // this.arrayString = this.array.join(';')+';'//第一种方式
+          this.array.forEach((item,index)=> {
+            console.log(item)
+            // this.arrayString += item + ';' 
+            this.arrayString =this.arrayString +  item + ';' //第二种方式
+          })
+          this.arrayString = this.arrayString.slice(0,-1)//第三种方式去掉最后一个分号(还要打开第二种方式)
 
         },
         computed:{
-          arr4() {
-            return  this.arr3.map((item,index)=>{
-              return item * 2
-            })
-          }
             // filtersList(){
             //   let sum  = this.size
             //   return this.list.filter(item=>{
@@ -214,6 +196,12 @@
             //     'text-danger': this.error && this.error.type === 'fatal'
             //   }
             // }
+            // 计算属性乘积
+            arr6(){
+              return this.arr3.map(item=>{
+                return item*2
+              })
+            }
           },
           methods: {
             handleShow(item,index){

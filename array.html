@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <style>
+
+  </style>
+  <body>
+   <div>
+     sss
+   </div>
+    <script>
+      //  [1,2,3,4].  => [{key:1},{key:2},{key:3},{key:4}]
+      var a = [1,2,3]
+      // var objA ={} //数组转对象
+      // for(var i = 0 ; i< a.length;i++){ //数组转对象
+      //   objA[i] = i
+      // }
+      // console.log(objA)
+      // a.forEach((item,index)=>{ //数组转对象
+      //   objA[index] = item 
+      // })
+      var v = a.map(item=>{ //数组添加值
+        return {
+          key:item
+        }
+      })
+      console.log('v:>> ', v);
+      // [1,2,3,4] => [2,3,4]
+      var b = [1,2,3,4]
+      b.shift(0,1)//前删
+      console.log(b)
+    //[{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
+      var c =[
+        {
+          key:1
+        },
+        {
+          key:2
+        }
+      ]
+      var d ={}
+      c.forEach((item,index)=>{ //数组转对象
+        // let key = `key${index+1}`; //es6方法
+        let key ='key' + (index+1) //es5方法
+        console.log(key)
+        d[key] = item.key
+      })
+      console.log(d)
+      // [{key:1},{key:2},{key:3},{key:4}]  => `1,2,3,4`
+      var e =[
+        {
+          key:1
+        },
+        {
+          key:2
+        }
+      ]
+     var f = ''
+     for(let item in e){
+       for(let key in e[item]){
+        f += e[item][key] + ','
+       }
+       f = f.slice(0,3) //去掉最后一个逗号
+     }
+    console.log(f)
+      // [ 1, [2,3,[4,5]] , [6,7]] => [1,2,3,4,5,6,7]
+    var g = [1,[2,3,[4,5]],[6,7]]
+    //  var h = g.flat(2) //要重新赋值生效
+    // console.log(h)
+    var h = g.join().split(',')//转成数组字符串
+    console.log(h)
+    // [8,3,5,4,7,20] => [3,4,5,7,8,20]
+    var ia = [8,3,5,4,7,20]
+    //  循环
+    var max =[]
+    for(var i = 0 ; i < ia.length; i++){
+      for(var j = i ; j< ia.length; j++){
+        if(ia[i] > ia[j]){
+          max = ia[j]  //赋值给最大值变量max
+          ia[j] = ia[i]
+          ia[i] = max
+        }
+      }
+    }
+    console.log(ia)
+    //slice() 方法可从已有的数组中返回选定的元素。
+    //  ia.sort((a,b)=>{ //sort排序方法
+    //    return a-b
+    //  })
+    //  console.log(ia)
+    var arr = new Array(6)
+    arr[0] = "George"
+    arr[1] = "John"
+    arr[2] = "Thomas"
+    arr[3] = "James"
+    document.write("变化的值"+arr.slice(0,2)+ '<br>')//从第0个开始选长度为2个的值
+    document.write('初始值'+ arr)
+
+      
+
+    </script>
+  </body>
+</html>
