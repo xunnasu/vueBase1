@@ -13,7 +13,7 @@
      sss
    </div>
     <script>
-      //  [1,2,3,4].  => [{key:1},{key:2},{key:3},{key:4}]
+      //第一题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
       var a = [1,2,3]
       // var objA ={} //数组转对象
       // for(var i = 0 ; i< a.length;i++){ //数组转对象
@@ -28,12 +28,19 @@
           key:item
         }
       })
+      //第二题: [{key:1},{key:2},{key:3},{key:4}] => [1,2,3,4]
+      let newArr =  [{key:1},{key:2},{key:3},{key:4}]
+      let newArr2 = newArr.map(item=>item.key)
+      console.log(newArr2)
       console.log('v:>> ', v);
       // [1,2,3,4] => [2,3,4]
       var b = [1,2,3,4]
-      b.shift(0,1)//前删
+      // b.shift()//前删,只能删除一个
+      // b.splice(0,2)//删除前两个 第一个参数是从哪里开始， 第二个参数是删除几个元素
+      // b.unshift(5) //前加
+      b.splice(0,0,5)//从第0个开始， 删除第0个，添加一个5
       console.log(b)
-    //[{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
+    //第三题: [{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
       var c =[
         {
           key:1
@@ -50,30 +57,54 @@
         d[key] = item.key
       })
       console.log(d)
-      // [{key:1},{key:2},{key:3},{key:4}]  => `1,2,3,4`
+      //第四题:{key1:1,key2:2,key3:3,key4:4}=>[{key:1},{key:2},{key:3},{key:4}]
+      var cc = {key1:1,key2:2,key3:3,key4:4}
+      var dd = []
+      for(let key in cc){//对象转成数组
+        console.log(key,'key')
+        dd.push({[key.slice(0,-1)]: cc[key]}) 
+      }
+      console.log(dd,'ddd')
+      //第五题 [{key:1},{key:2}]  => `1,2`
       var e =[
         {
-          key:1
+          keys:1
         },
         {
-          key:2
+          keys:2
         }
       ]
      var f = ''
      for(let item in e){
        for(let key in e[item]){
+        // console.log(key,'lll')
+        // console.log(e[item],'lo')
         f += e[item][key] + ','
        }
        f = f.slice(0,3) //去掉最后一个逗号
      }
     console.log(f)
-      // [ 1, [2,3,[4,5]] , [6,7]] => [1,2,3,4,5,6,7]
+      //第六题 [ 1, [2,3,[4,5]] , [6,7]] => [1,2,3,4,5,6,7]
     var g = [1,[2,3,[4,5]],[6,7]]
-    //  var h = g.flat(2) //要重新赋值生效
+    //  var h = g.flat(2) //1.flat方法: 要重新赋值生效
     // console.log(h)
-    var h = g.join().split(',')//转成数组字符串
-    console.log(h)
-    // [8,3,5,4,7,20] => [3,4,5,7,8,20]
+    // var h = g.join().split(',')//2.转成数组字符串
+    // console.log(h)
+
+    // 3.递归方法实现平铺数组(自己调用自己)
+    var gg =[]
+   function unit(arr){
+    for(let item of arr){
+      if(Object.prototype.toString.call(item).slice(8,-1)==='Array'){
+        unit(item)
+      } else {
+        gg.push(item)
+      }
+    }
+    return gg
+   }
+    console.log(unit(g))
+    // 第六题：[8,3,5,4,7,20] => [3,4,5,7,8,20]
     var ia = [8,3,5,4,7,20]
     //  循环
     var max =[]
@@ -87,11 +118,11 @@
       }
     }
     console.log(ia)
-    //slice() 方法可从已有的数组中返回选定的元素。
     //  ia.sort((a,b)=>{ //sort排序方法
     //    return a-b
     //  })
     //  console.log(ia)
+    //slice() 方法可从已有的数组中返回选定的元素。
     var arr = new Array(6)
     arr[0] = "George"
     arr[1] = "John"
