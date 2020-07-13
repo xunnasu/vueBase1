@@ -15,6 +15,11 @@
     <script>
       //第一题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
       var a = [1,2,3]
+      var object ={} //转成对象
+      for(let item in a ){
+        object[item] = a[item]
+      }
+      console.log('object :>> ', object);
       // var objA ={} //数组转对象
       // for(var i = 0 ; i< a.length;i++){ //数组转对象
       //   objA[i] = i
@@ -28,17 +33,17 @@
           key:item
         }
       })
+      console.log('v:>> ', v);
       //第二题: [{key:1},{key:2},{key:3},{key:4}] => [1,2,3,4]
       let newArr =  [{key:1},{key:2},{key:3},{key:4}]
       let newArr2 = newArr.map(item=>item.key)
       console.log(newArr2)
-      console.log('v:>> ', v);
       // [1,2,3,4] => [2,3,4]
       var b = [1,2,3,4]
       // b.shift()//前删,只能删除一个
       // b.splice(0,2)//删除前两个 第一个参数是从哪里开始， 第二个参数是删除几个元素
       // b.unshift(5) //前加
-      b.splice(0,0,5)//从第0个开始， 删除第0个，添加一个5
+      b.splice(0,0,5)//从第0个开始， 删除第0个，添加一个数字5
       console.log(b)
     //第三题: [{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
       var c =[
