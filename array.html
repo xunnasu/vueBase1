@@ -22,7 +22,7 @@
       //   value[i] = o[key]
       // }
       // console.log('value :>> ', value);
-      
+
       // 第一题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
       // var a = [1,2,3]
       // var object ={} //转成对象
@@ -189,6 +189,113 @@
       // let value = getUrl("a")
       // console.log('value :>> ', value);
 
+
+    //有一个从小到大排好序的数组。现输入一个数，要求按原来的规律将它插入数组中。
+      // var arr5 =[]
+      // for(var i = 20 ; i <50;i++){
+      //   arr5.push(i)
+      // }
+      // console.log('arr5 :>> ', arr5);
+      // var arr6 =[]
+      // var num=30.5
+      // for(var j = 0 ; j<arr5.length;j++){
+      //   console.log('j :>> ', arr5.length);
+      //   if(arr5[j]>num){
+      //     console.log('arr5[jdd] :>> ', arr5[j]);
+      //     arr6 = arr5.splice(j,0,num)
+      //     console.log('arr6 :>> ', arr6);
+      //     break;
+      //   }
+      //   if(arr5[arr5.length]- 1 <num){
+      //     arr5.push(num)
+      //   }
+      // }
+      // console.log('arr5 :>> ', arr5);
+     // console.log('arr6 :>> ', arr6);
+
+    // 题1  changeFun   let arr = [1,2,3,4] 
+    // changeFun(arr) => {left: [1,2],right: [3,4]}
+    // let arr = [1,2,3,4,5,6]
+    // function changeFun(arr) {
+    //   let len = arr.length;
+    //   let midd = Math.floor(len/2)
+    //   let left = arr.slice(0,midd)
+    //   let right = arr.slice(midd)
+    //   return {
+    //     left, //es6写法
+    //     right
+    //   }
+    // }
+    // changeFun(arr) // {left: [1,2,3],right: [4,5,6]}
+    // console.log('object :>> ', changeFun(arr));
+    // console.log('object :>> ', changeFun([1,2,3,4,5,6,7]));
+
+    // 设计模式中的策略模式
+    // 1.对象的形(常用)
+    // let intentionObj = {
+    //     '1':'国内',
+    //     '2':'海外',
+    //     '3':'无明显意向'
+    // }
+    // let intention = 1
+    // let value = intentionObj[intention + '']
+    // console.log('value :>> ', value);
+    // 2.数组的形式
+    // let intentionList = ['国内','海外','无明显意向']
+    // let intention = 1
+    // let value = intentionList[intention-1]
+    // console.log('value :>> ', value);
+    
+    // 类型转换题: ![]==[]
+    //!true == [] //第一步空数组转布尔值是true 
+    //false ==[] //!true就是false
+    // 0 == [] 空数组转数字是0(空数组转布尔值为true)
+    // 0 == 0 //所有相等是0
+    // 答案是true
+    // 类型转换练习
+    var t = []
+    var booleanZ = Boolean(t)
+    var num = Number(t)
+    var str = 'boolean'
+    var n = Boolean(Number(t))
+    var boo = Boolean("str")
+    console.log('空数组转布尔值', booleanZ); // true
+    console.log('空数组转数字', num);//0
+    console.log('字符串转布尔值 :>> ', boo); //true
+    console.log('空数组现转数字再转布尔值 :>> ', n); //false
+
+    // 取值
+    // var a = {
+    //   s: [
+    //     {
+    //       key:1
+    //     },
+    //     {
+    //       key:2
+    //     }
+    //   ],
+    //   d: {
+    //     f:[1,2,3,{e:'ee'}],
+    //     g:{
+    //         b:[1,3,4,5]
+    //       }
+    //   }
+    // }
+    // console.log('a.s[1] :>> ', a.s[0].key);
+    // console.log('a.d.g.b0] :>> ', a.d.g.b[0]);
+
+    // slice、split、splice的区别和使用
+    var aa = [1,2,3,4,5]
+    var bb = aa.slice(-3,-2)
+    console.log('slice方法 :>> ', bb);
+    console.log('aa原数组:>> ', aa);
+    var str="How are you doing today?";
+    var n=str.split("");
+    console.log('split方法:>> ', n);
+    var myEnglish = ["a","b","v","g"]
+    var myEnglish2 = myEnglish.splice(2,1,'wsb')
+    console.log('splice1方法 :>> ', myEnglish);
+    console.log('splice2方法:>> ', myEnglish2);
     </script>
   </body>
 </html>
