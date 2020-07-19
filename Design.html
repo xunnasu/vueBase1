@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+
+  </div>
+  <script>
+    // 函数
+   function skulk(nj){
+    console.log('nj :>> ', nj);
+    return performance(nj,'return performance的结果')
+   }
+   var performance = function(person,action){
+     console.log('person :>> ', person);
+     console.log('action :>> ', action);
+     return person +'-'+ action
+   }
+   var rule = daimyo => performance(daimyo,'rule')
+   console.log('skulk :>> ', skulk('nj实参'));
+   console.log('rule :>> ', rule('rule实参'));
+
+
+   function getM (nanjin,wep){
+     return nanjin + " "+ wep
+   }
+   var mes1 = getM('A','c')
+   var mes2 = getM('B','b')
+   console.log('mes1 :>> ', mes1);
+   console.log('mes2 :>> ', mes2);
+
+
+  </script>
+</body>
+</html>
