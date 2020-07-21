@@ -13,131 +13,289 @@
      sss
    </div>
     <script>
-      //第一题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
-      var a = [1,2,3]
-      var object ={} //转成对象
-      for(let item in a ){
-        object[item] = a[item]
-      }
-      console.log('object :>> ', object);
+      // var o  = {key:1}
+      // var keys = Object.keys(o)
+      // console.log('keys :>> ', keys);
+      // var value =[]
+      // for(var i = 0 ; i < keys.length;i++){
+      //   var key = keys[i]
+      //   value[i] = o[key]
+      // }
+      // console.log('value :>> ', value);
+
+      // 第一题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
+      // var a = [1,2,3]
+      // var object ={} //转成对象
+      // for(let item in a ){
+      //   object[item] = a[item]
+      // }
+      // console.log('object :>> ', object);
+
       // var objA ={} //数组转对象
       // for(var i = 0 ; i< a.length;i++){ //数组转对象
       //   objA[i] = i
       // }
       // console.log(objA)
+
       // a.forEach((item,index)=>{ //数组转对象
       //   objA[index] = item 
       // })
-      var v = a.map(item=>{ //数组添加值
-        return {
-          key:item
-        }
-      })
-      console.log('v:>> ', v);
+      
+      // var v = a.map(item=>{ //数组添加值
+      //   return {
+      //     key:item
+      //   }
+      // })
+      // console.log('v:>> ', v);
+
       //第二题: [{key:1},{key:2},{key:3},{key:4}] => [1,2,3,4]
-      let newArr =  [{key:1},{key:2},{key:3},{key:4}]
-      let newArr2 = newArr.map(item=>item.key)
-      console.log(newArr2)
-      // [1,2,3,4] => [2,3,4]
-      var b = [1,2,3,4]
-      // b.shift()//前删,只能删除一个
-      // b.splice(0,2)//删除前两个 第一个参数是从哪里开始， 第二个参数是删除几个元素
-      // b.unshift(5) //前加
-      b.splice(0,0,5)//从第0个开始， 删除第0个，添加一个数字5
-      console.log(b)
+      // let newArr =  [{key:1},{key:2},{key:3},{key:4}]
+      // let newArr2 = newArr.map(item=>item.key)
+      // console.log(newArr2)
+      // // [1,2,3,4] => [2,3,4]
+      // var b = [1,2,3,4]
+      // // b.shift()//前删,只能删除一个
+      // // b.splice(0,2)//删除前两个 第一个参数是从哪里开始， 第二个参数是删除几个元素
+      // // b.unshift(5) //前加
+      // b.splice(0,0,5)//从第0个开始， 删除第0个，添加一个数字5
+      // console.log(b)
     //第三题: [{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
-      var c =[
-        {
-          key:1
-        },
-        {
-          key:2
-        }
-      ]
-      var d ={}
-      c.forEach((item,index)=>{ //数组转对象
-        // let key = `key${index+1}`; //es6方法
-        let key ='key' + (index+1) //es5方法
-        console.log(key)
-        d[key] = item.key
-      })
-      console.log(d)
+      // var c =[
+      //   {
+      //     key:1
+      //   },
+      //   {
+      //     key:2
+      //   }
+      // ]
+      // var d ={}
+      // c.forEach((item,index)=>{ //数组转对象
+      //   // let key = `key${index+1}`; //es6方法
+      //   let key ='key' + (index+1) //es5方法
+      //   console.log(key)
+      //   d[key] = item.key
+      // })
+      // console.log(d)
       //第四题:{key1:1,key2:2,key3:3,key4:4}=>[{key:1},{key:2},{key:3},{key:4}]
-      var cc = {key1:1,key2:2,key3:3,key4:4}
-      var dd = []
-      for(let key in cc){//对象转成数组
-        console.log(key,'key')
-        dd.push({[key.slice(0,-1)]: cc[key]}) 
-      }
-      console.log(dd,'ddd')
+      // var cc = {key1:1,key2:2,key3:3,key4:4}
+      // var dd = []
+      // for(let key in cc){//对象转成数组
+      //   console.log(key,'key')
+      //   dd.push({[key.slice(0,-1)]: cc[key]}) 
+      // }
+      // console.log(dd,'ddd')
       //第五题 [{key:1},{key:2}]  => `1,2`
-      var e =[
-        {
-          keys:1
-        },
-        {
-          keys:2
-        }
-      ]
-     var f = ''
-     for(let item in e){
-       for(let key in e[item]){
-        // console.log(key,'lll')
-        // console.log(e[item],'lo')
-        f += e[item][key] + ','
-       }
-       f = f.slice(0,3) //去掉最后一个逗号
-     }
-    console.log(f)
+    //   var e =[
+    //     {
+    //       keys:1
+    //     },
+    //     {
+    //       keys:2
+    //     }
+    //   ]
+    //  var f = ''
+    //  for(let item in e){
+    //    for(let key in e[item]){
+    //     // console.log(key,'lll')
+    //     // console.log(e[item],'lo')
+    //     f += e[item][key] + ','
+    //    }
+    //    f = f.slice(0,3) //去掉最后一个逗号
+    //  }
+    // console.log(f)
+    
       //第六题 [ 1, [2,3,[4,5]] , [6,7]] => [1,2,3,4,5,6,7]
-    var g = [1,[2,3,[4,5]],[6,7]]
+    // var g = [1,[2,3,[4,5]],[6,7]]
     //  var h = g.flat(2) //1.flat方法: 要重新赋值生效
     // console.log(h)
     // var h = g.join().split(',')//2.转成数组字符串
     // console.log(h)
 
     // 3.递归方法实现平铺数组(自己调用自己)
-    var gg =[]
-   function unit(arr){
-    for(let item of arr){
-      if(Object.prototype.toString.call(item).slice(8,-1)==='Array'){
-        unit(item)
-      } else {
-        gg.push(item)
-      }
-    }
-    return gg
-   }
-    console.log(unit(g))
+  //   var gg =[]
+  //  function unit(arr){
+  //   for(let item of arr){
+  //     if(Object.prototype.toString.call(item).slice(8,-1)==='Array'){
+  //       unit(item)
+  //     } else {
+  //       gg.push(item)
+  //     }
+  //   }
+  //   return gg
+  //  }
+  //   console.log(unit(g))
+
     // 第六题：[8,3,5,4,7,20] => [3,4,5,7,8,20]
-    var ia = [8,3,5,4,7,20]
-    //  循环
-    var max =[]
-    for(var i = 0 ; i < ia.length; i++){
-      for(var j = i ; j< ia.length; j++){
-        if(ia[i] > ia[j]){
-          max = ia[j]  //赋值给最大值变量max
-          ia[j] = ia[i]
-          ia[i] = max
-        }
-      }
-    }
-    console.log(ia)
+    // var ia = [8,3,5,4,7,20]
+    // //  循环
+    // var max =[]
+    // for(var i = 0 ; i < ia.length; i++){
+    //   for(var j = i ; j< ia.length; j++){
+    //     if(ia[i] > ia[j]){
+    //       max = ia[j]  //赋值给最大值变量max
+    //       ia[j] = ia[i]
+    //       ia[i] = max
+    //     }
+    //   }
+    // }
+    // console.log(ia)
+
     //  ia.sort((a,b)=>{ //sort排序方法
     //    return a-b
     //  })
     //  console.log(ia)
     //slice() 方法可从已有的数组中返回选定的元素。
-    var arr = new Array(6)
-    arr[0] = "George"
-    arr[1] = "John"
-    arr[2] = "Thomas"
-    arr[3] = "James"
-    document.write("变化的值"+arr.slice(0,2)+ '<br>')//从第0个开始选长度为2个的值
-    document.write('初始值'+ arr)
+    // var arr = new Array(6)
+    // arr[0] = "George"
+    // arr[1] = "John"
+    // arr[2] = "Thomas"
+    // arr[3] = "James"
+    // document.write("变化的值"+arr.slice(0,2)+ '<br>')//从第0个开始选长度为2个的值
+    // document.write('初始值'+ arr)
+    // 第七题: (获得url参数的值) split() 方法用于把一个字符串分割成字符串数组。
+      // let arr = "http://www.baidu.com?a=5&b=2"
+      // let sum1 = arr.split("?")[0]
+      // let sum2 = arr.split("?")[1]
+      // let sum3 = sum2.split("&")
+      // let sum33 = sum2.split("&")[0]
+      // let sum4 = sum2.split("&")[1]
+      // let sum5 ={}
+      // sum3.forEach(item=>{
+      //   let a = item.split("=")
+      //   console.log('sum3里面每一项值 :>> ', item);
+      //   console.log('每一项值去掉等号的后的数组 :>> ', a);
+      //   sum5[a[0]] = a[1]
+      // })
+      // console.log('sum5最终对象中的某一个具体的值:>> ', sum5['a']);
+      // console.log('sum1转换成数组之后取？后面第零项的值 :>> ', sum1);
+      // console.log('sum2转换成数组之后取?后面第一项的值 :>> ', sum2);
+      // console.log('sum3转换成数组之后取&后面的值:>> ', sum3);
+      // console.log('sum5最终对象:>> ', sum5);
+      // console.log('sum4:>> ', sum4);
+      // 第八题: 封装获得url参数的值
+      // function getUrl(url){
+      //   let url1 ='www.baidu.com?a=1&b=2&c=3'
+      //   let url2 = url1.split("?")[1]
+      //   let url3 = url2.split("&")
+      //   let obj = {}
+      //   url3.forEach(item=>{
+      //     let url4 = item.split('=')
+      //     console.log('obj[url4[0]]  :>> ', url4[1]);
+      //     obj[url4[0]] = url4[1]
+      //   })
+      //   return obj[url]
+      //   console.log('url2 :>> ', url3);
+      // }
+      // let value = getUrl("a")
+      // console.log('value :>> ', value);
 
-      
 
+    //有一个从小到大排好序的数组。现输入一个数，要求按原来的规律将它插入数组中。
+      // var arr5 =[]
+      // for(var i = 20 ; i <50;i++){
+      //   arr5.push(i)
+      // }
+      // console.log('arr5 :>> ', arr5);
+      // var arr6 =[]
+      // var num=30.5
+      // for(var j = 0 ; j<arr5.length;j++){
+      //   console.log('j :>> ', arr5.length);
+      //   if(arr5[j]>num){
+      //     console.log('arr5[jdd] :>> ', arr5[j]);
+      //     arr6 = arr5.splice(j,0,num)
+      //     console.log('arr6 :>> ', arr6);
+      //     break;
+      //   }
+      //   if(arr5[arr5.length]- 1 <num){
+      //     arr5.push(num)
+      //   }
+      // }
+      // console.log('arr5 :>> ', arr5);
+     // console.log('arr6 :>> ', arr6);
+
+    // 题1  changeFun   let arr = [1,2,3,4] 
+    // changeFun(arr) => {left: [1,2],right: [3,4]}
+    // let arr = [1,2,3,4,5,6]
+    // function changeFun(arr) {
+    //   let len = arr.length;
+    //   let midd = Math.floor(len/2)
+    //   let left = arr.slice(0,midd)
+    //   let right = arr.slice(midd)
+    //   return {
+    //     left, //es6写法
+    //     right
+    //   }
+    // }
+    // changeFun(arr) // {left: [1,2,3],right: [4,5,6]}
+    // console.log('object :>> ', changeFun(arr));
+    // console.log('object :>> ', changeFun([1,2,3,4,5,6,7]));
+
+    // 设计模式中的策略模式
+    // 1.对象的形(常用)
+    // let intentionObj = {
+    //     '1':'国内',
+    //     '2':'海外',
+    //     '3':'无明显意向'
+    // }
+    // let intention = 1
+    // let value = intentionObj[intention + '']
+    // console.log('value :>> ', value);
+    // 2.数组的形式
+    // let intentionList = ['国内','海外','无明显意向']
+    // let intention = 1
+    // let value = intentionList[intention-1]
+    // console.log('value :>> ', value);
+    
+    // 类型转换题: ![]==[]
+    //!true == [] //第一步空数组转布尔值是true 
+    //false ==[] //!true就是false
+    // 0 == [] 空数组转数字是0(空数组转布尔值为true)
+    // 0 == 0 //所有相等是0
+    // 答案是true
+    // 类型转换练习
+    var t = []
+    var booleanZ = Boolean(t)
+    var num = Number(t)
+    var str = 'boolean'
+    var n = Boolean(Number(t))
+    var boo = Boolean("str")
+    console.log('空数组转布尔值', booleanZ); // true
+    console.log('空数组转数字', num);//0
+    console.log('字符串转布尔值 :>> ', boo); //true
+    console.log('空数组现转数字再转布尔值 :>> ', n); //false
+
+    // 取值
+    // var a = {
+    //   s: [
+    //     {
+    //       key:1
+    //     },
+    //     {
+    //       key:2
+    //     }
+    //   ],
+    //   d: {
+    //     f:[1,2,3,{e:'ee'}],
+    //     g:{
+    //         b:[1,3,4,5]
+    //       }
+    //   }
+    // }
+    // console.log('a.s[1] :>> ', a.s[0].key);
+    // console.log('a.d.g.b0] :>> ', a.d.g.b[0]);
+
+    // slice、split、splice的区别和使用
+    var aa = [1,2,3,4,5]
+    var bb = aa.slice(-3,-2)
+    console.log('slice方法 :>> ', bb);
+    console.log('aa原数组:>> ', aa);
+    var str="How are you doing today?";
+    var n=str.split("");
+    console.log('split方法:>> ', n);
+    var myEnglish = ["a","b","v","g"]
+    var myEnglish2 = myEnglish.splice(2,1,'wsb')
+    console.log('splice1方法 :>> ', myEnglish);
+    console.log('splice2方法:>> ', myEnglish2);
     </script>
   </body>
 </html>
