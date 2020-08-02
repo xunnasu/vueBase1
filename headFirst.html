@@ -14,14 +14,289 @@
    </div>
     <script>
     // 第24页练习题: 变量和值
-    var i = 0;
-    while( i < 2 ){
-      i = i + 1;
-      var name = 'joe'
-      document.write("happy birthday to you.<br>")
+    // var name = 'joe'
+    // var i = 0;
+    // while( i < 2 ){
+    //   document.write("happy birthday to you.<br>")
+    //   i = i + 1;
+    // }
+    // document.write("happy birthday dear" + name +'<br>')
+    // document.write("happy birthday to you.<br>")
+    var word = "bottles"
+    var count = 2
+    while(count >0){
+      console.log(count+''+word+'of beer on the wall');
+      console.log(count+''+word+'of beer');
+      console.log('take on down,pass it around');
+      count = count -1
+      if(count > 0){
+        console.log(count + '' + word + 'of beer on the wall');
+      } else {
+        console.log('no more' + word + 'of beer on the wall');
+      }
     }
-    document.write("happy birthday dear" + name +'<br>')
-    document.write("happy birthday to you.<br>")
+      // 随机整数
+      var randoMloc = Math.floor(Math.random()*5)
+      console.log('randoMloc :>> ', randoMloc);
+      
+    // || 表示OR（或）。只要至少有一个，表达式为true，结果就为true。
+    // && 表示AND（与）。仅当两个表达式都为true时，结果才为true。
+    //第83页: 函数思维2020.7.25
+      // var dogName = "rover"
+      // var dogWeight = 23;
+      // if(dogWeight > 20){
+      //   console.log('dogName :>> ', dogName+'says1');
+      // } else {
+      //   console.log('dogName :>> ', dogName+'says2');
+      // }
+      // dogName = 'spot';
+      // dogWeight = 13;
+      // if(dogWeight > 20){
+      //   console.log(dogName + 'says3')
+      // } else {
+      //   console.log(dogName + 'says4')
+      // }
+      // dogName = "spike"
+      // dogWeight =50;
+      // if(dogWeight >20){
+      //   console.log(dogName+'say5')
+      // } else {
+      //   console.log(dogName+'say5')
+      // }
+      // 以上代码复杂，有很多重复的部分,要封装函数
+      // name,weight是形参 调用函数bark的时候传入的是实参rovers和23
+      // 把这两个值分别赋值给name和Weight
+      // function bark (name,weight){
+      //   if(weight >20 ){
+      //     console.log('体重大于20的数据', name+'sy1');
+      //   } else {
+      //     console.log('体重小于20的数据 ', name+'sy2');
+      //   }
+      // }
+      // bark('rovers',23)
+      // bark('spot',15)
+      // bark('spot',24)
+      // 第87页练习题-形参实参
+      // function what(temp){
+      //   if(temp <60){
+      //     console.log('wear a jacket ');
+      //   } else if(temp <70){
+      //     console.log('wear a seeater :>> ');
+      //   }else {
+      //     console.log('wear t-shirt :>> ');
+      //   }
+      // }
+      // what(50)
+      // what(80)
+      // what(60)
+      // function doIt(param) {
+      //    param  = 2
+      //    console.log('param :>> ', param);
+      // }
+      // var test = 1;
+      // doIt(test);
+      // console.log(test);
+      // 函数声明和函数表达式
+      // console.log('sun(1,2) :>> ', sum(1,2));
+      // function sum(num1,num2){
+      //   return num1+num2
+      // }
+      // var sum = function(num1,num2){
+      //   return num1+ num2
+      // }
+      // console.log('sum(1,2) :>> ', sum(1,2));
+      function call(fun,num){
+        console.log('fun :>> ', fun);
+        console.log('num :>> ', num);
+        let a =  fun(num);
+        console.log('a :>> ', a);
+        return a
+      }
+      function add(num2){
+        return num2
+      }
+      var result = call(add,10)
+      console.log('result :>> ', result);
+
+    //  第96页,函数返回值
+    // function back(degrees){
+    //     var message = ''
+    //     if(degrees > 500 ){
+    //       message = 'i am not nuclear reactor'
+    //     } else if(degrees <100){
+    //       message = 'i am not refrigerator'
+    //     }else {
+    //       message ="tahtjfsjkfjdsl"
+    //       // setMode("bake")
+    //       // setTemp(degrees)
+    //     }
+    //     return message
+    //   }
+    //   var status = back(350)
+    //   console.log('status :>> ', status);
+      // 练习函数返回值题目1
+      // function f(){
+      //   var a = []
+      //   a[0] = true;
+      //   a[1]= function(x,y){
+      //     return x+y
+      //   }
+      //   a[2] = 123;
+      //   return a 
+      // }
+      // var b = f() //函数的返回值要赋给一个变量！！
+      // console.log('b :>> ', b);
+      // 练习函数返回值题目2
+      // function sum(a,b,c){
+      //   var d = a+b+c;
+      //   return d
+      // }
+      // var result = sum(1,2,3)  //一定要给return出来的结果赋值！！！
+      // console.log('result :>> ', result);
+      // var status = 'ec'
+      // var isStatus = (status == "ecss") //false
+      // var isStatus = (status == "ec") //true
+      // console.log('isStatus :>> ', isStatus);
+      // var points = 5;
+      // function playTurn(player, location) {
+      //  var  points = 5;
+      //   if (location == 1) {
+      //   points = points + 100;
+      //   }
+      //   return points;
+      // }
+      // var total = playTurn("Jai", 1);
+      // console.log(points,total);
+
+      // 练习1:奇偶数判断的函数封装
+      // function oddNumber(num){
+      //   if(num % 2 == 0){
+      //     return true
+      //   } else {
+      //     return false
+      //   }
+      // }
+      // console.log('判断奇偶数是 :>> ', oddNumber(5));
+      // 练习2: 判断一个数是3的倍数和7的倍数
+      // function isSanAndSeven(num2){
+      //   if(num2 % 3 && num2 % 7) {
+      //     return true
+      //   } else {
+      //     return false
+      //   }
+      // }
+      // console.log('3的倍数和7的倍数:>> ', isSanAndSeven(14))
+      // 练习3 判断一个两位以内数是不是逢7过得数
+      // function isSevePass(num){
+      //   if(num % 7 == 0 || num % 10 == 7 || parseInt(num/10) == 7){
+      //     return true
+      //   } else {
+      //     return false
+      //   }
+      // }
+      // console.log('逢7过:>> ', isSevePass(14));
+      //练习4:判断闰年
+      // function isLeapYear(year){
+      //   if(year % 4 == 0 &&　year %100  !=0 || (year % 400 ==0)){ //四年一润与百年不润, 或者四百年一润
+      //     return true
+      //   } else {
+      //     return false 
+      //   }
+      // }
+      // console.log('判断润年 :>> ', isLeapYear(2015));
+      // 练习5:身体健康指数
+      // function BMI(height,weight){
+      //   var standWeight = height -105
+      //   if(weight < standWeight -5){
+      //     return -1
+      //   } else if(weight > standWeight +5){
+      //     return 1
+      //   }else {
+      //     return 0
+      //   }
+      // }
+      // console.log('BMI(165,100) :>> ', BMI(165,90));
+
+      // 数组
+    //   var scores = [60,50,61,80,56,88]
+    //   var flavors = ['vanilla','butterscores','live']
+    //   console.log('scores :>> ', scores[2]);
+    //   flavors[2] = 'eeee' 
+    //   console.log('flavors :>> ', flavors[2]);
+    //   function funC(params){
+    //     return params +2
+    //   }
+    //   console.log('object :>> ', funC(2));
+    //   funN = (params) => params +4;
+    //   console.log('qqq :>> ', funN(2));
+      
+   
+    
+
+
+
+
+    // var balance = 10500;
+    // var cameraOn = true;
+    // function steal(balance, amount) {
+    // cameraOn = false;
+    // if (amount < balance) {
+    // balance = balance - amount;
+    // }
+    // return amount;
+    // cameraOn = true;
+    // }
+    // var amount = steal(balance, 1250);
+    // console.log("Criminal: you stole " + amount + "!");
+
+
+    // var points = 10
+    // function playTurn(player, location) {
+    //   var points = 20
+    //   if (location == 1) {
+    //     points = points + 100;
+    //   }
+    //     return points;
+    //   }
+    // var total = playTurn("Jai", 1);
+    // console.log('111 :>> ', points);
+    // // 創建空数组并在其中添加元素
+    // // var genres = ['80s','90s','00']
+    // var genres2 = []
+    // genres2.push('rock')
+    // genres2.push('amc')
+    // console.log('genres2 :>> ', genres2);
+    // var size = genres2.length
+    // console.log('size :>> ', size);
+    //最大值
+      var value =[1,2,3,4,5,6] 
+      var max = 0
+      for(var i = 0 ; i <value.length;i++){
+        if(value[i] > max){
+          max = value[i]
+        }
+      }
+      console.log('max :>> ', max);
+
+      var scores = [60, 50, 60, 58, 54, 54,
+      58, 50, 52, 54, 48, 69,
+      34, 55, 51, 52, 44, 51,
+      69, 64, 66, 55, 52, 61,
+      46, 31, 57, 52, 44, 18,
+      41, 53, 55, 61, 51, 44];
+      var height = 0;
+      var output
+      for(var i = 0 ; i <scores.length;i++){
+        output = 'bubble solution#'+ i + 'score'+scores[i]
+        console.log('output :>> ', output);
+        if(scores[i] > height){
+          height = scores[i]
+        }
+      }
+      console.log('scores.lenght'+scores.length);
+      console.log('height :>> ', height);
+
+
     </script>
   </body>
 </html>

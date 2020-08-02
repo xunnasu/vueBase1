@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>headFirst对象</title>
+    <style></style>
+  </head>
+  <style>
+
+  </style>
+  <body>
+   <div>
+    <p id="code9">打印什么</p>
+   </div>
+  
+  <script>
+    
+    // 创建一个对象
+    // var chevy = {
+    //   make:'chevy',
+    //   model:'Bel Air',
+    //   year:1950,
+    //   color:'red',
+    //   passengers:2,
+    //   convertible:false,
+    //   mileage:1021,
+    //   drive:function(){
+    //     console.log('zoom');
+    //   }
+    // }
+    // var chervy2 = chevy.needWash=true //修改属性值
+    // delete chevy.make //删除属性
+    // console.log('chervy3 :>> ', chevy.drive());
+    // console.log('chevy.model :>> ', chevy);
+    // if(chevy.year > 1960){
+    //   convertible = true
+    // } else {
+    //   convertible = false
+    // }
+    // console.log('convertible :>> ', convertible);
+    
+    var fiat = { 
+      make: "Fiat",
+      model: "500",
+      year: 1957, 
+      color: "Medium Blue",
+      passengers: 2,
+      convertible: false,
+      mileage: 88000,
+      started: true,
+      start: function() {
+        this.started = true;
+      },
+      stop: function() {
+        this.started = false;
+      },
+      drive: function() {
+      if (this.started) {
+        console.log("Zoom zoom!");
+      } else {
+        console.log("You need to start the engine first.");
+      }
+      }
+      };
+      fiat.drive();
+      // this问题
+      // var eightBall={
+      //   index:0,
+      //   advice :['yes','no','not a chance'],
+      //   shake:function(){
+      //     this.index = this.index +1
+      //     if(this.index >= this.advice.length){
+      //       this.index = 0
+      //     }
+      //   },
+      //   look:function(){
+      //     return this.advice[this.index]
+      //   }
+      // }
+      // eightBall.shake()
+      // console.log('eightBall.look() :>> ', eightBall.look());
+
+      // var eightBall = { index: 0, 
+      // advice: ["yes", "no", "maybe", "not a chance"],
+      // shake: function() { 
+      // this.index = this.index + 1;
+      // if (this.index >= this.advice.length) {
+      //   this.index = 0;
+      // }
+      // },
+      // look: function() {
+      //   return this.advice[this.index];
+      // }
+      // }; 
+      // eightBall.shake(); 
+      // console.log(eightBall.look());
+
+    // 对象冰箱贴183页
+    var dog = {
+      name:'Fido',
+      weight:20.2,
+      age:4,
+      breed:'mixed',
+      activaty:'fetch balls'
+    }
+    console.log('dog :>> ', dog);
+    var bark;
+    if(dog.weight > 20){
+      bark = 'WOOF WOOF'
+    } else {
+      bark = 'woof woof'
+    }
+    var speak = dog.name + 'says'+ dog.bark+ 'when he wants to '+dog.activaty
+    console.log('speak :>> ', speak);
+
+    var access = document.getElementById("code9")
+    var code = access.innerHTML
+    code = code + 'midnight'
+    console.log('code :>> ', code);
+
+
+
+  </script>
+
+  </body>
+</html>
