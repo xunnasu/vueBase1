@@ -123,10 +123,29 @@
   .settingImg{
       width:20px;
       height: 20px;
-    }
-    .settingImg img{
-        width:100%
-    }
+  }
+  .settingImg img{
+      width:100%
+  }
+  /* 根据不同的状态展示不同的文案颜色 */
+  .th-olist-right1{
+      width:100px;
+      height:80px;
+      border:1px dashed rgb(203, 236, 13);
+      margin-top:.28rem;
+  }
+  .th-olist-right2{
+    width:100px;
+      height:80px;
+      border:1px dashed rgb(240, 80, 6);
+      margin-top:.28rem;
+  }
+  .renewalTime{ background:#fff;padding: 5px; color: #FDB60F; line-height: 30px; font-size: 16px;}
+  .remain1{ background:#FDB60F;padding: 5px; color: #fff;  line-height: 30px; font-size: 16px;}
+  .graceTime{ background:#fff;padding: 5px; color: red;  line-height: 30px;font-size: 16px;}
+  .remain2{ background:red;padding: 5px; color: #fff;  line-height: 30px;font-size: 16px;}
+
+   
  
 </style>
 <body>
@@ -134,10 +153,13 @@
     <div>
       <!-- 根据input中的v-model值点击按钮变换颜色 -->
       <!-- <input type="text" v-model="showHeightColor"> -->
+      <!-- 以下是三种形式 -->
       <!-- 对象的形式 -->
       <!-- <div class="submit" :class="{'btn':showHeightColor}">提交</div> -->
+
       <!-- 数组的形式, 要使用计算属性computed来动态变换 -->
       <!-- <div :class="['btn',btnActive ? 'active':'']">提交</div> -->
+
       <!-- 对象的形式根据条件展示文案(登陆,正在登陆...) -->
       <!-- <input type="tel" v-model='phone'>
       <div class="btn" :class="{'login':btnActive && flag}" @click="handleClick">{{btnMessage}}</div> -->
@@ -183,7 +205,11 @@
       </div>
    </div>
    <div v-show="showDetail">列表列表列表列表</div>
-
+   <!-- 根据不同的状态展示不同的文案颜色 -->
+   <div :class="[show ? 'th-olist-right1':'th-olist-right2']">
+    <p :class="[show ? 'renewalTime':'graceTime']">{{show ? '距离续保期':'距离宽限期'}}</p>
+    <p :class="[show ? 'remain1':'remain2']">剩下21天</p>
+   </div>
   </div>
   <script>
     var vm = new Vue({
@@ -232,7 +258,8 @@
             value:'d'
           }
         ],
-        isShow:true
+        isShow:true,
+        show:false
 
       },
       computed:{
