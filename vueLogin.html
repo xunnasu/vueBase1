@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习动态class</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  /* 定义全局样式 */
+  body{
+    margin:0;
+    padding:0;
+  }
+  ul,li{
+    list-style: none;
+    margin:0;
+    padding:0;
+  }
+  /* 对象的形式 */
+  /* .submit{
+    width: 320px;
+    height: 45px;
+    line-height: 45px;
+    background: #84c8f0;
+    border-radius: 45px;
+    text-align: center;
+    margin-top:15px;
+  }
+  .btn{
+    background: #1e86ff;
+  } */
+  /* 数组的形式 */
+  /* .btn{
+    width: 320px;
+    height: 45px;
+    line-height: 45px;
+    background: #84c8f0;
+    border-radius: 45px;
+    text-align: center;
+    margin-top:15px;
+  } */
+  .active{
+    background: #1e86ff;
+
+  }
+  /* 根据条件展示文案(登陆,正在登陆...) */
+  .btn{
+    width: 320px;
+    height: 45px;
+    line-height: 45px;
+    background: #84c8f0;
+    border-radius: 45px;
+    text-align: center;
+    margin-top:15px;
+  }
+  .active{
+    background: #1e86ff;
+
+  }
+  .login{
+    background: #1e86ff;
+  }
+</style>
+<body>
+  <div id="app">
+    <div>
+      <!-- 根据input中的v-model值点击按钮变换颜色 -->
+      <input type="text" v-model="showHeightColor">
+      <!-- 以下是三种形式 -->
+      <!-- 对象的形式 -->
+      <!-- <div class="submit" :class="{'btn':showHeightColor}">提交</div> -->
+
+      <!-- 数组的形式, 要使用计算属性computed来动态变换 -->
+      <div :class="['btn',btnActive1 ? 'active':'']">提交</div>
+
+      <!-- 对象的形式根据条件展示文案(登陆,正在登陆...) -->
+      <input type="tel" v-model='phone'>
+      <input type="tel" v-model='code'>
+      <div class="btn" :class="{'login':btnActive2 && flag}" @click="handleClick">{{btnMessage}}</div>
+    </div>
+  
+  </div>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        showHeightColor:'',
+        phone:'',//根据条件展示文案(登陆,正在登陆...)
+        code:'',
+        btnMessage:'登陆',//根据条件展示文案(登陆,正在登陆...)
+        flag:false,//根据条件展示文案(登陆,正在登陆...)
+      },
+      computed:{
+        btnActive1(){
+          return this.showHeightColor
+        },
+        // 根据条件展示文案(登陆,正在登陆...)
+        btnActive2(){
+           if(!this.phone || !this.code){
+            this.flag = true
+          } 
+          // else {
+          //   // this.flag = true
+          // }
+           return this.phone && this.code  //输入完都变亮,两者都满足条件
+          // return this.phone ||  this.code //输入一个值就会变亮,或者的关系
+        }
+      },
+      methods: {
+        // 点击登录
+        handleClick(){
+          if(!this.phone || !this.code){
+            return false
+          }
+          this.btnMessage= "正在登录中.."
+          this.flag = true
+          setTimeout(()=>{
+            this.btnMessage = '登录';
+            this.flag = false
+          },1000)
+        }
+      },
+      
+    })
+  </script>
+  
+</body>
+</html>

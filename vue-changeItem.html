@@ -17,46 +17,6 @@
     margin:0;
     padding:0;
   }
-  /* 对象的形式 */
-  /* .submit{
-    width: 320px;
-    height: 45px;
-    line-height: 45px;
-    background: #84c8f0;
-    border-radius: 45px;
-    text-align: center;
-    margin-top:15px;
-  }
-  .btn{
-    background: #1e86ff;
-  } */
-  /* 数组的形式 */
-  /* .btn{
-    width: 320px;
-    height: 45px;
-    line-height: 45px;
-    background: #84c8f0;
-    border-radius: 45px;
-    text-align: center;
-    margin-top:15px;
-  }
-  .active{
-    background: #1e86ff;
-
-  } */
-  /* 根据条件展示文案(登陆,正在登陆...) */
-  /* .btn{
-    width: 320px;
-    height: 45px;
-    line-height: 45px;
-    background: #84c8f0;
-    border-radius: 45px;
-    text-align: center;
-    margin-top:15px;
-  }
-  .login{
-    background: #1e86ff;
-  } */
   /* 动态切换class选项卡  */
   .listBox{
     display: flex;
@@ -150,20 +110,7 @@
 </style>
 <body>
   <div id="app">
-    <div>
-      <!-- 根据input中的v-model值点击按钮变换颜色 -->
-      <!-- <input type="text" v-model="showHeightColor"> -->
-      <!-- 以下是三种形式 -->
-      <!-- 对象的形式 -->
-      <!-- <div class="submit" :class="{'btn':showHeightColor}">提交</div> -->
-
-      <!-- 数组的形式, 要使用计算属性computed来动态变换 -->
-      <!-- <div :class="['btn',btnActive ? 'active':'']">提交</div> -->
-
-      <!-- 对象的形式根据条件展示文案(登陆,正在登陆...) -->
-      <!-- <input type="tel" v-model='phone'>
-      <div class="btn" :class="{'login':btnActive && flag}" @click="handleClick">{{btnMessage}}</div> -->
-    </div>
+  
     <div>
       <!-- 动态切换class选项卡 -->
       <ul class="listBox">
@@ -217,7 +164,6 @@
       data:{
         showDevelop:false, // 收起展开（第一种: 背景图）
         showDetail:false, // 收起展开（第二种: 两个图片imange）
-        // showHeightColor:'', //展示高亮颜色
         // phone:'',//根据条件展示文案(登陆,正在登陆...)
         // btnMessage:'登陆',//根据条件展示文案(登陆,正在登陆...)
         // flag:false,//根据条件展示文案(登陆,正在登陆...)
@@ -262,34 +208,7 @@
         show:false
 
       },
-      computed:{
-        // 数组的形式动态变换按钮的颜色
-        // btnActive(){
-        //   return this.showHeightColor
-        // }
-        // 根据条件展示文案(登陆,正在登陆...)
-        // btnActive(){
-        //   if(!this.phone){
-        //     this.flag = false
-        //   } else {
-        //     this.flag = true
-        //   }
-        //   return this.phone
-        // }
-      },
       methods: {
-        // 点击登录
-        // handleClick(){
-        //   if(!this.phone){
-        //     return false
-        //   }
-        //   this.btnMessage= "正在登录中.."
-        //   this.flag = true
-        //   setTimeout(()=>{
-        //     this.btnMessage = '登录';
-        //     this.flag = false
-        //   },1000)
-        // }
         // 动态切换class选项卡
         handleChange(index){
           this.changeId = index
