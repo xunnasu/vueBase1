@@ -141,8 +141,8 @@
             //  })
             //  console.log(ia)
             // 数组的集合练习题
-            // let a = [1, 2, 3, 4, 5];
-            // let b = [3, 4, 5, 6, 7, 8];
+            let a = [1, 2, 3, 4, 5];
+            let b = [3, 4, 5, 6, 7, 8];
             // 第一种for循环的方法
             //  function filters(a,b){
             //    let c =[]
@@ -163,8 +163,16 @@
             //   // 第三种方式用 new Set
             //   let set2 = new Set(b);
             //   return a.filter(item => set2.has(item))
+            // //   第三种indexOf
+            // //   return a.filter(item => b.indexOf(item) !=-1)
             // }
             // console.log(filters(a,b));
+            // 使用filter过滤掉符合条件的元素 (小于4的显示出来)
+            // var aaa = [1,2,3,4]
+            // function bbb(a,b){
+            //     return a.filter(item => item<4)
+            // }
+            // console.log('bbb(aaa) :>> ', bbb(aaa));
             //slice() 方法可从已有的数组中返回选定的元素。
             // var arr = new Array(6)
             // arr[0] = "George"
@@ -315,8 +323,8 @@
             // console.log('a000:>> ',JSON.parse(a.d.g.ansewr).a);
 
             // slice、split、splice的区别和使用
-            // var aa = ["jjj", "oooo", "pppp"];
-            // var bb = aa.slice(0, 2);
+              // var aa = ["jjj", "oooo", "pppp"];
+            // var bb = aa.slice(0, 2); //第一个参数就是从下标几开始， 第二个数就是数组的长度， 不包括最后一个
             // console.log("slice方法22222222 :>> ", bb);
             // console.log("aa原数组:>> ", aa);
             // var str = "How are you doing today?";
@@ -352,13 +360,12 @@
             // arr2.name = null; //假删除 ,有属性，只不过值为null
             console.log("arr2.name :>> ", arr2["job"]);
             console.log("arr :>> ", arr2.name);
-
+           
             var arrPush = ['悟空','八戒']
             var result = arrPush.push('沙僧')
             console.log('result :>> ', result);
             console.log('result :>> ', arrPush);
             console.log(typeof  NaN === "number"); //  "true"
-          
         </script>
     </body>
 </html>
