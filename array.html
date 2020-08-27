@@ -26,7 +26,6 @@
             //   object[item] = a[item]
             // }
             // console.log('object :>> ', object);
-
             // var objA ={} //数组转对象
             // for(var i = 0 ; i< a.length;i++){ //数组转对象
             //   objA[i] = i
@@ -248,7 +247,6 @@
             //   let len = arr.length;
             //   let midd = Math.floor(len/2)
             //   let left = arr.slice(0,midd)
-            //   let right = arr.slice(midd)
             //   return {
             //     left, //es6写法
             //     right
@@ -351,7 +349,7 @@
             // console.log("boolean ", isNaN(Number(num5)));
            
             let arr2 = {
-                name: "珠峰培训",
+                name: "Ssss",
                 age: 12,
             };
             let name = "wang"; //修改其中的值
@@ -366,6 +364,43 @@
             console.log('result :>> ', result);
             console.log('result :>> ', arrPush);
             console.log(typeof  NaN === "number"); //  "true"
+
+            var v =[1,2,3,34,5,6,7,8,9]
+            var vv= v.splice(2,1,444) //返回被删除的元素，原始数组会被改变
+            console.log('vv :>> ', vv);
+            console.log('v :>> ', v);
+
+            var poppo = [1,2,3,4]
+            var po1 = poppo.reverse()
+            console.log('po1 :>> ', po1);
+            console.log('poppo :>> ', poppo);
+
+            var sort1 = [2,3,44,55,12]
+            console.log('po1 :>> ', sort1.sort());
+            var items = [
+                { name: 'Edward', value: 37},
+                { name: 'Sharpe', value: 24},
+                { name: 'And', value: 45 }
+            ];
+            items.sort(function (a, b) {
+                return (a.value - b.value)
+            });
+            console.log('items :>> ', items);
+
+            // {name: "Sharpe", value: 24}
+            // {name: "Edward", value: 37}
+            // {name: "And", value: 45}
+
+            // 使用函数表达式
+            var number = [1,23,4,5,6,7,7,8,9]
+            number.sort(function(a,b){
+                return a-b
+            })
+            console.log('number :>> ', number);
+
+            
+            
+          
         </script>
     </body>
 </html>
