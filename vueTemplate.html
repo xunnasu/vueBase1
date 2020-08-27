@@ -62,6 +62,14 @@
     <div>for方法: 求1+2+3+4的和是:{{forNum}}</div>
     <div>forEach方法: 求1+2+3+4的和是:{{forEachNum}}</div>
     <div>forEach方法给每个数字乘以2:{{arr4}}</div>
+    <!-- 银行卡 -->
+    <div>{{isorderMain}}</div>  
+    <button v-if="btn && button == 1">可点击跳转111</button>
+    <!-- 数据结构拆分 -->
+    <div v-for="(item,key) in listParams" :key="key">{{key}}
+      <div v-for="(items,key) in item">{{items.name}}</div>
+    </div>
+
 
     <!-- 所有的数组的方法 -->
     <!-- 1.join把数组转成字符串，可以规定个链接字符,默认是逗号 -->
@@ -113,6 +121,45 @@
           arr3 : [1,2,4],//求和
           forNum:0,//求和
           forEachNum:0,
+          orderMain:{
+            accountNo:'6210982400020521234',
+            accountNname:'中国宁波银行',
+            aa:500
+          },
+          button:1,
+          btn:'',
+          name:'su',
+          age:10,
+          listParams:{
+            '光大':[
+              {
+                name:'光大---保通',
+                brandUuid:'223'
+              },
+              {
+                name:'光大---华通',
+                brandUuid:'123'
+              }
+            ],
+            '华贵':[
+              {
+                name:'华贵----阳光',
+                brandUuid:'453'
+              },
+              {
+                name:'华贵----复兴',
+                brandUuid:'678'
+              },
+              {
+                name:'华贵----联合',
+                brandUuid:'670'
+              }
+            ]
+          }
+          // orderMain:{
+          //   accountNo:'1245',
+          //   accountNname:'建设银行'
+          // }
           
           // classObject:{
           //   // active:true,
@@ -145,6 +192,44 @@
           for(let i = 0 ; i <this.arr3.length;i++){
             this.forNum += this.arr3[i]
           }
+          if(this.name !='su' || this.age !='10'){
+            this.btn = false
+          } else{
+            document.write('dddd')
+            // this.btn = window.location.href ='https://www.baidu.com/'
+          }
+          function add0(m){return m<10?'0'+m:m } add0(2)
+          //时间戳转化成时间格式
+          function timeFormat(timestamp){
+            //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+              var time = new Date(timestamp);
+            
+              var month = time.getMonth()+1;
+              var date = time.getDate();
+              var hours = time.getHours();
+              var minutes = time.getMinutes();
+              var seconds = time.getSeconds();
+              return add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+          }
+          console.log('timeForma :>> ', timeFormat(1587524409000));
+          //获取对象里面得数组， 第一种方式是用object.keys 第二种方式是用for in 
+          this.listParams = Object.keys(this.listParams)
+          this.listParams.map(item=>{
+            console.log('item :>> ', item);
+          })
+          console.log('object333 :>> ', this.listParams);
+
+          
+          // for(var  i in this.listParams){
+          //   console.log('object111 :>> ', this.listParams);
+          //   for(var key in this.listParams[i])
+          //   this.listParams[i].map(item=>{
+          //     console.log('item.name :>> ', item.name);
+          //   })
+          //   console.log('object222 :>> ', this.listParams[i]);
+
+          // }
+
           // forEach方法求和
           // this.arr3.forEach(item=>{
           //   this.forEachNum += item
@@ -201,7 +286,21 @@
             return  this.arr3.map((item,index)=>{
               return item * 2
             })
+          },
+          //建设银行(6664) slice(2,6) 截取文字的后四位+ substring(accountNo.length-4) 截取数字的后四位
+          isorderMain(){ 
+            let accountNo = this.orderMain.accountNo
+            let accountNname = this.orderMain.accountNname
+            let aa =  this.orderMain.aa
+            // return accountNname.slice(2,6) +'\xa0' + '单笔单卡'+ aa+'万'+ '('+ '尾号' + accountNo.substring(accountNo.length-4)+')'
+            return accountNname +'\xa0' + '单笔单卡'+ aa+'万'+ '('+ '尾号' + accountNo.slice(-4)+')'
           }
+          //这个就是不需要格式化直接取值再拼拼接参数即可
+          // isorderMain(){ 
+          //   let accountNo = this.orderMain.accountNo
+          //   let accountNname = this.orderMain.accountNname
+          //   return accountNname + '('+ '尾号' + accountNo+')'
+          // }
             // filtersList(){
             //   let sum  = this.size
             //   return this.list.filter(item=>{
@@ -224,12 +323,12 @@
               console.log(params)
               item.isShow = item.isShow === 1 ? 0:1 //不传index
             // this.showList[index].isShow = item.isShow === 1 ? 0:1 //传index时
-          //   reverseMessage:function(){
-          //     this.messageClick = this.messageClick.split('').reverse().join('')
-          //   },
-          //   parent(){
-          // 	console.log("hello world");
-          // },
+            //   reverseMessage:function(){
+            //     this.messageClick = this.messageClick.split('').reverse().join('')
+            //   },
+            //   parent(){
+            // 	console.log("hello world");
+            // },
             },
             
         }
