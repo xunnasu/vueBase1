@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>for in 和for of区别</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    </style>
+  </head>
+<div id="app">
+    <!-- 对象中有数组 -->
+    <div v-for="(item,key) in listParams" :key="key">
+        <p>{{key}}</p>
+        <p v-for = "(items,key) in item" :key="">{{items.brandUuid}}</p>
+        <p v-for = "(items,key) in item" :key="">{{items.name}}</p>
+    </div>
+    <!-- 数组map的使用 -->
+    <!-- <div v-for="item in arr">{{item}}</div> -->
+</div>
+  <body>
+    <script>
+      var app3 = new Vue({
+        el: "#app",
+        data:{
+          arr:[1,2,3,4,5],
+          listParams:{
+            '光大':[
+              {
+                name:'光大---保通宝通',
+                brandUuid:'11'
+              },
+              {
+                name:'光大---华通华通',
+                brandUuid:'22'
+              }
+            ],
+            '华贵':[
+              {
+                name:'华贵----阳光阳光',
+                brandUuid:'33'
+              },
+              {
+                name:'华贵----复兴复兴',
+                brandUuid:'44'
+              },
+              {
+                name:'华贵----联合联合',
+                brandUuid:'55'
+              }
+            ]
+          }
+       
+        },
+        created(){
+            /*遍历对象*/
+            const obj = {
+                a: 1,
+                b: 2,
+                c: 3
+            }
+            for (let i in obj) {
+                console.log(i) //打印属性:a,b,c
+                console.log('obj[i] :>> ', obj[i]); //打印属性值1,2,3
+            }
+            // for (let i of obj) {
+            // console.log(i)
+            // // Uncaught TypeError: obj is not iterable 报错了
+            // }
+            // 如果一定要用for of 遍历对象，我们可以用Object.keys()，它返回的是对象的所有可枚举属性的字符串数组
+            // for(i of Object.keys(obj)){ 
+            //     console.log('i :>> ', i);//打印属性 a,b,c
+            //     console.log('i :>> ', obj[i]);////打印属性值1,2,3
+            // } 
+
+            /*遍历数组:*/ 
+            // const arr = [1,2,3]
+            // for in 循环
+            // for (let i in arr) {
+                // console.log(i) // 打印索引: 0,1,2
+                // console.log(arr[i]) // 打印数据：1,2,3
+            // }
+            // for of
+            // for (let i of arr) {
+            //     console.log(i) // 打印数据:1,2,3
+            // }
+            // 总结：for in 循环特别适合遍历对象。
+            // for in遍历数组得到的是数组的下标，for of遍历数组得到的是数组的元素，for in遍历键 ， for of遍历值
+
+
+            // map方法不会改变原数组，map() 方法返回一个新数组，
+            // 新数组中的元素为原始数组中的每个元素调用函数处理后得到的值。产生新的值要重新赋值
+            // this.arr = this.arr.map(i=>{
+            //     return i +5
+            // })
+            // console.log('修改后的值>> ', this.arr);
+            // 如果不赋值，值是不会改变的
+
+
+            /*获取对象中的数组的值*/
+            // 第一:可以用for in 和for of 
+            for(var  i in this.listParams){
+                console.log('遍历对象:>> ', this.listParams);
+                for(var key of this.listParams[i]){
+                console.log('遍历对象里面的数组的每一项:>> ', key);
+                }
+            }
+            // 第二: 还有Object.keys也可以用遍历，它返回的是对象的所有可枚举属性的字符串数组,它的参数传的 就是要返回其枚举自身属性的对象
+            // console.log('把初始化对象转成数组的形式，并获取对象的Key值:>> ', Object.keys(this.listParams));
+            // // 能拿到key值 就可以遍历他们的属性值，可以用forEach
+            // Object.keys(this.listParams).forEach(k=>{
+            //     console.log('获取Key对应的值', this.listParams[k]);
+            //     this.listParams[k].forEach(item=>{
+            //         console.log('获取值中的具体属性值>> ', item.name);
+            //     })
+            // })
+
+            // 如果用map 操作，并修改里面的值
+            //  Object.keys(this.listParams).forEach(k=>{
+            //     console.log('获取Key对应的值', this.listParams[k]);
+            //     this.listParams[k] = this.listParams[k].map(item=>{
+            //         console.log('获取值中的具体属性值>> ', item.brandUuid);
+            //         item.brandUuid = item.brandUuid*2
+            //         return item
+            //         // 或者如下这种写法也可以
+            //         // return  {
+            //         //     ...item,
+            //         //     brandUuid: item.brandUuid*2
+            //         // }
+            //     })
+            // })
+        },
+        computed:{
+        },
+        methods: {
+        }
+      });
+    </script>
+  </body>
+</html>
