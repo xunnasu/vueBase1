@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="Doraemon.css">
 </head>
 <style>
-  .wrapper{
+.wrapper{
     margin: 50px 100px;
 }
 .doraemon{
@@ -80,6 +80,7 @@
     position: absolute;
     top: -160px;
     left: 45px;
+    animation: mouth 2s linear infinite;
 }
 .eyes{
     position: relative;
@@ -98,6 +99,18 @@
     -ms-animation: eyemove 3s linear infinite;
     -o-animation: eyemove 3s linear infinite;
     animation: eyemove 3s linear infinite; */
+}
+@keyframes mouth {
+    0% {
+        border-radius: 90px;
+    }
+    50% {
+        border-radius: 120px;
+    }
+    100% {
+        border-radius: 90px;
+
+    }
 }
 /*让眼睛动起来*/
 @-webkit-keyframes eyemove {
@@ -189,6 +202,22 @@
         margin: 0 0 0 0;
     }
 }
+@keyframes eyemove{
+    0%{
+    transform: scale(2);  /*开始为原始大小*/
+    }
+    25%{
+        transform: scale(1.5); /*放大1.1倍*/
+    }
+    50%{
+        transform: scale(2);
+    }
+    75%{
+        transform: scale(1.5);
+    }
+            
+}
+
 .eyes .left{
     left: 82px;
 }
@@ -198,10 +227,11 @@
 .eyeball{
     width: 14px;
     height: 14px;
-    background: #000;
+    /* background: #000; */
     border-radius: 7px;
     position: absolute;
-    top: 40px;
+    top: 30px;
+    color:red;
 }
 .eye .bleft{
     left: 50px;
@@ -303,7 +333,84 @@
     position: absolute;
     top: 5px;
     left: 90px;
+    /* 旋转元素的基点位置 */
+  transform-origin: top center;
+  animation: swing 6s .15s linear infinite;
+  -moz-animation: swing 6s .15s linear infinite; /* Firefox */
+  -webkit-animation: swing 6s .15s linear infinite; /* Safari and Chrome */
+  -o-animation: swing 6s .15s linear infinite; /* Opera */
 }
+
+@-webkit-keyframes swing {
+  10% {
+    transform: rotate(35deg);
+  }
+  20% {
+    transform: rotate(-30deg);
+  }
+  30% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  50%,100% {
+    transform: rotate(0deg);
+  }
+}
+@-moz-keyframes swing {
+  10% {
+    transform: rotate(25deg);
+  }
+  20% {
+    transform: rotate(-20deg);
+  }
+  30% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  50%,100% {
+    transform: rotate(0deg);
+  }
+}
+@-o-keyframes swing {
+  10% {
+    transform: rotate(25deg);
+  }
+  20% {
+    transform: rotate(-20deg);
+  }
+  30% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  50%,100% {
+    transform: rotate(0deg);
+  }
+}
+/* 创建动画，0％是开头动画，100％是当动画完成。 */
+@keyframes swing {
+  10% {
+    transform: rotate(25deg);
+  }
+  20% {
+    transform: rotate(-20deg);
+  }
+  30% {
+    transform: rotate(5deg);
+  }
+  40% {
+    transform: rotate(-5deg);
+  }
+  50%,100% {
+    transform: rotate(0deg);
+  }
+}
+
 .bell_line{
     width: 36px;
     height: 2px;
@@ -523,12 +630,16 @@
                     <!--左眼-->
                     <div class="eye left">
                         <!--左眼球-->
-                        <div class="eyeball bleft"></div>
+                        <div class="eyeball bleft">
+                            ❤
+                        </div>
                     </div>
                     <!--右眼-->
                     <div class=" eye right">
                         <!--右眼球-->
-                        <div class="eyeball bright"></div>
+                        <div class="eyeball bright">
+                            ❤
+                        </div>
                     </div>
                 </div>
                 <!--脸部-->

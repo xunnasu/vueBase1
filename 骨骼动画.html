@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    overflow: hidden;
+  }
+.animate-3 {
+  margin-top:20px;
+  animation-name:run;
+	animation-duration:5s;
+	animation-timing-function:linear;
+	animation-iteration-count:infinite;
+}
+@keyframes run {
+	0% {
+	transform:translateX(0);
+}
+100% {
+	transform:translateX(1200px);
+}
+}
+.animate-3 {
+  position: absolute;
+  left:80px;
+}
+.animate-3 .head{
+  width:60px;
+	height:60px;
+	border-radius:50px;
+	border:3px solid rgb(219, 11, 11);
+  position: absolute;
+  top:50px;
+  left:50px;
+}
+.animate-3 .body{
+  width:3px;
+	height:75px;
+	background:rgb(202, 20, 20);
+  position: absolute;
+  top:113px;
+  left:80px;
+}
+.animate-3 .hand-left,.hand-right {
+	width:40px;
+	height:50px;
+	border-left:3px  solid rgb(199, 27, 27);
+	border-bottom:3px solid rgb(207, 7, 7);
+  position: absolute;
+  top:132px;
+  left:80px;
+	transform-origin:0 0;
+}
+.hand-left{
+  transform:rotate(45deg);
+	animation:hand-left 2s linear infinite;
+}
+.hand-right {
+	transform:rotate(-45deg);
+	animation:hand-right 2s linear infinite;
+}
+@keyframes hand-left {
+	0% {
+	transform:rotate(60deg);
+}
+50% {
+	transform:rotate(-45deg);
+}
+100% {
+	transform:rotate(60deg);
+}}
+@keyframes hand-right {
+	0% {
+	transform:rotate(-45deg);
+}
+50% {
+	transform:rotate(60deg);
+}
+100% {
+	transform:rotate(-45deg);
+}
+}
+.animate-3 .leg{
+  position: absolute;
+  top:182px;
+  left:80px;
+}
+.animate-3 .leg .thigh1{
+  width:3px;
+  height: 100px;
+  background: rgb(199, 27, 27);
+	position:absolute;
+ 
+}
+.leftleg{
+  transform: rotate(20deg);
+  transform-origin: top center;
+  animation: move1 2s  infinite;
+}
+.rightleg{
+  transform: rotate(-20deg);
+  transform-origin: top center;
+  animation: move2 2s  infinite;
+}
+@keyframes move1 {
+  0% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+@keyframes move2 {
+  0% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(-30deg);
+  }
+}
+@keyframes move3 {
+  0% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes move4 {
+  0% {
+    transform: rotate(50deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(50deg);
+  }
+}
+.animate-3 .leg .thigh1 .lower1{
+  width:3px;
+  height: 100px;
+  background: rgb(199, 27, 27);
+	position:absolute;
+	top:100px;
+  left:0;
+  transform-origin: top center;
+}
+.leftSmall{
+  animation: move4 2s  infinite;
+}
+.rightSmall{
+  animation: move3 2s  infinite;
+}
+
+</style>
+<body>
+  <div class="animate-3">
+    <!--运动模块-->
+    <!-- 头部 -->
+    <div class="head"></div>
+    <!-- 身体 -->
+    <div class="body"></div>
+    <!-- 身体左侧 -->
+    <div class="hand-left"></div>
+    <!-- 身体右侧 -->
+    <div class="hand-right"></div>
+    <!-- 大腿整体 -->
+    <div class="leg">
+      <!-- 大腿1 -->
+        <div class="thigh1 leftleg">
+          <!-- 大腿中的小腿1 -->
+            <div class="lower1 leftSmall"></div>
+        </div>
+        <!-- 大腿2 -->
+         <div class="thigh1 rightleg">
+           <!-- 大腿中的小腿2 -->
+            <div class="lower1 rightSmall"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

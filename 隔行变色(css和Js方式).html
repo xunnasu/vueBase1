@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隔行变色</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0
+    }
+    ul,ol {
+        list-style: none;
+    }
+    .box{
+        width:300px;
+        margin:20px auto
+    }
+    .box li {
+        padding:0 5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 35px;
+        border-bottom: 1px dashed #aaa;
+    }
+    .bgColor{
+      background:lightblue;
+    }
+    /* .box li:nth-of-type(odd){
+        color:red;
+    } */
+    /* .box li:nth-of-type(3n+1){
+        color:red;
+    }
+    .box li:nth-of-type(3n+2){
+        color:green
+    }
+    .box li:nth-of-type(3n+3){
+        color:yellow
+    } */
+</style>
+<body>
+  <!-- 隔行变色 -->
+  <ul class="box" id="box">
+    <span>404</span>
+    <li>第一行</li>
+    <li>第二行</li>
+    <li>第三行</li>
+    <li>第四行</li>
+    <li>第五行</li>
+  </ul>
+  <script>
+  //  1.获取box中所有的Li，我们需要先获取Box
+  // 获取页面中的Dom元素 
+  // document.getElementById 在整个文档中，通过元素的Id属性值，获取到这个元素的对象
+  // getElementById是获取元素的方法,而document限定了获取元素的范围,我们把这个范围称之为上下文（context）
+    var oBox = document.getElementById('box')
+    // console.log('a :>> ', a);
+    // 输出更为详细的信息
+  // console.dir(oBox)
+  // 通过style修改行内样式
+  // oBox.style.backgroundColor = 'pink'
+  // oBox.className = 'box bgColor'
+  // oBox.className += ' bgColor'
+  var boxList = oBox.getElementsByTagName('li')
+  console.log('boxList :>> ', boxList);
+  for(var i =0;i<boxList.length;i++){
+    if(i%2 !== 0){
+      boxList[i].style.backgroundColor ='pink'
+      // 或者 boxList[i].className += ' bgColor'
+    }
+
+  }
+  </script>
+</body>
+</html>

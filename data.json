@@ -1,0 +1,47 @@
+{
+  "data":[
+    {
+      "posterAppResultList": [
+        {
+          "brandName": "华贵人寿H5",
+          "brandUuid": "PB0000001211",
+          "createId": null,
+          "createTime": null,
+          "fileFullPath": "http://203.100.84.82:6006/group2/M00/00/D1/CmQVXF5nhx-AGhfjAAq2uXZul2Y965.jpg",
+          "fileName": "pic1_华贵大麦2020.jpg",
+          "filePath": "M00/00/D1/CmQVXF5nhx-AGhfjAAq2uXZul2Y965.jpg",
+          "groupName": "group2",
+          "id": 19,
+          "posterCode": "POSTER_20200310202503066",
+          "posterImageUrl": null,
+          "posterLink": "http://www.baidu.com",
+          "posterName": "华贵大麦2020",
+          "posterType": 3,
+          "productCode": "5aa3bf5306454cb686e0f7be98491b79",
+          "productName": "华贵大麦2020定期寿险",
+          "showOrder": 1
+        },
+        {
+          "brandName": "华贵人寿H5",
+          "brandUuid": "PB0000001211",
+          "createId": null,
+          "createTime": null,
+          "fileFullPath": "http://203.100.84.82:6006/group1/M00/0A/64/rBCjPl8D01qATtwkAADINR1ILbs694.png",
+          "fileName": "pic1_海外保险架构图.png",
+          "filePath": "M00/0A/64/rBCjPl8D01qATtwkAADINR1ILbs694.png",
+          "groupName": "group1",
+          "id": 50,
+          "posterCode": "POSTER_20200707094354075",
+          "posterImageUrl": null,
+          "posterLink": "http://www.baidu.com",
+          "posterName": "2222",
+          "posterType": 3,
+          "productCode": "5aa3bf5306454cb686e0f7be98491b79",
+          "productName": "华贵大麦2020定期寿险",
+          "showOrder": 1
+        }
+      ],
+      "productName": "华贵大麦2020定期寿险"
+    }
+  ]
+}

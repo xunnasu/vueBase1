@@ -17,6 +17,14 @@
     </div>
     <!-- 数组map的使用 -->
     <!-- <div v-for="item in arr">{{item}}</div> -->
+
+    <!-- 对象数组循环 -->
+    <div v-for="item in list">
+      {{item.productName}}
+      <div v-for="items in item.posterAppResultList">{{items.brandName}}</div>
+      <!-- <div v-for="items in ite">{{ite}}</div> -->
+
+    </div>
 </div>
   <body>
     <script>
@@ -49,20 +57,79 @@
                 brandUuid:'55'
               }
             ]
-          }
+          },
+          list:[
+          {
+            posterAppResultList: [
+              {
+                brandName: "复星联合健康",
+                productCode: "e20df2a978f74970916428a036ea7938",
+                productName: "复星联合超越保（计划11）",
+              }
+            ],
+            productName: "复3333"
+          },
+          {
+            posterAppResultList: [
+              {
+                brandName: "复康",
+                productCode: "e20df2a978f74970916428a036ea7938",
+                productName: "复星联合超越保（计划22）",
+              }
+            ],
+            productName: "复222"
+          },
+          {
+            posterAppResultList: [
+              {
+                brandName: "康",
+                productCode: "e20df2a978f74970916428a036ea7938",
+                productName: "复星联合超越保（计划33）",
+              }
+            ],
+            productName: "复1222"
+          },
+          ]
        
         },
         created(){
+         
+          // this.list = this.list.forEach(item=>{
+
+          // })
             /*遍历对象*/
-            const obj = {
-                a: 1,
-                b: 2,
-                c: 3
+            // const obj = {
+            //     a: 1,
+            //     b: 2,
+            //     c: 3
+            // }
+            // for (let i in obj) {
+            //     console.log(i) //打印属性:a,b,c
+            //     console.log('obj[i] :>> ', obj[i]); //打印属性值1,2,3
+            // }
+            
+            // 基础for循环
+            // var ary = [12,34,56]
+            // // 正着输出
+            // for(var i =0 ; i < ary.length; i++){
+            //   console.log('ary.length-1 :>> ', ary.length-1); //当前数组中最后一项属性名(也是索引)
+            //   // 定义初始值 i = 0
+            //   // 设定循环成立的条件 i<ary.length
+            //   // 条件成立会执行循环体中的内容
+            //   // 执行步长累加的操作
+            //   console.log('ary[i]11:>> ', ary[i]);
+            //   if(i%2 ===0){
+            //     // 输出奇数项, 索引为偶数，代表的是奇数项
+            //     console.log('ary[i] :>> ', ary[i]);
+            //   }
             }
-            for (let i in obj) {
-                console.log(i) //打印属性:a,b,c
-                console.log('obj[i] :>> ', obj[i]); //打印属性值1,2,3
-            }
+            // 倒着输出
+            // for(var i = ary.length -1 ; i>=0;i--){
+            //   console.log('ary[i] :>> ', ary[i]);
+            // }
+            
+
+
             // for (let i of obj) {
             // console.log(i)
             // // Uncaught TypeError: obj is not iterable 报错了
@@ -99,12 +166,12 @@
 
             /*获取对象中的数组的值*/
             // 第一:可以用for in 和for of 
-            for(var  i in this.listParams){
-                console.log('遍历对象:>> ', this.listParams);
-                for(var key of this.listParams[i]){
-                console.log('遍历对象里面的数组的每一项:>> ', key);
-                }
-            }
+            // for(var  i in this.listParams){
+            //     console.log('遍历对象:>> ', this.listParams);
+            //     for(var key of this.listParams[i]){
+            //     console.log('遍历对象里面的数组的每一项:>> ', key);
+            //     }
+            // }
             // 第二: 还有Object.keys也可以用遍历，它返回的是对象的所有可枚举属性的字符串数组,它的参数传的 就是要返回其枚举自身属性的对象
             // console.log('把初始化对象转成数组的形式，并获取对象的Key值:>> ', Object.keys(this.listParams));
             // // 能拿到key值 就可以遍历他们的属性值，可以用forEach

@@ -1,0 +1,85 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 11:09:28
+ * @LastEditTime: 2020-09-23 17:13:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueBase1\自定义练习.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  
+</style>
+<body>
+  <div id="app">
+     <!--一、声明式渲染 -->
+    <div>
+      {{message}} 
+    </div>
+     <!--二、绑定元素attribute(属性)-->
+    <div>
+      <span>绑定元素</span>
+      <span v-bind:title="message">
+        鼠标悬停几秒中查看此处动态绑定的提示信息
+      </span>
+    </div>
+    <!--三、条件和循环 -->
+    <!-- 1.条件:v-bind:控制元素是否显示隐藏 -->
+    <div>
+      <div>v-bind:条件</div>
+      <p v-if="seen">现在看见了想要控制的元素展示出来了</p>
+    </div>
+    <!-- 2.循环:v-for:可以绑定数组的数据来渲染一个项目列表-->
+    <div>
+      <p>循环</p>
+      <ul>
+        <li v-for="todo in list">{{todo.text}}</li>
+      </ul>
+    </div>
+    <!-- 四、处理用户输入 -->
+    
+  </div> 
+  <script>
+  //  new Vue({
+  //   template: '<div>{{ hi }}</div>'
+  // }) 
+  // 创建一个vue 实例
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        message:'hello vue', //一(二)、渲染模板的内容
+        seen:true, //三、控制元素是否显示隐藏
+        list:[
+          {
+            text:'学习js',
+          },
+          {
+            text:'学习vue',
+          },
+          {
+            text:'整个项目'
+          }
+        ]
+
+        
+      },
+      created() {
+        
+      },
+      computed:{
+        
+      },
+      methods:{
+      }
+    })
+    console.log('vue实例',vm )
+  </script>
+</body>
+</html>
