@@ -1,0 +1,119 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 11:09:28
+ * @LastEditTime: 2020-09-28 17:47:31
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueBase1\自定义练习.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+  
+</style>
+<body>
+  <div id="app">
+     <!-- 声明式渲染 -->
+    <div>
+      {{message}} 
+    </div>
+     <!-- 绑定元素attribute(属性)-->
+    <div>
+      <!-- 第一个属性v-bind -->
+      <span v-bind:title="message">
+        鼠标悬停几秒中查看此处动态绑定的提示信息
+      </span>
+    </div>
+    <!-- 实现反转 -->
+    <p >{{msg}}</p>
+    <button v-on:click="handelClick">反转</button>
+    <input type="text" v-model="msg">
+    <!-- 组件化应用构建 ,在vue 中注册组件,模拟组件传值-->
+    <ol>
+      <todo-item 
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id">
+      </todo-item>
+    </ol>
+    <!-- 插值 -->
+    <span>原始{{msg2}}</span>
+    <span v-once>改变{{msg2}}</span>
+    <button v-on:click="change">改变</button>
+    <!-- 原始html -->
+    <p>Using v-html directive: <span v-html="rawHtml" style="color:red"></span></p>
+    <p>Using v-html directive: <span v-text="rawHtml" style="color:rgb(31, 11, 214)"></span></p>
+    <!-- <p v-html="rawHtml">22ddd22{{rawHtml}}</p>
+    <p v-text="msg3"></p> -->
+  </div> 
+  <script>  
+  //  new Vue({
+  //   template: '<div>{{ hi }}</div>'
+  // }) 
+  // 定义一个名为头todo-item的组件
+  Vue.component('todo-item',{
+    // template:'<div>hahhahah</div>',
+    props:['todo'],
+    template:'<li>{{todo.text}}</li>'
+  })
+  
+  // 创建一个vue 实例
+    var vm = new Vue({
+      el:'#app',
+      data:{
+        msg2:'插值表达式',
+        rawHtml:'<span>展示原始的html元素</span>',
+        msg3: "<h1 style='color:red'>这是一个h1元素内容</h1>",
+        // message:'hello vue'
+        message:'页面加载与' + new Date().toLocaleDateString(),  //绑定元素属性
+        msg:'Hello Vue.js!', //反转
+        // 组件数据列表
+        groceryList:[
+          {
+            id:0,
+            text:'蔬菜'
+          },
+          {
+            id:1,
+            text:'水果'
+          },
+          {
+            id:2,
+            text:'奶酪'
+          }
+        ],
+
+      },
+      created(){
+      },
+      computed:{
+        
+      },
+      methods:{
+        // 反转
+        handelClick(){
+          return this.msg = this.msg.split('').reverse().join('')
+        },  
+        // 点击后更改初始插值
+        change(){
+          this.msg2="点击后要修改初始的插值"
+        }
+      },
+      watch:{
+        $route:{
+          handle(val){
+            // console.log('val :>> ', val);
+          },
+          // immediate: true
+        }
+      }
+    })
+  </script>
+</body>
+</html>
