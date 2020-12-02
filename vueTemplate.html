@@ -67,7 +67,7 @@
     <button v-if="btn && button == 1">可点击跳转111</button>
     <!-- 数据结构拆分 -->
     <div v-for="(item,key) in listParams" :key="key">{{key}}
-      <div v-for="(items,key) in item">{{items.name}}</div>
+      <div v-for="(items,key) in item">{{nameParams}}</div>
     </div>
 
 
@@ -129,29 +129,30 @@
           button:1,
           btn:'',
           name:'su',
+          name5:'',
           age:10,
           listParams:{
             '光大':[
               {
-                name:'光大---保通',
+                name:'光大---保通宝通',
                 brandUuid:'223'
               },
               {
-                name:'光大---华通',
+                name:'光大---华通华通',
                 brandUuid:'123'
               }
             ],
             '华贵':[
               {
-                name:'华贵----阳光',
+                name:'华贵----阳光阳光',
                 brandUuid:'453'
               },
               {
-                name:'华贵----复兴',
+                name:'华贵----复兴复兴',
                 brandUuid:'678'
               },
               {
-                name:'华贵----联合',
+                name:'华贵----联合联合',
                 brandUuid:'670'
               }
             ]
@@ -187,6 +188,7 @@
           // title:"ps",
           // chufa:"change"
         },
+       
         created(){
           // for循环方法数组求和
           for(let i = 0 ; i <this.arr3.length;i++){
@@ -213,22 +215,48 @@
           }
           console.log('timeForma :>> ', timeFormat(1587524409000));
           //获取对象里面得数组， 第一种方式是用object.keys 第二种方式是用for in 
-          this.listParams = Object.keys(this.listParams)
-          this.listParams.map(item=>{
-            console.log('item :>> ', item);
-          })
-          console.log('object333 :>> ', this.listParams);
+          // this.listParams = Object.keys(this.listParams)
+          // this.listParams.map(item=>{
+          //   console.log('item :>> ', item);
+          // })
+          // console.log('object333 :>> ', this.listParams);
 
           
-          // for(var  i in this.listParams){
-          //   console.log('object111 :>> ', this.listParams);
-          //   for(var key in this.listParams[i])
-          //   this.listParams[i].map(item=>{
-          //     console.log('item.name :>> ', item.name);
-          //   })
-          //   console.log('object222 :>> ', this.listParams[i]);
+          for(var  i in this.listParams){
+            console.log('object111 :>> ', this.listParams);
+            for(var key of this.listParams[i]){
+              console.log('key123 :>> ', key.name);
+            }
+            // this.listParams[i].map(item=>{
+            //   this.name5 = item.name
+            //   console.log('item.name :>> ', item.name);
+            // })
 
+          }
+          // 遍历对象和数组
+          // 对象
+          let object ={
+            a:1,
+            b:2,
+            c:3
+          }
+          // for(i in object){
+          //   console.log('i :>> ', object.a);
           // }
+          // for(k of object){
+          //   console.log('k:>> ', k);
+          // }
+          for(i in Object.keys(object)){
+            console.log('i :>> ', i);
+          }
+          // 数组
+          let array6 = ['a','b','c']
+          for(i in array6){
+            console.log('数组的属性名:>> ', i);
+          }
+           for(i of array6){
+            console.log('数组的属性值:>> ', i);
+          }
 
           // forEach方法求和
           // this.arr3.forEach(item=>{
@@ -294,6 +322,9 @@
             let aa =  this.orderMain.aa
             // return accountNname.slice(2,6) +'\xa0' + '单笔单卡'+ aa+'万'+ '('+ '尾号' + accountNo.substring(accountNo.length-4)+')'
             return accountNname +'\xa0' + '单笔单卡'+ aa+'万'+ '('+ '尾号' + accountNo.slice(-4)+')'
+          },
+          nameParams(){
+            return  this.name5.slice(-4)
           }
           //这个就是不需要格式化直接取值再拼拼接参数即可
           // isorderMain(){ 

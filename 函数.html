@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数</title>
+</head>
+<style>
+    
+</style>
+<body>
+ 
+  <script>
+    // ES3标准中
+    function 函数名([参数]){
+      //函数体：实现功能的js 代码
+    }
+    函数名() //把函数执行
+    function fn(){
+      var total = 10;
+      total += 10;
+      total/=2;  //就是total = total /2
+      total = total.toFixed(2)
+      console.log('total :>> ', total);
+    }
+    fn();
+    // ES6标准中创建箭头函数
+    let 函数名 = ([参数]) =>{ //函数名也就是变量名
+      // 函数体
+    }
+    函数名()
+    let fn=()=>{
+      let total =10
+    }
+    fn()
+    // 创建函数
+    // 1.函数也是引用类型,首先会开辟一个新的堆内存，把函数体中的代码当做'字符串'存储到内存中
+    // 对象向内存中存储的是键值对
+    // 2.把开辟得堆内尺寸地址赋值给函数名（变量名）
+    // 函数执行：
+    // 目的：把之前存储到堆内存中的代码字符串变为真正的Js代码自上而下执行,从而实现应有的功能
+    // 1.函数执行首先会形成一个私有的作用域（一个供代码执行的环境,也是一个栈内存）
+    // 2.把之前在堆内存中存储的字符串复制一份过来变为真正的js 代码的代码，在新开辟的作用域中自上而下执行,
+  
+    //函数中的参数
+    // 参数 是函数的入口,当我们在函数中封装一个功能,发现一些原材料不确定，需要执行
+    // 函数的时候用户传递进来才可以，此时我们就基于参数的机制，提供出入口即可
+    function fn(a,b){ //a,b是形参，是变量,是入口
+      return a+b
+    } 
+    fn(1,2) //1,2是实参 是具体的数据值
+  </script>
+</body>
+</html>

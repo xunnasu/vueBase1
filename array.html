@@ -238,8 +238,8 @@
             //  })
             //  console.log(ia)
             // 数组的集合练习题
-            // let a = [1, 2, 3, 4, 5];
-            // let b = [3, 4, 5, 6, 7, 8];
+            let a = [1, 2, 3, 4, 5];
+            let b = [3, 4, 5, 6, 7, 8];
             // 第一种for循环的方法
             //  function filters(a,b){
             //    let c =[]
@@ -260,8 +260,16 @@
             //   // 第三种方式用 new Set
             //   let set2 = new Set(b);
             //   return a.filter(item => set2.has(item))
+            // //   第三种indexOf
+            // //   return a.filter(item => b.indexOf(item) !=-1)
             // }
             // console.log(filters(a,b));
+            // 使用filter过滤掉符合条件的元素 (小于4的显示出来)
+            // var aaa = [1,2,3,4]
+            // function bbb(a,b){
+            //     return a.filter(item => item<4)
+            // }
+            // console.log('bbb(aaa) :>> ', bbb(aaa));
             //slice() 方法可从已有的数组中返回选定的元素。
             // var arr = new Array(6)
             // arr[0] = "George"
@@ -411,8 +419,8 @@
             // console.log('a000:>> ',JSON.parse(a.d.g.ansewr).a);
 
             // slice、split、splice的区别和使用
-            // var aa = ["jjj", "oooo", "pppp"];
-            // var bb = aa.slice(0, 2);
+              // var aa = ["jjj", "oooo", "pppp"];
+            // var bb = aa.slice(0, 2); //第一个参数就是从下标几开始， 第二个数就是数组的长度， 不包括最后一个
             // console.log("slice方法22222222 :>> ", bb);
             // console.log("aa原数组:>> ", aa);
             // var str = "How are you doing today?";
@@ -590,6 +598,55 @@
           
 
           
+            let arr2 = {
+                name: "Ssss",
+                age: 12,
+            };
+            let name = "wang"; //修改其中的值
+            // arr2.job = "it"; //增加属性值
+            // delete arr2.age; //彻底删除 s属性名和属性值都删除了
+            // arr2.name = null; //假删除 ,有属性，只不过值为null
+            console.log("arr2.name :>> ", arr2["job"]);
+            console.log("arr :>> ", arr2.name);
+           
+            var arrPush = ['悟空','八戒']
+            var result = arrPush.push('沙僧')
+            console.log('result :>> ', result);
+            console.log('result :>> ', arrPush);
+            console.log(typeof  NaN === "number"); //  "true"
+
+            var v =[1,2,3,34,5,6,7,8,9]
+            var vv= v.splice(2,1,444) //返回被删除的元素，原始数组会被改变
+            console.log('vv :>> ', vv);
+            console.log('v :>> ', v);
+
+            var poppo = [1,2,3,4]
+            var po1 = poppo.reverse()
+            console.log('po1 :>> ', po1);
+            console.log('poppo :>> ', poppo);
+
+            var sort1 = [2,3,44,55,12]
+            console.log('po1 :>> ', sort1.sort());
+            var items = [
+                { name: 'Edward', value: 37},
+                { name: 'Sharpe', value: 24},
+                { name: 'And', value: 45 }
+            ];
+            items.sort(function (a, b) {
+                return (a.value - b.value)
+            });
+            console.log('items :>> ', items);
+
+            // {name: "Sharpe", value: 24}
+            // {name: "Edward", value: 37}
+            // {name: "And", value: 45}
+
+            // 使用函数表达式
+            var number = [1,23,4,5,6,7,7,8,9]
+            number.sort(function(a,b){
+                return a-b
+            })
+            console.log('number :>> ', number);
 
             
             

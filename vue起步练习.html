@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-06 11:09:28
- * @LastEditTime: 2020-09-28 17:47:31
+ * @LastEditTime: 2020-12-02 18:25:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\自定义练习.html
@@ -26,6 +26,13 @@
      <!-- 绑定元素attribute(属性)-->
     <div>
       <!-- 第一个属性v-bind -->
+     <!--一、声明式渲染 -->
+    <div>
+      {{message}} 
+    </div>
+     <!--二、绑定元素attribute(属性)-->
+    <div>
+      <span>绑定元素</span>
       <span v-bind:title="message">
         鼠标悬停几秒中查看此处动态绑定的提示信息
       </span>
