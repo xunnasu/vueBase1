@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeadFirst之数组练习</title>
+</head>
+<body>
+  <div>
+
+  </div>
+  <script>
+    // 定义一个数组,冰淇淋味道
+    var flavors =['apple','butterscotch','lavender','chocolate']
+    // 访问数组的元素
+    console.log('flavors[0]原始值 :>> ', flavors[0]); //打印 apple
+    // 修改数组中的某一个值
+    flavors[0] = 'sweet'
+    console.log('flavors[0]修改后 :>> ', flavors[0]); //打印 sweet
+    // 查看数组的长度
+    console.log('flavors.length长度 :>> ', flavors.length); //4
+    //练习找到最后一个值
+    var products = ["Choo Choo Chocolate", "Icy Mint", "Cake Batter", "Bubblegum"];
+    console.log('练习数组的长度 :>> ', products.length);
+    var last = products.length -1
+    console.log('练习数组的长度减 1 :>> ', last);
+    var result = products[last]
+    console.log('练习数组的最后一个值 :>> ', result);
+
+    //  创建一个随机分配的数组
+    // var word1 = ["24/711", "multi-tier111", "30,000 foot111", "B-to-B111", "win-win111"];
+    // var word2 = ["24/4222", "multi-222", "222", "B-555-B222", "win-222"];
+    // var rand1 = Math.floor(Math.random() * word1.length) 
+    // var rand2 = Math.floor(Math.random() * word2.length)
+    // var phrase = word1[rand1] + "" + word2[rand2]
+    // console.log('随机值 :>> ', phrase);
+
+
+    //创建一个随机数
+    var word1 = ['2','3','4','6']
+    var word2 = ['7','8','9','10']
+    var rand = Math.floor(Math.random() * word2.length)
+    var rand2 = Math.floor(Math.random()*word2.length)
+    var result = word1[rand] + '' + word2[rand2]
+    console.log('result :>> ', result);
+
+    // 需要做一个报表,结果如下
+    // Bubble solution #0 score: 60
+    // Bubble solution #1 score: 50
+    // Bubble solution #2 score: 60
+
+    // var sources = [60, 50, 60, 58, 54, 54, 58, 50, 52, 54, 48, 69,
+    //   34, 55, 51, 52, 44, 51, 69, 64, 66, 55, 52, 61,
+    //   46, 31, 57, 52, 44, 18, 41, 53, 55, 61, 51, 44];
+      // var output
+      // var i = 0
+      // while (i < scores.length) {
+      //   output = "Bubble solution #" + i + " score: " + scores[i];
+      //   console.log(output);
+      //   i = i + 1;
+      // }
+      // 改成for 循环
+      // for(var i = 0 ;i<sources.length ; i++){
+      //   // console.log('i :>> ', i);
+      //   console.log('source[i] :>> ', sources[i]);
+      //   output  = 'bubble solution' + i + 'source:' + sources[i]
+      //   console.log('output :>> ', output);
+      // }
+
+  </script>
+</body>
+</html>

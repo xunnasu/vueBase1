@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建对象以及对象的使用和判断</title>
+</head>
+<body>
+  <div>
+    
+  </div>
+  <script>
+  //  如何创建对象
+  var taxi = { 
+    make: "Webville Motors",
+    model: "Taxi",
+    year: 1955,
+    color: "yellow",
+    passengers: 4,
+    convertible: false,
+    mileage: 281341
+  }
+  
+  function car(taxi){
+    // if(taxi.mileage > 10000) {  //满足
+    //   return false
+    // } else if(taxi.year < 1900){ //不满足
+    //   return false
+    // }
+    // return true
+    if(taxi.mileage > 10000) {  //满足
+      return false
+    } else if(taxi.year > 1900){ //满足
+      return false
+    }
+    return true
+  }
+  //只要有一項不滿足要求 就返回false,否则返回true 
+  var carResult = car(taxi)
+  if(carResult) {
+    console.log('成功 :>> ',);
+  } else {
+    console.log('失敗 :>> ');
+  }
+
+
+  </script>
+</body>
+</html>

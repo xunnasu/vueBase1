@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script src="test.js"></script>
     <script>
-        function fun(){
-            return 2
+      function fun() {
+        return 2;
+      }
+      console.log('fun() :>> ', fun());
+      let n = fun;
+      console.log('n :>> ', n);
+      var skill = 0;
+      var u = 2;
+      function update(b, n) {
+        var i = 0;
+        while (i < b) {
+          n = n + skill;
+          i = i + 1;
         }
-        console.log('fun() :>> ', fun());
-        let n = fun
-        console.log('n :>> ', n);
-        var skill = 0 ;
-        var u =2
-        function update(b,n){
-            var i = 0 ;
-            while(i <　b){
-                n = n+skill
-                i= i+1
-            }
-            return n + u
-        }
-        console.log('object :>> ', update(1,2));
-        var obj = {
-            'name':'珠峰',
-            0:12,
-            true:200
-        }
-       var obj1 = {
-           n:100
-       }
-       var obj2 = obj1
-       obj2.n =200
-       console.log('obj1.n :>> ', obj1.n); //200
-       
+        return n + u;
+      }
+      console.log('object :>> ', update(1, 2));
+      var obj = {
+        name: '珠峰',
+        0: 12,
+        true: 200,
+      };
+      var obj1 = {
+        n: 100,
+      };
+      var obj2 = obj1;
+      obj2.n = 200;
+      console.log('obj1.n :>> ', obj1.n); //200
     </script>
-</body>
+  </body>
 </html>

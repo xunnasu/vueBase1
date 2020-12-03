@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for in 和for of 区别和使用</title>
+</head>
+<body>
+  <div>
+
+  </div>
+  <script>
+    // for in 更适合遍历对象(可以使用他转成数组)
+    let obj = {
+      name:'suxunna',
+      age:19,
+      job:'it',
+    }
+    let objArr = []
+    for(let i in obj){
+      console.log('属性名:>> ', i);
+      console.log('属性值 :>> ', obj[i]);
+      objArr.push(obj[i])
+    }
+    console.log('objArr :>> ', objArr);
+  </script>
+</body>
+</html>
