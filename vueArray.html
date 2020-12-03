@@ -77,12 +77,17 @@
     <!-- 在数组中增加一项 -->
     <div v-for="(item,index) in originalArr" :key="index">{{item}}</div>
 
+    <div v-for="item in listF">
+      {{item.type}}
+      <input type="text" v-model="item.input1">
+      <input type="text" v-model="item.input2">
+    </div>
 
      </div>
      <!-- <p :title="msg"></p> -->
     </div>
     <script>
-    //   	Vue.component('child',{
+    //   	Vue.component('child',{.
     //     template:"<button @click='send'>点击sdssss</button>",
     //     methods:{
     //       send(){
@@ -101,6 +106,14 @@
           sum:'',
           messageD:'',
           size:5,
+          listF:[
+            {
+              type:1,
+            },
+            {
+              type:3
+            }
+          ],
           list:[
             {
               id:0,
@@ -172,6 +185,7 @@
           // chufa:"change"
         },
         created(){
+<<<<<<< HEAD
           let arr2 =[]
           // let list = this.originalArr.map(item=>{
           //   return {
@@ -189,6 +203,25 @@
           }
           this.originalArr = arr2
           // console.log('this.originalArr :>> ', this.originalArr);
+=======
+          this.listF = this.listF.map(item=>{
+            return {
+              ...item,
+              input1:'',
+              input2:''
+            }
+          })
+          console.log('this.listF :>> ', this.listF); 
+          var fruits = ['e','o','l','p','a','m','n','h']
+          // var result = fruits.slice(2,4) //slice方法可从已有的数组中返回选定的元素,一个数的时候，是从下标为几开始，到最后的数都显示, 两个参数的是，是从下标开始，到下标结束，不包括最后一个下标（就是直接往后数）,不改变原数组
+          // console.log('result :>> ', result);
+          // console.log('fruits :>> ', fruits);
+          var resultA =  fruits.splice(3,1) //（1，3）['o','l','p']返回被删除的元素，他会改变原数组 ,可以直接数下标，从开始到结束   (3,1) 就是数到下标为第三个，然后删除一个
+          console.log('resultA :>> ', resultA);
+          console.log('fruits :>> ', fruits);
+
+         
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
           // for循环方法数组求和
           for(let i = 0 ; i <this.arr3.length;i++){
             this.forNum += this.arr3[i]

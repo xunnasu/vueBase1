@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-02 18:34:22
+ * @LastEditTime: 2020-12-02 18:44:32
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueBase1\数组求合.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组求合和数组中最大值</title>
+</head>
+<body>
+  <div>
+
+  </div>
+  <script>
+    var arr = [1,2,3,4,5,6]
+    // 数组求和
+    function sumFun(){
+      var sum = 0 
+      for(var i = 0 ; i <arr.length; i++){
+        sum += arr[i]
+      }
+      return sum
+    }
+    console.log('数组求和结果是:>> ', sumFun(arr));
+    // 数组最大值
+    function maxFun(){
+      var max = arr[0]
+      for(var i = 0; i <arr.length; i++){
+        if(  arr[i] >max){
+          max = arr[i]
+        }
+      }
+      return max
+    }
+    console.log('数组中最大的值是 :>> ', maxFun(arr));
+
+    
+  </script>
+</body>
+</html>

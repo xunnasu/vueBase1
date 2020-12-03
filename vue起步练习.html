@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-06 11:09:28
- * @LastEditTime: 2020-09-23 17:13:54
+ * @LastEditTime: 2020-12-02 18:25:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\自定义练习.html
@@ -19,6 +19,13 @@
 </style>
 <body>
   <div id="app">
+     <!-- 声明式渲染 -->
+    <div>
+      {{message}} 
+    </div>
+     <!-- 绑定元素attribute(属性)-->
+    <div>
+      <!-- 第一个属性v-bind -->
      <!--一、声明式渲染 -->
     <div>
       {{message}} 
@@ -51,41 +58,106 @@
     </div>
 
    
+    <!-- 实现反转 -->
+    <p >{{msg}}</p>
+    <button v-on:click="handelClick">反转</button>
+    <input type="text" v-model="msg">
+    <!-- 组件化应用构建 ,在vue 中注册组件,模拟组件传值-->
+    <ol>
+      <todo-item 
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id">
+      </todo-item>
+    </ol>
+    <!-- 插值 -->
+    <span>原始{{msg2}}</span>
+    <span v-once>改变{{msg2}}</span>
+    <button v-on:click="change">改变</button>
+    <!-- 原始html -->
+    <p>Using v-html directive: <span v-html="rawHtml" style="color:red"></span></p>
+    <p>Using v-html directive: <span v-text="rawHtml" style="color:rgb(31, 11, 214)"></span></p>
+    <!-- <p v-html="rawHtml">22ddd22{{rawHtml}}</p>
+    <p v-text="msg3"></p> -->
   </div> 
-  <script>
+  <script>  
   //  new Vue({
   //   template: '<div>{{ hi }}</div>'
   // }) 
+  // 定义一个名为头todo-item的组件
+  Vue.component('todo-item',{
+    // template:'<div>hahhahah</div>',
+    props:['todo'],
+    template:'<li>{{todo.text}}</li>'
+  })
+  
   // 创建一个vue 实例
     var vm = new Vue({
       el:'#app',
       data:{
+<<<<<<< HEAD
         message:'hello vue', //一(二)、渲染模板的内容
         seen:true, //三、1.控制元素是否显示隐藏
         list:[ // 2.循环
+=======
+        msg2:'插值表达式',
+        rawHtml:'<span>展示原始的html元素</span>',
+        msg3: "<h1 style='color:red'>这是一个h1元素内容</h1>",
+        // message:'hello vue'
+        message:'页面加载与' + new Date().toLocaleDateString(),  //绑定元素属性
+        msg:'Hello Vue.js!', //反转
+        // 组件数据列表
+        groceryList:[
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
           {
-            text:'学习js',
+            id:0,
+            text:'蔬菜'
           },
           {
-            text:'学习vue',
+            id:1,
+            text:'水果'
           },
           {
-            text:'整个项目'
+            id:2,
+            text:'奶酪'
           }
         ],
+<<<<<<< HEAD
         monitor:'事件监听器',
       },
       created() {
+=======
+
+      },
+      created(){
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
       },
       computed:{
       },
       methods:{
+<<<<<<< HEAD
         handleClick: function(){
           this.monitor = this.monitor.split('').reverse().join('')
+=======
+        // 反转
+        handelClick(){
+          return this.msg = this.msg.split('').reverse().join('')
+        },  
+        // 点击后更改初始插值
+        change(){
+          this.msg2="点击后要修改初始的插值"
+        }
+      },
+      watch:{
+        $route:{
+          handle(val){
+            // console.log('val :>> ', val);
+          },
+          // immediate: true
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
         }
       }
     })
-    console.log('vue实例',vm )
   </script>
 </body>
 </html>
