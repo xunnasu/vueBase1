@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-02 18:34:22
- * @LastEditTime: 2020-12-02 18:44:32
+ * @LastEditTime: 2020-12-02 18:55:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\数组求合.html
@@ -20,25 +20,31 @@
   <script>
     var arr = [1,2,3,4,5,6]
     // 数组求和
-    function sumFun(){
-      var sum = 0 
-      for(var i = 0 ; i <arr.length; i++){
-        sum += arr[i]
-      }
-      return sum
+    // function sumFun(){
+    //   var sum = 0 
+    //   for(var i = 0 ; i <arr.length; i++){
+    //     sum += arr[i]
+    //   }
+    //   return sum
+    // }
+    // console.log('数组求和结果是:>> ', sumFun(arr));
+    // 第一种方式:for循环数组最大值
+    // function maxFun(){
+    //   var max = arr[0]
+    //   for(var i = 0; i <arr.length; i++){
+    //     if(  arr[i] >max){
+    //       max = arr[i]
+    //     }
+    //   }
+    //   return max
+    // }
+    // console.log('数组中最大的值是 :>> ', maxFun(arr));
+    //  第二种方式:Math.max方法求最大值
+    function maxFun(arr){
+      return Math.max(...arr);
     }
-    console.log('数组求和结果是:>> ', sumFun(arr));
-    // 数组最大值
-    function maxFun(){
-      var max = arr[0]
-      for(var i = 0; i <arr.length; i++){
-        if(  arr[i] >max){
-          max = arr[i]
-        }
-      }
-      return max
-    }
-    console.log('数组中最大的值是 :>> ', maxFun(arr));
+    console.log('maxFun(arr) :>> ', maxFun(arr));
+
 
     
   </script>
