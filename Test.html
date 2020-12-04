@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj = {
+        guaranteeType1: '意外险',
+        guaranteeQuota1: '20万',
+        guaranteeRemark1:
+          '几百元就能获得高额的伤残、身故保障，在意外发生时，为家庭遮风挡雨，用小投入对抗大风险。',
+        guaranteeType2: '高端医疗',
+        guaranteeQuota2: '800万',
+        guaranteeRemark2:
+          '高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。',
+        guaranteeType3: '重疾险',
+        guaranteeQuota3: null,
+        guaranteeRemark3:
+          '确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。',
+        guaranteeType4: '教育金',
+        guaranteeQuota4: '80万',
+        guaranteeRemark4:
+          '教育是刚性需求，孩子的未来需要父母的陪伴和充足的资金储备来共同成就，50%的家庭希望早些为教育存款。',
+      };
+      
+      let len = Math.floor( Object.keys(obj).length / 3);
+      let arr = []
+      for(let i = 1; i <= len; i++) {
+        if(obj[`guaranteeType${i}`]) {
+          arr.push({
+            guaranteeType: obj[`guaranteeType${i}`],
+            guaranteeQuota: obj[`guaranteeQuota${i}`],
+            guaranteeRemark: obj[`guaranteeRemark${i}`]
+          })
+        }
+      }
+      console.log('arr :>> ', arr.filter(item => item.guaranteeQuota));
+    </script>
+  </body>
+</html>

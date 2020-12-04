@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let phoneNumber = '';
+      // let verCode = '';
+      // let name = '';
+
+      // function checkPhoneNumber(phoneNumber) {
+      //   const phoneCheck = /^1[34578]\d{9}$/;
+      //   if (!phoneNumber) {
+      //     console.log("请输入联系号码");
+      //     return false;
+      //   } 
+      //   if (!phoneCheck.test(phoneNumber)) {
+      //     console.log("请输入正确的联系号码")
+      //     return false;
+      //   }
+      //   return true;
+      // }
+
+      // function mounted() {
+      //   let isPhone = checkPhoneNumber(phoneNumber);
+      //   if (!isPhone) {
+      //     return
+      //   } 
+      //   console.log('成功');
+      // }
+
+      // mounted();
+
+
+
+
+      let userType = 0 //0新用户 1老用户（默认条件）
+      let userAge = 18 ;
+      function checkUserType(userType){
+        // 第一种情况 正常逻辑,如果新用户就走else ,因为0是false ,肯定走else语句,所以打印新用户, if条件打印老用户
+        if(userType){
+          //老用户
+          return false
+        } else {
+          // 新用户
+          return true
+        }
+        // 第二种情况: 反逻辑,  0 取非就是true语句,也就是如果!userType 它会转为true语句，所以就打印新用户， else 走老用户
+        if(!userType){
+          // 新用户
+          return true
+        }else {
+          // 老用户
+          return false
+        }
+      }
+      function checkUserAge(userAge){
+        if(userAge <= 18){
+          console.log('新用户')
+          return true
+        } else {
+          console.log('老用户')
+          return false
+        }
+      }
+      function init(){
+        if(!checkUserType(userType)) return  
+        if(!checkUserAge(userAge)) return  
+        console.log('成功')
+      }
+      init()
+    </script>
+  </body>
+</html>

@@ -37,6 +37,27 @@
         鼠标悬停几秒中查看此处动态绑定的提示信息
       </span>
     </div>
+    <!--三、条件和循环 -->
+    <!-- 1.条件:v-bind:控制元素是否显示隐藏 -->
+    <div>
+      <div>v-bind:条件</div>
+      <p v-if="seen">现在看见了想要控制的元素展示出来了</p>
+    </div>
+    <!-- 2.循环:v-for:可以绑定数组的数据来渲染一个项目列表-->
+    <div>
+      <p>循环</p>
+      <ul>
+        <li v-for="todo in list">{{todo.text}}</li>
+      </ul>
+    </div>
+    <!-- 四、处理用户输入  v-on添加一个事假监听器，通过它调用在vue实例中的方法-->
+    <div>
+      <p>监听事件</p>
+      <p>{{monitor}}</p>
+      <button v-on:click= "handleClick">翻转一下</button>
+    </div>
+
+   
     <!-- 实现反转 -->
     <p >{{msg}}</p>
     <button v-on:click="handelClick">反转</button>
@@ -74,6 +95,11 @@
     var vm = new Vue({
       el:'#app',
       data:{
+<<<<<<< HEAD
+        message:'hello vue', //一(二)、渲染模板的内容
+        seen:true, //三、1.控制元素是否显示隐藏
+        list:[ // 2.循环
+=======
         msg2:'插值表达式',
         rawHtml:'<span>展示原始的html元素</span>',
         msg3: "<h1 style='color:red'>这是一个h1元素内容</h1>",
@@ -82,6 +108,7 @@
         msg:'Hello Vue.js!', //反转
         // 组件数据列表
         groceryList:[
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
           {
             id:0,
             text:'蔬菜'
@@ -95,14 +122,23 @@
             text:'奶酪'
           }
         ],
+<<<<<<< HEAD
+        monitor:'事件监听器',
+      },
+      created() {
+=======
 
       },
       created(){
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
       },
       computed:{
-        
       },
       methods:{
+<<<<<<< HEAD
+        handleClick: function(){
+          this.monitor = this.monitor.split('').reverse().join('')
+=======
         // 反转
         handelClick(){
           return this.msg = this.msg.split('').reverse().join('')
@@ -118,6 +154,7 @@
             // console.log('val :>> ', val);
           },
           // immediate: true
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
         }
       }
     })

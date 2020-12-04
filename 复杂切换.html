@@ -1,0 +1,598 @@
+<!--
+ * @Description: 风险测评详情页
+ * @Author: 苏勋娜
+ * @Date: 2020-10-22 09:50:22
+ * @LastEditors: wangmengyao
+ * @LastEditTime: 2020-11-03 15:25:51
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    <div class="resultContainer" >
+
+      <!-- 风测成员 -->
+      <div class="testPeople">
+        <!-- 成员切换 -->
+        <div class="people">
+          <template v-for="(item,index) in peopleList">
+            <div class="peopleList" :key="index" :class="{'active':item.map === currentMap}"
+              v-if="insRecommendation[item.map]"
+              @click="selectPeople(item.map,item.img,item.tagMap)">{{item.title}}
+            </div>
+            
+          </template>
+        </div>
+        <!-- 描述 -->
+        <div class="evaluatingDescribe">
+          <div class="peopleImg">
+            <image :src="'http://cexu-cdn.hbtaihangjj.com/need/evaluatingResult' + currentAvatar"></image>
+          </div>
+          <template>
+            <div class="peopleLabel" v-if="insuranceTag[currentTagMap]">
+              <div class="peopleLabel1" v-for="(tag,i) in insuranceTag[currentTagMap].split(',')" :key="i">
+                {{ tag }}
+              </div>
+            </div>
+          </template>
+          
+        </div>
+        <!-- 保险方案及配置 -->
+        <div class="tablePart">
+          <!--保险配置title-->
+          <div class="guaranteeType1">
+            <div class="">
+              {{!currentMap.includes('Baby')}}456
+            </div>
+            <div class="configure1">健康保障配置</div>
+            <!-- 健康表格数据 -->
+            <div class="wrapper" style="background: #F9FFFD;color: #53806E;border-color: #53806E">
+              <div class="item" style="background: #DEF6ED;color: #2E5D4E">配置方案</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeType2">{{insRecommendation[currentMap].guaranteeType2}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeQuota2">{{insRecommendation[currentMap].guaranteeQuota2}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeType3">{{insRecommendation[currentMap].guaranteeType3}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeQuota3">{{insRecommendation[currentMap].guaranteeQuota3}}</div>
+            </div>
+            <!-- 富文本 -->
+            <div class="richTetx">
+              <div v-if="insRecommendation[currentMap].guaranteeRemark2" :nodes="insRecommendation[currentMap].guaranteeRemark2" style='margin:25rpx'></div>
+              <div v-if="insRecommendation[currentMap].guaranteeRemark3" :nodes="insRecommendation[currentMap].guaranteeRemark3" style='margin:25rpx'></div>
+            </div>
+          </div>
+        
+          <!--保险配置title-->
+          <div class="guaranteeType2" v-if="!currentMap">
+            <div class="configure2">意外保障配置</div>
+            <!-- 意外表格数据 -->
+            <div class="wrapper" style="background: #FFFAF9; color: #A05434; border-color: #A05434">
+              <div class="item" style="background: #F6DED4; color: #7D4B4B">配置方案</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeType1">{{insRecommendation[currentMap].guaranteeType1}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeQuota1">{{insRecommendation[currentMap].guaranteeQuota1}}</div>
+            </div>
+            <!-- 富文本 -->
+            <div class="richTetx">
+              <!-- <rich-text nodes="<p style='color:#f00'>dd</p><p style='color:#f00'>dd</p>"></rich-text> -->
+              <div :nodes="insRecommendation[currentMap].guaranteeRemark1" style='margin:30rpx'></div>
+            </div>
+          </div>
+          
+          <!--保险配置title-->
+          <div  class="guaranteeType3" v-if="!currentMap">
+            <div class="configure3">{{ currentMap.includes('Baby') ? '教育保障配置' : '财务保障配置' }}</div>
+                  
+            <!-- 财务表格数据 -->
+            <div class="wrapper" style="background: #F3F8FF;color: #4785DA;border-color: #4785DA">
+              <div class="item" style="background:#BBD8FF;color: #1B5BC0">配置方案</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeType4">{{insRecommendation[currentMap].guaranteeType4}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeQuota4">{{insRecommendation[currentMap].guaranteeQuota4}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeType5">{{insRecommendation[currentMap].guaranteeType5}}</div>
+              <div class="item" v-if="insRecommendation[currentMap].guaranteeQuota5">{{insRecommendation[currentMap].guaranteeQuota5}}</div>
+            </div>
+            <!-- 富文本 -->
+            <div class="richTetx">
+              <div v-if="insRecommendation[currentMap].guaranteeRemark4" :nodes="insRecommendation[currentMap].guaranteeRemark4" style='margin:30rpx'></div>
+              <div v-if="insRecommendation[currentMap].guaranteeRemark5" :nodes="insRecommendation[currentMap].guaranteeRemark5" style='margin:30rpx'></div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+  
+    
+  
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+<script>
+var vm = new Vue({
+  el:'#app',
+  data:{
+    
+      isShow: false,
+      tempVisitorId: '',
+      familyTotalCharge: '', //建议家庭总保费
+      familyTotalQuota: '', //建议家庭总保额
+      familyRediv: '', //家庭评语
+      describeContent: [], //描述
+      peopleList: [
+        {
+          title: '本人',
+          map: 'insRecomSelf',
+          tagMap: 'tagForSelf',
+          img: '/boy.png',
+        }, {
+          title: '配偶',
+          map: 'insRecomSpouse',
+          tagMap: 'tagForSpouse',
+          img: '/girl.png',
+        }, {
+          title: '宝一',
+          map: 'insRecomBaby1',
+          tagMap: 'tagForBaby1',
+          img: '/chirld.png',
+        }, {
+          title: '宝二',
+          map: 'insRecomBaby2',
+          tagMap: 'tagForBaby2',
+          img: '/chirld.png',
+        }, {
+          title: '父亲',
+          map: 'insRecomFather',
+          tagMap: 'tagForFather',
+          img: '/father.png',
+        }, {
+          title: '母亲',
+          map: 'insRecomMother',
+          tagMap: 'tagForMother',
+          img: '/mather.png',
+        },
+      ],
+      currentMap: 'insRecomSelf',
+      currentAvatar: '/boy.png',
+      currentTagMap: 'tagForSelf',
+      consultImage: '',
+      consultMobile: '',
+      consultName: '',
+      // pageStatus: '', //是否展示顾问状态
+      loginStatus: '', //是否登录
+      // insuranceTag: {}, //成员描述
+      // insRecommendation: {}, //保障配置
+	  insuranceTag: {
+		  tagForSelf: "青年阶段,家庭收入主力军,财务自由,工作压力大",
+		  tagForSpouse: "青年阶段,财务自由,需要多运动",
+		  tagForFather: "高风险人群,做好养老金规划,养老金,高端医疗,有社保",
+		  tagForMother: "高风险人群,做好养老金规划,养老金,高端医疗,无社保",
+		  tagForBaby1: "探索阶段,储备教育钱包,做好财富传承",
+		  tagForBaby2: "探索阶段,储备教育钱包,做好财富传承"
+	  },
+	   insRecommendation: {
+	          // 自己
+		  insRecomSelf: {
+			title: '健康保障配置',
+			guaranteeType1: '医疗险',
+			guaranteeQuota1: '800万',
+			guaranteeRemark1: '医疗保险说明: 高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。',
+			guaranteeType1: '重疾险',
+			guaranteeQuota1: '320万-400万',
+			guaranteeRemark1: '重疾保障说明: 确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。',
+			guaranteeType2: '医疗险',
+			guaranteeQuota2: '800万',
+			guaranteeRemark2: '医疗保险说明: 高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。',
+			guaranteeType3: '重疾险',
+			guaranteeQuota3: '320万-400万',
+			guaranteeRemark3: '重疾保障说明: 确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。',
+		  },
+		  // 配偶
+		  insRecomSpouse: {
+			title: '意外保障配置',
+			guaranteeType2: '医疗险',
+			guaranteeQuota2: '807万',
+			guaranteeRemark2: '医疗保险说明1: 高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。',
+			guaranteeType1: '重疾险',
+			guaranteeQuota1: '325万-405万',
+			guaranteeRemark1: '重疾保障说明1: 确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。',
+			guaranteeType1: '医疗险',
+			guaranteeQuota1: '807万',
+			guaranteeRemark1: '医疗保险说明1: 高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。',
+			guaranteeType1: '重疾险',
+			guaranteeQuota1: '325万-405万',
+			guaranteeRemark1: '重疾保障说明1: 确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。',
+		  },
+		  // 父亲
+		  insRecomFather: {
+			title: '财务保障配置',
+			guaranteeType2: '医疗险',
+			guaranteeQuota2: '808万',
+			guaranteeRemark2: '医疗保险说明2: 高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。',
+			guaranteeType3: '重疾险',
+			guaranteeQuota3: '326万-409万',
+			guaranteeRemark3: '重疾保障说明2: 确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。',
+		  },
+		  insRecomBaby1: {
+          guaranteeType1: "意外险",
+          guaranteeQuota1: "20万",
+          guaranteeRemark1: "几百元就能获得高额的伤残、身故保障，在意外发生时，为家庭遮风挡雨，用小投入对抗大风险。",
+          guaranteeType2: "高端医疗",
+          guaranteeQuota2: "800万",
+          guaranteeRemark2: "高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。",
+          guaranteeType3: "重疾险",
+          guaranteeQuota3: "30W",
+          guaranteeRemark3: "确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。",
+          guaranteeType4: "教育金",
+          guaranteeQuota4: "30万",
+          guaranteeRemark4: "教育是刚性需求，孩子的未来需要父母的陪伴和充足的资金储备来共同成就，50%的家庭希望早些为教育存款。"
+      },
+      insRecomBaby2: {
+          guaranteeType1: "意外险",
+          guaranteeQuota1: "20万",
+          guaranteeRemark1: "几百元就能获得高额的伤残、身故保障，在意外发生时，为家庭遮风挡雨，用小投入对抗大风险。",
+          guaranteeType2: "高端医疗",
+          guaranteeQuota2: "800万",
+          guaranteeRemark2: "高保障、全球就医、费用直付、优质服务……涵盖国内外顶级私立医院。中高净值家庭人手必备的高端医疗保障。",
+          guaranteeType3: "重疾险",
+          guaranteeQuota3: "30万",
+          guaranteeRemark3: "确诊大病，即赔付一笔现金，可用于治病、后期康复费用或弥补因生病无法工作的收入损失。建议保额覆盖5倍年收入。",
+          guaranteeType4: "教育金",
+          guaranteeQuota4: "80万",
+          guaranteeRemark4: "教育是刚性需求，孩子的未来需要父母的陪伴和充足的资金储备来共同成就，50%的家庭希望早些为教育存款。"
+      }
+		},
+    
+  },
+
+  methods: {
+  
+   selectPeople(map, img, tagMap) {
+     console.log(map,'map')
+     console.log(img,'img')
+     console.log(tagMap,'tagMap')
+     this.currentMap = map
+     this.currentAvatar = img
+     this.currentTagMap = tagMap
+   },
+   
+  },
+})
+
+</script>
+
+<style>
+	/* .resultContainer { */
+		/* width: 100%;
+		height: 100%;
+		background-image: url(http://cexu-cdn.hbtaihangjj.com/need/evaluatingResult/bg3.png);
+		background-size: 100% 100%;
+		.containerBox{
+			.container{
+				width: 100%;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				padding-top:108rpx;
+				padding-left:62rpx;
+				image{
+					width: 164rpx;
+					height: 164rpx;
+				}
+				.reportText{
+					margin-left:60rpx;
+					font-weight: 600;
+					font-size: 36rpx;
+					font-weight: 500;
+					color: #797574;
+					line-height: 61rpx;
+				}
+			}
+			// 建以保额保费
+			.premiumList {
+				background: #FFF4EC;
+				width: 627rpx;
+				display: flex;
+				justify-content: space-around;
+				position: relative;
+				align-items: center;
+				padding: 36rpx 31rpx 30rpx 31rpx;
+				margin-top:18rpx;
+				margin-left:65rpx;
+				&::before {
+					content: '';
+					border-right: 1px dashed #333;
+					height: 90rpx;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+				&>.premiumAmount {
+					font-size: 26rpx;
+					color: #998C8C;
+					line-height: 45rpx;
+					.familyTotalQuota {
+						font-weight: bold;
+						font-size: 28rpx;
+						color: #F56041;
+						margin-top:13rpx;
+						.thousand,.element{
+							font-size: 20rpx;
+							margin-left:10rpx;
+						}
+					}
+				}
+			}
+		}
+		// 家庭评语
+		.familyCommentsBox {
+			width: 700rpx;
+			background-color: #fff;
+			margin: 76rpx 26rpx 63rpx 26rpx;
+			border-radius: 25rpx 25rpx 0 0;
+
+			&>.familyComments {
+				font-size: 52rpx;
+				padding: 28rpx 28rpx 28rpx 35rpx;
+				border-radius: 25rpx 25rpx 0 0;
+				background-color: #FB955D;
+				font-weight: 500;
+				color: #FFFFFF;
+			}
+			&>.comment {
+				width:100%;
+				margin: 21rpx auto;
+			}
+		}
+
+		// 风测成员
+		.testPeople {
+			background: #FFF;
+			margin: 63rpx 30rpx;
+
+			&>.people {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				height: 126rpx;
+				background-color: #67CDAC;
+				border-radius: 32rpx 32rpx 0px 0px;
+
+				&>.peopleList {
+					color: #E0F4ED;
+					font-size: 28rpx;
+				}
+				&>.active {
+					font-size: 42rpx;
+					color: #fff;
+					position: relative;
+					font-weight: 700;
+					&::before {
+						content: '';
+						position: absolute;
+						top: 65rpx;
+						bottom: 0;
+						left: 10rpx;
+						width: 6rpx;
+						height: 6rpx;
+						border-bottom: 20rpx solid #fff;
+						border-left: 20rpx solid transparent;
+						border-right: 20rpx solid transparent;
+					}
+				}
+			}
+			// 描述
+			&>.evaluatingDescribe {
+				display: flex;
+				justify-content: flex-start;
+				border-bottom: 3px dashed #67CDAC;
+				height: 100%;
+				padding-bottom: 52rpx;
+				&>.peopleImg {
+					margin-top: 36rpx;
+
+					image {
+						width: 144rpx;
+						height: 144rpx;
+					}
+				}
+				&>.peopleLabel {
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+					width: 500rpx;
+					margin-left: 50rpx;
+					margin-top: 40rpx;
+					border-radius: 8rpx;
+					.peopleLabel1 {
+						padding: 5rpx 20rpx;
+						margin-right: 30rpx;
+						margin-bottom: 30rpx;
+						background: #EBFBF5;
+						padding: 15rpx 20rpx;
+						font-size: 30rpx;
+						color: #669C8B;
+					}
+				}
+			}
+			// 表格部分
+			.tablePart {
+				margin-top: 44rpx;
+				.guaranteeType1{
+					&>.configure1 {
+						width: 100%;
+						color: #222222;
+						font-weight: 600;
+						margin-bottom: 32rpx;
+						font-size: 36rpx;
+						&::before {
+							content: '';
+							border-right: 8rpx solid #67CDAC;
+							border-radius: 6rpx;
+							margin-right: 28rpx;
+						}
+					}
+				}
+				
+				.guaranteeType2{
+					&>.configure2{
+						width: 100%;
+						color: #222222;
+						font-weight: 600;
+						margin-bottom: 32rpx;
+						font-size: 36rpx;
+						&::before {
+							content: '';
+							border-right: 8rpx solid #B55C37;
+							border-radius: 6rpx;
+							margin-right: 28rpx;
+						}
+					}
+				}
+				
+				.guaranteeType3{
+					&>.configure3,.configure4{
+						width: 100%;
+						color: #222222;
+						font-weight: 600;
+						margin-bottom: 32rpx;
+						font-size: 36rpx;
+						&::before {
+							content: '';
+							border-right: 8rpx solid #5189E0;
+							border-radius: 6rpx;
+							margin-right: 28rpx;
+						}
+					}
+				}
+				
+
+				.wrapper {
+					margin:0 35rpx;
+					background: #f3f3f3;
+					text-align: center;
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					// grid-template-rows: 99rpx 99rpx 99rpx;
+					grid-auto-flow: row;
+					border: 1rpx solid #f00;
+					border-radius: 10rpx;
+					overflow: hidden;
+					line-height: 99rpx;
+					font-size: 28rpx;
+					.item {
+						&:nth-child(2n) {
+							border-right-width: 1rpx;
+							border-right-style: solid;
+							border-top-width: 1rpx;
+							border-top-style: solid;
+						}
+						&:not(:first-child) {
+							border-top-width: 1rpx;
+							border-top-style: solid;
+						}
+						&:first-child {
+							font-weight: 600;
+							font-size: 32rpx;
+							grid-column-start: 1;
+							grid-column-end: 3;
+						}
+					}
+				}
+				.richTetx {
+					line-height: 47rpx;
+					margin:0 35rpx;
+					&>.text1 {
+						margin-top: 30rpx;
+					}
+				}
+			}
+		}
+
+		// 保险经纪人
+		.insuranceBroker {
+			display: flex;
+			justify-content: space-between;
+			margin: 48rpx auto 0;
+			padding: 116rpx 50rpx 0;
+			width: 716rpx;
+			height: 304rpx;
+			box-sizing: border-box;
+			/* background: url(http://cexu-cdn.hbtaihangjj.com/need/index/bg02.png) no-repeat; */
+			/* background-position: center;
+			background-size: cover;
+			.insuranceCon {
+				display: flex;
+				.insuranceL {
+					height: 120rpx;
+					.logo {
+						width: 120rpx;
+						height: 120rpx;
+					}
+				}
+				.insuranceR {
+					margin-left: 17rpx;
+					height: 120rpx;
+					.name {
+						margin-top: 7rpx;
+						width: 208rpx;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						font-size: 38rpx;
+						color: #222;
+					}
+					.insuranceNo {
+						margin-top: 6rpx;
+						width: 208rpx;
+						overflow: hidden;
+						color: #222;
+						font-size: 32rpx;
+					}
+				}
+			}
+			.consultingBtn {
+				margin: 21rpx 0;
+				width: 212rpx;
+				height: 72rpx;
+				line-height: 72rpx;
+				color: #FFFFFF;
+				font-size: 32rpx;
+				background: linear-gradient(360deg, #FA6A0B 0%, #FFA975 100%);
+				box-shadow: 0rpx 2rpx 0rpx 0rpx rgba(255, 163, 104, 0.54);
+				border-radius: 13rpx;
+			}
+		}
+		.retest {
+			width: 100%;
+			text-align: center;
+			.retestImg {
+				width: 688rpx;
+				height: 100rpx;
+				margin: 29rpx auto
+			}
+			.answerBtn {
+				width: 100%;
+				display: flex;
+				justify-content: space-around;
+				margin: 25rpx 0;
+				.retestImg2 {
+					width: 220rpx;
+					height: 100rpx;
+				}
+				.answerImg {
+					width: 442rpx;
+					height: 106rpx;
+				}
+			}
+		}
+	} */ */
+</style>

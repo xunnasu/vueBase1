@@ -66,6 +66,17 @@
     <div>forEach方法给每个数字乘以2(index方法):{{arr4}}</div>
     <div>forEach方法给每个数字乘以2(push方法):{{arr4}}</div>
     <div>forEach方法给每个数字乘以2(map方法):{{arr6}}</div>
+    <!-- 循环数组增加input属性 -->
+    <div>
+      <div v-for="item in listType" :key="item.type">
+        <span>{{item.type}}</span>
+        <input v-model="item.input1" />
+        <input v-model="item.input2" />
+      </div>
+    </div>
+    <!-- 在数组中增加一项 -->
+    <div v-for="(item,index) in originalArr" :key="index">{{item}}</div>
+
     <div v-for="item in listF">
       {{item.type}}
       <input type="text" v-model="item.input1">
@@ -120,6 +131,24 @@
               cont:'111'
             }
           ],
+          listType:[
+            {
+              type:0
+            },
+            {
+              type:1
+            }
+          ],
+          originalArr:[
+            {
+              name:"suxunna",
+              age:12
+            },
+            {
+              name:"xunnasu",
+              age:14
+            }
+          ],
           showList:[],//练习显示隐藏功能
           arrayString:'',//处理过后的值
           array:['aaa','bbb'],//原始值
@@ -156,6 +185,25 @@
           // chufa:"change"
         },
         created(){
+<<<<<<< HEAD
+          let arr2 =[]
+          // let list = this.originalArr.map(item=>{
+          //   return {
+          //     ...item,
+          //     sex:'dddd'
+          //   }
+          // })
+          // this.originalArr = list
+          // for of遍历数据，for in遍历对象
+          for(let i of this.originalArr){
+            arr2.push({
+              ...i,
+              sex:'dddd'
+            })
+          }
+          this.originalArr = arr2
+          // console.log('this.originalArr :>> ', this.originalArr);
+=======
           this.listF = this.listF.map(item=>{
             return {
               ...item,
@@ -173,6 +221,7 @@
           console.log('fruits :>> ', fruits);
 
          
+>>>>>>> 92270b5a7ca62bc4315318f876701d8d3a9b3842
           // for循环方法数组求和
           for(let i = 0 ; i <this.arr3.length;i++){
             this.forNum += this.arr3[i]
@@ -211,6 +260,55 @@
             this.arrayString =this.arrayString +  item + ';' //第二种方式
           })
           this.arrayString = this.arrayString.slice(0,-1)//第三种方式去掉最后一个分号(还要打开第二种方式)
+
+          // this.listType = this.listType.map(item=>{
+          //   return {
+          //     ...item,
+          //     input1:'',
+          //     input2:''
+          //   }
+          // })
+          // console.log('this.listType :>> ', this.listType);
+          let arr =[]
+          for(var i = 0;i<this.listType.length;i++){
+            let a = this.listType[i]
+            arr.push({
+              ...a,
+              input1:'',
+              input2:''
+            })
+          }
+          this.listType = arr
+          console.log('this.listType :>> ', this.listType);
+          
+          var obj = {
+            a:2,b:4
+          }
+          var {a,b} = obj // 对象解构赋值
+          console.log('a :>> ', a);
+
+         
+          // for循环返回的是这样，不用...item，
+          //   {
+        //     item:{
+        //       type: 'a'
+        //     },
+        //     input1: '',
+        //     input2: '',
+        //   },
+        //   {
+        //     item:{
+        //       type: 'b'
+        //     },
+        //     input1: '',
+        //     input2: '',
+        //   }
+        // 用 ...item，...item 就是展开里面的每一项
+        // {
+        //   type: 'a'
+        //   input1: '',
+        //   input2: '',
+        // }
 
         },
         computed:{

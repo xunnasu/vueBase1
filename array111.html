@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>数组</title>
+        <style></style>
+    </head>
+    <style></style>
+    <body>
+        <div></div>
+       <script>
+        let sourceArray =[1,2,3,4]
+        //    var target = [{val: 1},{val: 2},{val: 3},{val: 4}]
+        let targetArray = sourceArray.map(num=>{
+            return {
+                val:num
+            }
+        })
+        console.log('targetArray :>> ', targetArray);
+        let obj = {'img':'../vueBase1/images/ccc.png', 'img2':'../vueBase1/images/ccc.png',};
+        var arr = []
+        for (let i in obj) {
+            arr.push(obj[i]); //属性
+            // arr.push(obj[i]); //值
+        }
+        console.log(arr);
+        let a = 123 
+        if(a ==123){
+            console.log();
+        }
+       </script>
+    </body>
+</html>
