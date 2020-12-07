@@ -19,24 +19,20 @@
   </style>
   <body>
     <div id="box">
-     <span v-if="sendAuthCode" class="c-right" @click="getCode">获取验证码</span>
-     <span v-if="!sendAuthCode" class="c-right"> <span class="auth_text_blue">{{auth_time}} </span> 秒之重新发送</span>
-    
+      <span v-if="sendAuthCode" class="c-right" @click="getCode">获取验证码</span>
+      <span v-if="!sendAuthCode" class="c-right"> <span class="auth_text_blue">{{auth_time}} </span> 秒之重新发送</span>
     </div>
     <script>
       var vm = new Vue({
         el: "#box",
         data:{
           sendAuthCode: true,/*布尔值，通过v-show控制显示‘获取按钮’还是‘倒计时’ */
-          auth_time: 0, /*倒计时 计数器*/
+          auth_time: 5, /*倒计时 计数器*/
         },
-        created(){
-          
-        },
+        
         methods:{
           getCode() {
             this.sendAuthCode = false;
-            this.auth_time = 60;
             var auth_timetimer = setInterval(() => {
             this.auth_time--;
             if (this.auth_time <= 0) {

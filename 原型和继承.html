@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型和继承</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      // instanceof类型检测
+      function Car(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      let result = new Car('jh', 12);
+      console.log('result :>> ', result);
+      console.log('result :>> ', result instanceof Car);
+      // 原型
+      function Fn() {}
+      Fn.prototype = new Array();
+      var f = new Fn();
+      console.log('Fn构造函数:>> ', f);
+      console.log('fn1', f.constructor == Fn); //false
+      console.log('fn2:>> ', f.constructor === Array);//true  因为f.constructor上的原型已经被new Array覆盖 所以判断结果为true
+      // 大致过程
+      // f -> __proto__ (Fn.prototype) -> constructor
+      // f ->__proto__ (Fn.prototype (new Array())) -> Array.prototype -> constructor -> Array
+
+      function Dog(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      Dog.prototype.eat = function (food) {
+        console.log('eat方法 :>> ', food, this.name);
+      };
+      Dog.prototype.play = function () {
+        console.log('play方法 :>> ', 'play');
+      };
+      let fiod = new Dog('jinmao', 18);
+      fiod.eat('ffff');
+      let meil = new Dog('fiod1111', 'meil1111');
+      meil.play('pppp');
+      //fido -> Dog.prototype -> eat
+
+      //什么是构造函数
+      //构造函数是一种特殊的函数， 主要区分于普通函数，所以使用new关键字来创建构造函数，使用New来生成实例对象
+      //内部使用的this对象，来指向即将要生成的实例对象
+      //产生的实例可以访问到构造函数中原型上的方法
+
+      function AA() {}
+      // 构造函数通过prototype属性 可以拿到原型，
+      // 打印原型 console.log(AA.prototype) 也就是说AA.prototype指向(其实就是赋值的意思)了原型
+      // 小结: 构造函数的prototype指向了他的原型。
+      AA.prototype = { constructor: AA };
+      AA.prototype.constructor = AA;
+
+      //总结：构造函数通过prototype属性指向原型，原型的consructor属性又指向构造函数，这就形成了一个指向的关系
+
+      var arr =[]
+      console.log('Object.prototype.toString :>> ', Object.prototype.toString());
+      console.log('Object.prototype.toString.call() :>> ', Object.prototype.toString.call(arr));
+      
+    </script>
+  </body>
+</html>
