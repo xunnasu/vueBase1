@@ -32,7 +32,7 @@
         this.age = age;
       }
       Dog.prototype.eat = function (food) {
-        console.log('eat方法 :>> ', food, this.name);
+        console.log('eat方法 :>> ', food, this.name,this.age);
       };
       Dog.prototype.play = function () {
         console.log('play方法 :>> ', 'play');
@@ -41,6 +41,8 @@
       fiod.eat('ffff');
       let meil = new Dog('fiod1111', 'meil1111');
       meil.play('pppp');
+      console.log('Dog.prototype :>> ', Dog.prototype);
+
       //fido -> Dog.prototype -> eat
 
       //什么是构造函数
@@ -52,14 +54,39 @@
       // 构造函数通过prototype属性 可以拿到原型，
       // 打印原型 console.log(AA.prototype) 也就是说AA.prototype指向(其实就是赋值的意思)了原型
       // 小结: 构造函数的prototype指向了他的原型。
-      AA.prototype = { constructor: AA };
+      AA.prototype
+      console.log('AA.prototype :>> ', AA.prototype);
       AA.prototype.constructor = AA;
 
-      //总结：构造函数通过prototype属性指向原型，原型的consructor属性又指向构造函数，这就形成了一个指向的关系
+      //总结：我们在定义对象,并打印出来,会发现有一个__proto__这个属性，__proto__是JS创建的对象的内置属性（指针），用于指向创建它的构造函数的原型对象,
+      //每个对象在创建时都会因为原型对象的继承关系，自动拥有一个constructor属性，也就是构造函数(可以被实例对象继承), 构造函数通过prototype属性指向原型，原型的consructor属性又指向构造函数，这就形成了一个指向的关系
 
       var arr =[]
       console.log('Object.prototype.toString :>> ', Object.prototype.toString());
       console.log('Object.prototype.toString.call() :>> ', Object.prototype.toString.call(arr));
+      
+
+
+      function foo() {
+        console.log(this.a)
+      }
+      var a = 1
+      foo()
+
+// const obj = {
+//   a: 2,
+//   foo: foo
+// }
+// obj.foo()
+
+// const c = new foo()
+// console.log('c :>> ', c);
+
+
+
+
+
+
       
     </script>
   </body>
