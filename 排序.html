@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-02 17:05:41
- * @LastEditTime: 2020-12-03 11:02:14
+ * @LastEditTime: 2021-01-07 11:07:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\排序.html
@@ -28,12 +28,14 @@
         for(var i = 0 ; i < len -1 ; i++ ){
           console.log('i :>> ', i);
           // 每一轮比较几次
-          for(var j =0; j< len -1 -i ; j++ ){
-            console.log(' arr.length -1 -i :>> ',  arr1.length -1 -i);
+          for(var j =0; j< len -i-1 ; j++ ){
+            console.log(' arr.length -i-1:>> ',  arr1.length -1 -i);
             if(arr1[j] > arr1[j+1]){
               var temp = arr1[j+1]
               arr1[j+1] = arr1[j]
               arr1[j] = temp
+              // 可以使用ES6方式
+              // [arr1[j+1],arr1[j]] = [arr1[j],arr1[j+1]]
             }
           }
         }
@@ -45,22 +47,23 @@
       // 选择排序/打擂台法：
       // 规律：通过比较首先选出最小的数放在第一个位置上，然后在其余的数中选出次小数放在第二个位置上,依此类推,直到所有的数成为有序序列。
       // 总结：比较的轮数  =  数组长度  - 1 ；每一轮比较次数 = 数组长度 - 当前轮次
-      var arr2 = [200, 6, 50, 200, 60, 888, 1];
-      function changeSort(arr2){
-        //轮数
-        for(var i = 0; i < arr2.length - 1; i++){
-          //次数
-          for(var j = i + 1; j < arr2.length; j++){
-              if(arr2[i] > arr2[j]){
-                  var tmp = arr2[i];
-                  arr2[i] = arr2[j];
-                  arr2[j] = tmp;
-              }
-          }
-        }
-        return arr2
-    }
-    console.log('object :>> ', changeSort(arr2));
+    //   var arr2 = [200, 6, 50, 200, 60, 888, 1];
+    //   function changeSort(arr2){
+    //     //轮数
+    //     for(var i = 0; i < arr2.length - 1; i++){
+    //       //次数
+    //       for(var j = i + 1; j < arr2.length; j++){
+    //           if(arr2[i] > arr2[j]){
+    //               var tmp = arr2[i];
+    //               arr2[i] = arr2[j];
+    //               arr2[j] = tmp;
+    //           }
+    //       }
+    //     }
+    //     return arr2
+    // }
+    // console.log('object :>> ', changeSort(arr2));
+
     </script>
   </body>
 </html>
