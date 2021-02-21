@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>递归</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      //1.要求把平级数组转成树状结构
+      const list = [
+        {
+          id: 1,
+          name: '1',
+        },
+        {
+          id: 2,
+          name: '2',
+        },
+        {
+          id: 3,
+          parentId: 1,
+          name: '1.3',
+        },
+        {
+          id: 4,
+          parentId: 1,
+          name: '1.4',
+        },
+        {
+          id: 5,
+          parentId: 3,
+          name: '1.3.5',
+        },
+      ];
+      // 转成如下结构
+      // const tree = [
+      //   {
+      //     id: 1,
+      //     name: '1',
+      //     children: [
+      //       {
+      //         id: 3,
+      //         parentId: 1,
+      //         name: '1.3',
+      //         children: [
+      //           {
+      //             id: 5,
+      //             parentId: 3,
+      //             name: '1.3.5',
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         id: 4,
+      //         parentId: 1,
+      //         name: '1.4',
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: 2,
+      //     name: '2',
+      //     children: null,
+      //   }
+      // ];
+      // 第一版:从子节点向上查找
+      // 存在问题:逻辑复杂,代码冗余
+      // let newlist = [],
+      //   childlist = [];
+      // list.forEach((item, i) => {
+      //   if (item.parentId) {
+      //     childlist.push(item);
+      //   } else {
+      //     item.children = [];
+      //     newlist.push(item);
+      //   }
+      // });
+      // function findBaba(list, item) {
+      //   list.forEach((e, i, arr) => {
+      //     if (e.id === item.parentId) {
+      //       if (!e.children) {
+      //         arr[i].children = [];
+      //       }
+      //       arr[i].children.push(item);
+      //     } else if (e.children) {
+      //       findBaba(e.children, item);
+      //     }
+      //   });
+      // }
+      // childlist.forEach((item) => {
+      //   findBaba(newlist, item);
+      // });
+      // console.log(newlist);
+
+      // 第二版:自己创建一个根节点，找相同得规律，从父节点开始向子节点找
+      // 存在问题:不通用，如果把里面的对象调换位置就会出现问题
+      // const root = { //自己创建一个根节点
+      //   id: void 0,
+      // };
+      // function getTree(parentNode, list) {
+      //   var arr =[]
+      //   list.forEach((item) => {
+      //     if (parentNode.id === item.parentId) {
+      //       if (!parentNode.children) {
+      //         parentNode.children = [];
+      //       }
+      //       parentNode.children.push(item);
+      //     } else {
+      //      arr.push(item)
+      //     }
+      //     if (parentNode.children) {
+      //         parentNode.children.forEach((ele) => {
+      //           getTree(ele, [item]);
+      //         });
+      //       }
+      //   });
+      // }
+      // // getTree(root, list);
+      // console.log(root.children)
+
+      // 第三种方法:使用filter过滤, 满足条件的留下，通过父节点找子节点的顺序,一直往下寻找children,直到找不知道位置，返回找到后的元素
+      // 终极版
+      // const root = {
+      //   id: void 0
+      // }
+      // function getTree(parentNode, lists) {
+      //   // parentNode得下一层节点 childrenNodes
+      //   const childrenNodes = lists.filter(item => {
+      //     return item.parentId === parentNode.id
+      //   })
+      //   // childrenNodes得下一层所以节点descendantNodes
+      //   const descendantNodes = lists.filter(item => {
+      //     return item.parentId !== parentNode.id
+      //   })
+      //   if (childrenNodes.length) {
+      //     parentNode.children = childrenNodes.map(ele => {
+      //       const p = getTree(ele, descendantNodes)
+      //       return p
+      //     })
+      //   }
+      //   return parentNode
+      // }
+      // const tree = getTree(root, list)
+      // console.log(tree.children)
+      // console.log(getTree(root, list).children)
+
+      // 2.把树状结构展示变成平级结构
+      // 题目
+      // const data = [
+      //   {
+      //     id: 1,
+      //     title: '课程1',
+      //     children: [
+      //       { id: 4, title: '课程1-1' },
+      //       {
+      //         id: 5,
+      //         title: '课程1-2',
+      //         children: [
+      //           { id: 6, title: '课程1-2-1' },
+      //           { id: 7, title: '课程1-2-2' },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      //   { id: 2, title: '课程2' },
+      //   { id: 3, title: '课程3' },
+      // ];
+      // 把beatFlat函数转完之后的结果又给子节点增加了parentId属性
+      // function getNode(data,parentId){
+      //   let blackLists = ['children']
+      //   let obj ={}
+      //   Object.keys(data).forEach(i=>{
+      //     if(!blackLists.includes(i)){
+      //       obj[i] = data[i]
+      //     }
+      //   })
+      //   if(parentId){
+      //     obj.parentId = parentId
+      //   }
+      //   return obj
+      // }
+      // function beatFlatGetDode(data,parentId) {
+      //   let arr = [];
+      //   for(let item of data) {
+      //     arr.push(getNode(item,parentId))
+      //     if(item.children) {
+      //       arr.push(...beatFlatGetDode(item.children,item.id))
+      //     }
+      //   }
+      //   return arr
+      // }
+      // console.log('数组拍平在转成有节点的对象:>> ', beatFlatGetDode(data));
+
+      // function beatFlat(data) {
+      //   var newArr = [];
+      //   data.forEach((item) => {
+      //     newArr.push(item);
+      //     if (item.children) {
+      //       newArr.push(...beatFlat(item.children));
+      //       delete item.children;
+      //     }
+      //   });
+      //   return newArr
+      // }
+      // console.log('数组拍平 :>> ', beatFlat(data));
+
+      //3题: 把有规则的数组转成树状结构
+      // const oldData = [
+      //   { id: 1, name: 'boss', parentId: 0 },
+      //   { id: 2, name: 'lily', parentId: 1 },
+      //   { id: 3, name: 'jack', parentId: 1 },
+      //   { id: 4, name: 'john', parentId: 2 },
+      //   { id: 5, name: 'boss2', parentId: 0 },
+      // ];
+      // function listToTree(oldArr) {
+      //   oldArr.forEach((element) => {
+      //     let parentId = element.parentId;
+      //     if (parentId !== 0) {
+      //       oldArr.forEach((ele) => {
+      //         if (ele.id == parentId) {
+      //           //当内层循环的ID== 外层循环的parendId时，（说明有children），需要往该内层id里建个children并push对应的数组；
+      //           if (!ele.children) {
+      //             ele.children = [];
+      //           }
+      //           ele.children.push(element);
+      //         }
+      //       });
+      //     }
+      //   });
+      //   // console.log(oldArr) //此时的数组是在原基础上补充了children;
+      //   oldArr = oldArr.filter((ele) => ele.parentId === 0); //这一步是过滤，按树展开，将多余的数组剔除；
+      //   // console.log(oldArr)
+      //   return oldArr;
+      // }
+      // console.log(listToTree(oldData));
+    </script>
+  </body>
+</html>

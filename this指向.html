@@ -58,6 +58,62 @@
           foo2.call(obj2)
           // 3.1 apply方法
 
+
+      //     function foo() {
+      //   console.log(this.a) //1
+      // }
+      // var a = 1
+      // foo()
+
+      // const obj = {
+      //   a: 2,
+      //   foo: foo
+      // }
+      // obj.foo()
+
+      // const c = new foo()
+      // console.log('c :>> ', c); //foo(){}
+
+      // var obj1 = {
+      //    num: 13,
+      //    fn: function() {
+      //      console.log(this.num);
+      //    }
+      //  };
+      // var obj2 = {
+      //   num: 23,
+      //   fn: function() {
+      //     console.log(this.num);
+      //   }
+      // };
+      // obj1.fn();
+      // obj1.fn.call(obj2);
+
+      // function foo(){
+      //    console.log(this.a);
+      // }
+      // function Foo(fn){
+      //    fn();
+      // }
+      // var obj={
+      //    a:2,
+      //    foo:foo
+      // }
+      // var a=1;
+      // Foo(obj.foo)//输出1
+      // 'use strict'
+      // function fun(){
+      //   console.log(this)  //这里this就会指向全局上下文中的this, 输出object
+      // }
+      // function foo(fn){
+      //   // window.fff = fn
+      //   //参数传递其实就是一个隐式的赋值，
+      //   //当作普通函数调用,所以会找到全局上下文中name为object,即输出object,其实符合“独立函数调用”规则
+      //   fn()
+      //   // window.fff()
+
+      // }
+
         }
       });
     </script>

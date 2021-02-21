@@ -8,27 +8,92 @@
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>数组方法</title>
-</head>
-<body>
-  <div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组方法</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      //会改变原数组得方法
+      //1.push 向数组的末尾添加一个或多个元素，并返回新的长度
+      let arrPush = [1, 2, 3, 4, 5];
+      console.log('原数组长度:>> ', arrPush.length); //原数组长度
+      console.log('添加后新数组长度:>> ', arrPush.push(6)); //打印6, 所以他返回得是数组得长度
+      console.log('原数组 :>> ', arrPush); //修改原数组
+      //2.unshift 将参数添加到数组的开头,并返回数组的长度
+      let arrUnshift = [6, 7, 8, 9];
+      //3.split把字符串分割成字符串数组,传入的第一个参是以谁分割，第二个参数是以某个字符分割的长度
+      let url = 'http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key';
+      let str = 'abcdef&ghi&ghjkj&1ee';
+      console.log('abc.split :>> ', str.split('&', 2));
+      let paramUrl = url.split('?')[1].split('#')[0].split('&');
+      console.log('paramArr :>> ', paramUrl);
 
-  </div>
-  <script>
-    //会改变原数组得方法
-    //1.push 向数组的末尾添加一个或多个元素，并返回新的长度
-    var arrPush = [1,2,3,4,5]
-    console.log('原数组长度:>> ', arrPush.length); //原数组长度
-    console.log('添加后新数组长度:>> ', arrPush.push(6)); //打印6, 所以他返回得是数组得长度
-    console.log('原数组 :>> ', arrPush); //修改原数组
-    //2.unshift 将参数添加到数组的开头,并返回数组的长度
-    var arrUnshift = [6,7,8,9]
+      //4.join 将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。
+      //如果数组只有一个项目，那么将返回该项目而不使用分隔符。通过传入不同的分隔符,不传就没有分隔符
+      let a = [1, 2, 3, 4, 5];
+      console.log('a.split() :>> ', a.join('-'));
+      //5.slice 第一个参数从哪开始,第二个参是数到哪儿为止
+      let array = [1, 2, 34, 43, 53];
+      console.log('slice方法:>> ', array.slice(0, 3));
+      //6.splice第一个参数从哪开始，第二个参数是删除(截)几个,第三个参数是加入几项或者加的内容
+      console.log('splice方法 :>> ', array.splice(1, 3, '替换我'));
+      console.log('name原始值 :>> ', array);
 
-
-  </script>
-  
-</body>
+      // 不会改变原数组的方法
+      // 7.reduce 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值
+      // 7.1reduce实现数组求和
+      let sum = [1, 2, 3, 4, 5, 6];
+      let targetSum = sum.reduce((pre, cur, index, sum) => {
+        return pre + cur;
+      }, 0);
+      console.log('reduce实现数组求和targetSum:>> ', targetSum);
+      console.log('sum原数组:>> ', sum);
+      // 7.2reduce实现去重
+      let myArr = ['a', 'b', 'c', 'a', 'b', 'c', 'd', 'v', 'b',{a:2}];
+      let newArr = myArr.reduce((pre, cur, index, myArr) => {
+        // includes() 方法用于判断字符串是否包含指定的子字符串。如果找到匹配的字符串则返回 true，否则返回 false。 includes() 方法区分大小写。
+        // if(!pre.includes(cur)){
+        // concat 方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。
+        //   return pre.concat(cur)
+        // } else {
+        //   return pre
+        // }
+        // 或者用indexOf
+        if (pre.indexOf(cur) === -1) {
+          //indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+          //indexOf 如果要检索的字符串值没有出现，则该方法返回 -1。 大于-1就是包含，-1表示不包含
+          pre.push(cur);
+        }
+        return pre;
+      }, []);
+      console.log('reduce实现去重indexOf或者includes :>> ', newArr);
+      // 7.3reduce实现数组拍平
+      let arrMore = [1, 2, 3, [4, 5, 6], [7, 8, 9]];
+      let arrCont = arrMore.reduce((pre, cur) => {
+        return pre.concat(cur);
+      }, []);
+      console.log('reduce实现数组拍平', arrCont);
+      //7.4reduce按照属性对object分类
+      var people = [
+        { name: 'Alice', age: 21 },
+        { name: 'Max', age: 20 },
+        { name: 'Jane', age: 20 }
+      ];
+      function groupBy(objectArray, property) {
+        return objectArray.reduce(function (acc, obj) {
+          var key = obj[property];
+          if (!acc[key]) {
+            acc[key] = [];
+          }
+          acc[key].push(obj);
+          return acc;
+        }, {});
+      }
+      var groupedPeople = groupBy(people, 'age');
+      console.log('reduce按照属性对object分类:>> ', groupedPeople);
+    </script>
+  </body>
 </html>

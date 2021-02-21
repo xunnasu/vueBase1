@@ -18,6 +18,10 @@
       var app3 = new Vue({
         el: "#app",
         created(){
+          // new Date() 用的时间最多，因为它涉及到类型转换，转换成数字，所以花的时间最多
+          // Date.now() 用的时间最少，它与其它获取时间戳最大的区别就是，一个是 constructor 的 属性，其它是 constructor.prptotype 的属性，实例化的区别，
+          // 显然实例化对象花的时间更多
+
           // js时间戳转换
           // var myDate1 = (new Date()).valueOf()//会精确到毫秒
           // console.log(myDate1)
@@ -26,7 +30,7 @@
           // var myDate3 = Number(new Date())
           // console.log(myDate3)
           var date = Date.parse('2018/07/11') //只能精确到秒，毫秒将用0来代替
-          var time = Date.parse('2019-08-09T18:23:27.000+0800') //只能精确到秒，毫秒将用0来代替
+          var time = Date.parse('2019-08-09T18:23:27.000+0800') 
           console.log('date',date) 
           console.log('time',time)
           // var myDate4 = new Date(1591673454094)
@@ -43,6 +47,81 @@
           //   console.log('M :>> ', M);//06-
           //   console.log('D :>> ', D);//9
           //   console.log(Y+M+D+h+m+s); 
+ 
+          // js获取某个月的天数
+          function days(year,month){
+              let now = new Date(year,month, 0);
+              let dayCount = now.getDate(); //天数
+              return dayCount;
+          }
+          console.log('获取某个月的天数',days(2021,2))
+          //js计算系统当前日期是星期几的几种方法
+          console.log('当前日期是星期几',new Date().getDay())
+          console.log('传值后获取当前日期是星期',new Date('2020-07-13').getDay())
+          //格式化日期：yyyy-MM-dd
+          function formatDate(date) {
+            let day = new Date(date)
+            console.log('获取传入的date ', day);
+            let year = day.getFullYear();
+            let month = day.getMonth()+1 + '';
+            let weekday = day.getDate() + '-';
+            let hour = day.getHours() + ''
+            let minute = day.getMinutes()+ ''
+            let second = day.getSeconds() + ''
+            if(month < 10 ){
+              month = "0" + month 
+            }
+            if(weekday < 10){
+              weekday = "0" + weekday;
+            }
+            return [year,month,weekday].join('-') + [hour,minute,second].join(':')
+          }
+          console.log('格式化日期', formatDate(Date.now()-2*24*3600*1000));
+          //获取本周第一天的日期
+          function showWeekFirstDay(){    
+              let now = new Date(2021,1,1);    
+              let nowTime = now.getTime() ;
+              let day = now.getDay();
+              let oneDayTime = 24*60*60*1000 ;
+              //显示周一
+              if(day == 0){
+                day = 7;
+              }
+              let MondayTime = nowTime - (day-1)*oneDayTime ;
+              return formatDate(new Date(MondayTime));    
+          }
+          console.log('获取本周第一天的日期',showWeekFirstDay())
+          //获得本周的结束日期
+          function getWeekEndDate() {
+              let now = new Date(2021,1,17);    
+              let nowTime = now.getTime() ;
+              let day = now.getDay();
+              let oneDayTime = 24*60*60*1000 ;
+              //显示周一
+              if(day == 0){
+                day = 7;
+              }
+              let SundayTime =  nowTime + (7-day)*oneDayTime ;
+              return formatDate(new Date(SundayTime));
+          }
+          console.log('获得本周的结束日期',getWeekEndDate())
+          //获取本月第一天
+          function showMonthFirstDay(){    
+              let Nowdate=new Date(2021,1);    
+              let MonthFirstDay=new Date(Nowdate.getFullYear(),Nowdate.getMonth(),1);    
+              M=Number(MonthFirstDay.getMonth())+1    
+              return MonthFirstDay.getFullYear()+"-"+M+"-"+MonthFirstDay.getDate();    
+          }
+          console.log('获取本月第一天',showMonthFirstDay())
+          //获取本月的最后一天
+          function showMonthLastDay(){    
+              let Nowdate=new Date(2021,1);    
+              let MonthNextFirstDay=new Date(Nowdate.getFullYear(),Nowdate.getMonth()+1,1);    
+              let MonthLastDay=new Date(MonthNextFirstDay-86400000);    
+              M=Number(MonthLastDay.getMonth())+1    
+              return MonthLastDay.getFullYear()+"-"+M+"-"+MonthLastDay.getDate();    
+          }
+          console.log('获取本月的最后一天',showMonthLastDay())
         },
       });
     </script>
