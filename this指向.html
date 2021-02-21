@@ -1,11 +1,12 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-06 10:59:01
- * @LastEditTime: 2020-09-06 14:31:39
+ * @LastEditTime: 2021-01-07 11:06:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\this指向.html
 -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,41 +23,186 @@
      
     </div>
     <script>
+      // 'use strict'; //严格模式
+      // var a //undefined
+      // a = 1 
+      // var a = 1
+      //编译阶段会生成两部分:1.执行上下文, 2.可执行代码
+
+      // let a = 0;
+      //   console.log(a); // 0
+      // let a 
+      //   console.log(a)//undefined 但是不报错
+      // const a = {}
+      // a.b = 1;
+      // console.log(a) // { b: 1 }
+      // a = 1 // TypeError: Assignment to constant variable
+      // console.log('a :>> ', a);
+      
       var app3 = new Vue({
         el: "#app",
         data:{
-          
+          // a:2
         },
         created(){
+          // console.log('this :>> ', this.a);/
           // 1.this指向全局
-          function foo(){
-            console.log('this :>> ', this);
-          }
-          foo()
+          // function foo(){
+          //   console.log('this :>> ', this);
+          // }
+          // foo()
           // 这说明在默认情况下调用一个函数，其执行上下文中的this都是指向window
 
           //2.通过对象调用方法
-          var obj1 ={
-            name:'su',
-            foo2(){
-              console.log('通过对象调用方法:>> ', this.name);
-            }
-          }
-          obj1.foo2()
+          // var obj1 ={
+          //   name:'su',
+          //   foo2(){
+          //     console.log('通过对象调用方法:>> ', this);
+          //   }
+          // }
+          // obj1.foo2()
           // 这里的this指向的是对象obj，因为你调用这个foo2是通过obj.foo2()执行的，
           // 那自然指向就是对象obj，这里再次强调一点，this的指向在函数创建的时候是决定不了的，在调用的时候才能决定，谁调用的就指向谁!
+          // 结论1：使用对象来调用其内部的一个方法，该方法的 this 是指向对象本身的。
+
+          // 2.1
+          // var obj1 ={
+          //   name:'su',
+          //   foo2(){
+          //     console.log('重新赋值给一个新的变量this指向:>> ', this);
+          //   }
+          // }
+          // var obj2 = obj1.foo2  把obj.foo2又重新赋给一个全局变量,再调用这个全局变量，会是什么结果？ 答案是window 
+          // obj2()
+          // 结论2: 在全局环境中调用一个函数，函数内部的 this 指向的是全局变量 window。
 
           //3.函数执行上下文中的 this(这里可以通过call，apply,bind方法调用)
-          // call方法(this指向传入的对象,若不传值,this仍然指向window)
-          var obj2 = {
-            name:"nana"
-          }
-          function foo2(){
-            console.log('函数执行上下文中的this :>> ', this);
-          }
+          // call方法(this指向传入的对象,若不传值胡或者null/undefined，,this仍然指向window)
+          // 第一个参数是this 指向的对象，第二个参数就是函数回调所需的入参
+          // var obj2 = {
+          //   name:"nana"
+          // }
+          // function foo2(){
+          //   console.log('函数执行上下文中的this :>> ', this);
+          // }
           // foo2()
-          foo2.call(obj2)
+          // foo2.call(obj2) //this 指向的对象
+
+          // call第二个参数可以传多个参数
+          // function callFun (a,b){
+          //   return a+b
+          // }
+          // var result1 = callFun.call(this,1,2) //回调所需的入参,this就是在函数运行时使用的this
+          // console.log('call改变this指向 :>> ', result1);
+
+
+          
           // 3.1 apply方法
+          // apply 和call 作用类似，也是改变this 指向，然后调用该函数，唯一区别是apply 接收数组作为函数执行时的参数
+          //apply 第二个参数传入的是数组
+          // function applyFun (a,b){
+          //   return a+b
+          // }
+          // var result2 = applyFun.apply(this,[1,1]) //回调所需的入参
+          // console.log('apply改变this指向 :>> ', result2);
+          
+          // 3.2
+          // bind方法
+          // 方法创建一个新的函数，在 bind() 被调用时，这个新函数的 this 被指定为 bind() 的第一个参数，
+          // 而其余参数将作为新函数的参数，供调用时使用。bind用于将函数体内的this绑定到某个对象，然后返回一个新函数
+          // var bindTest = {
+          //   name: "yck"
+          // };
+          // function bindFun() {
+          //   console.log('bind改变this指向',this);
+          // }
+          // bindFun() // 指向window
+          // bindFun.bind(bindTest)(); //yck   react框架中一般都是这种方式改变this指向
+          // 还可以这样写，赋值给一个变量,然后调用
+          // var value = bindFun.bind(bindTest); //yck
+          // value()
+          //注意: 箭头函数使用 bind 这类函数是无效的
+          // var bindTest = {
+          //   name: "yck",
+          //   bindFun: () => {
+          //   setTimeout(function(){
+          //     console.log('this箭头函数 :>> ', this); //window
+          //   }.bind(this))
+          //   console.log('bind改变this指向?',this); //window
+          // }
+          // };
+          // bindTest.bindFun()
+
+          // 4.通过构造函数中设置（构造函数中this指向对象实例本身）
+          // function CreateObj(){
+          //   this.name = " 构造函数 "
+          //   console.log('this123 :>> ', this);
+          // }
+          // var myObj = new CreateObj() 
+          // console.log('this344 :>> ', this);
+          // this 指向了这个构造函数调用时候实例化出来的对象；构造函数中CreateObj的 this 会绑定到实例myObj上
+          // console.log(myObj) // CreateObj {name: "极客时间"}
+          // function sayHi(name){
+          //     this.name = name;
+          // }
+          // var Hi = new sayHi('王');
+          // console.log('构造函数中的this,', Hi.name); 
+          // 同理，构造函数其实也是一个函数，如果我们把它当作一个普通函数执行，这个 this 仍然执行全局
+          // function CreateObj2(name) {
+          //   this.name = name;
+          //   console.log(this);
+          // }
+          // var myObj2 = CreateObj2('gghs');
+
+
+          // 5.this的缺点
+          // 1.嵌套函数中的 this 不会从外层函数中继承
+          // var obj1 ={
+          //   name:'su',
+          //   foo2(){
+          //     console.log('通过对象调用方法:>> ', this);
+          //     function foo3(){
+          //       console.log('foo3 :>> ', this);
+          //     }
+          //     foo3()
+          //   }
+          // }
+          // obj1.foo2()
+
+        //   var obj1 = {
+        //     name:'su',
+        //     foo2(){
+        //     console.log('this缺陷:>> ', this);
+        //     var foo3 = ( ) =>{
+        //         console.log('foo3 :>> ', this);
+        //     }
+        //     foo3()
+        //   }
+        // } 
+        // obj1.foo2()
+
+
+
+        // 普通函数
+        //  箭头函数
+        // 1.箭头函数的this 指向外层
+        //   var obj1 = {
+        //     name:'su',
+        //     foo2(){
+        //     console.log('this', this);
+        //     var foo3 = () =>{
+        //       console.log('箭头函数中的this', this);
+        //     }
+        //     foo3()
+        //   }
+        // } 
+        // obj1.foo2()
+
+        // 2.使用new 调用箭头函数会报错
+        // let a  = () =>{}
+        // let b = new  a()
+        // console.log('a :>> ', a);
+
 
 
       //     function foo() {
@@ -114,6 +260,17 @@
 
       // }
 
+        // var person  = {
+        //   name:'su',
+        //   sayName:function(){
+        //     console.log('this.name :>> ', this.name);
+        //   }
+        // }
+        // var myPerson = Object.create(person)
+        // myPerson = Object.create(person, {name:{value:'lin'}})
+        // console.log('myPerson :>> ', myPerson);
+        // // myPerson.sayName()
+      
         }
       });
     </script>
