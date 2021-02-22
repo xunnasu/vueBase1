@@ -1,0 +1,226 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-04 09:16:22
+ * @LastEditTime: 2021-01-12 14:08:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueBase1\类型转换.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+
+  </div>
+  <script>
+    // function say(value){
+    //   console.log('value :>> ', value); //回调函数需要一个参数value
+    // }
+    // function exe(someFun,value){
+    //   console.log('someFun :>> ', someFun);
+    //   console.log('valuewww :>> ', value);
+    //   someFun(value) //exe的第一个参数应该是一个函数，但确是函数本身(可以认为i在函数外加上双引号直接变成字符串),在函数本身后面加上()就会运行函数,若需要参数就在这时候传
+    // }
+    // exe(say,'jkd') //这里的say方法就是回调 函数   exe方法接受两个参数第一个是参是say,第二个是jkd，这里的第二个参数其实就是say方法所需要的参数，这样i写叫做将回调函数的参数作为与回调函数同等级的参数进行传递
+
+
+    // function sayOther(value){
+    //   console.log('value :>> ', value.name); //可以看到回调函数需要一个参数value，这个value是一个对象,拥有属性name
+    // }
+    // function exeOther(some){
+    //   var value = {
+    //     name:'kl' //这里exeOther函数只接收一个参数就是sayOther函数本身,say函数的参数在exeOtherH函数内部已经定义过了,这里直接传递也能达到回调函数传参的目的
+    //   }
+    //   some(value)
+    // }
+    // exeOther(sayOther) // exeOther函数是主函数,参数为say函数本身,这里的say也叫回调函数
+
+
+    // function sayHi(value){
+    //   console.log('value :>> ', value);
+    //   return value
+    // }
+    // // console.log('sayHi :>> ', sayHi('lkk'));
+    // new Promise((reslove,reject) =>{
+    //   console.log('new Promise :>> ');
+    //   reslove('success')
+    //   reject('erroe')
+    // })
+    // console.log('finifsh :>> ');
+    // Promise.resolve(1).then(res=>{
+    //   console.log('res :>> ', res);
+    //   return 2
+    // }).then(resolve => {
+    //   console.log('resolve :>> ', resolve);
+    // })
+    // // 构造函数
+    // let promise = new Promise((resolve,reject)=>{
+    //   setTimeout(()=> resolve('resolve成功'),1000)
+    // })
+    // promise.then(res=>{
+    //   console.log('res :>> ', res);
+    // }).catch(err=>{
+    //   console.log('ere :>> ', ere);
+    // })
+
+
+
+//     function Promise(executor) {
+//     let self = this;                       //保留this。防止后面方法出现this只想不明的问题
+//     self.status = 'pending';               //promise的默认状态是pending
+//     self.success = undefined;              //保存成功回调传递的值
+//     self.error = undefined;                //保存失败回调传递的值
+
+//     function resolve(success) {
+//         if (self.status === 'pending') {
+//             self.status = 'resolved';      //成功函数将其状态修改为resolved
+//             self.success=success;          //将成功的值保存起来
+//         }
+//     }
+//     function reject(error) {
+//         if (self.status === 'pending') {
+//             self.status = 'rejected';      //失败函数将其函数修改为rejected
+//             self.error=error;              //将失败的值保存起来
+//         }
+//     }
+//     executor(resolve, reject);
+// }
+
+
+//     Promise.prototype.then = function (onResolved, onRejected) {
+//     let self = this;
+//     if (self.status === 'resolved'); {
+//         onResolved(self.success);           //将resolve函数保留的成功值传递作为参数
+//     }
+//     if (self.status === 'rejected') {
+//         onRejected(self.error);              //将reject函数保留的失败值传递作为参数
+//     }
+// }
+
+
+// let promise = new Promise((resolve, reject) => {
+//     console.log('start');
+//     resolve('success data');
+// })
+
+// promise.then(res => {
+//     console.log("res", res);
+// }, err => {
+//     console.log("err", err);
+// })
+
+
+
+
+
+    // // 实现一个简易版的promise
+    // function Promise(fn){
+    //   let that = this
+    //   that.state = 'pending'
+    //   that.success = undefined//保存成功回调传递的值
+    //   that.error = undefined//保存失败回调传递的值
+    //   function resolve(success){
+    //     if(that.state === 'pending'){
+    //       that.state = 'resolve';//成功函数将其状态修改为resolve
+    //       that.success = success//成功的值保存起来
+    //     }
+    //   }
+    //   function reject(error){
+    //     if(that.state ==='pending'){
+    //       that.state = 'reject'
+    //       that.error = error
+    //     }
+    //   }
+    //   fn(resolve,reject)
+     
+    // }
+    // Promise.prototype.then = function(onResolve,onReject) {
+    //   let that = this
+    //   if(that.state === 'resolve'){
+    //     onResolve(that.success)
+    //   }
+    //   if(that.state === 'reject'){
+    //     onReject(that.error)
+    //   }
+    // }
+
+    // 测试
+    // let promise  = new Promise((resolve,reject)=>{
+    //   console.log('start :>> ');
+    //   resolve('success data')
+    // })
+    // promise.then(res=>{
+    //   console.log('res :>> ', res);
+    // },err=>{
+    //   console.log('err :>> ', err);
+    // })
+
+   function red(){
+     console.log('red');
+   }
+   function green(){
+     console.log('green ');
+   }
+   function yellow(){
+     console.log('yellow');
+   }
+   let myLight = (timer,cd)=>{
+     return new Promise((resolve)=>{
+        setTimeout(()=>{
+          cd(),
+          resolve()
+        },timer)
+     })
+   }
+
+
+   let myStep = () => {
+  Promise.resolve().then(() => {
+    return myLight(3000, red);
+  }).then(() => {
+    return myLight(2000, green);
+  }).then(()=>{
+    return myLight(1000, yellow);
+  }).then(()=>{
+    myStep();
+  })
+};
+// myStep();
+
+
+// Function.prototype.myCall = function(context,...arges){
+//   if(typeof this !== 'function'){
+//     throw new TypeError('error')
+//   }
+//   context = context || window
+//   context.fn  = this
+//   let result = context.fn(...arges)
+//   return result
+// }
+Function.prototype.myCall = function(context,...arges){
+  if(typeof this !== 'function'){
+    throw new Error('error')
+  }
+  context = context || window
+  context.fn = this
+  let result = context.fn(...arges)
+  delete context.fn
+  return result 
+}
+var obj = {
+  name :'asd'
+}
+function fn(){
+  console.log('this :>> ', this);
+}
+fn.myCall(obj)
+
+
+  </script>
+</body>
+</html>

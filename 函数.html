@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-04 09:16:22
+ * @LastEditTime: 2021-02-18 13:52:05
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueBase1\函数.html
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +17,18 @@
     
 </style>
 <body>
+  <div id="app"></div>
   <script>
+     function suggest_so(res) { //这里的res 就是接口里面suggest_so的参数
+      console.log('res :', res);
+    }
+    function jsonp(url) {
+      let app = document.getElementById('app');
+      let script = document.createElement("script");
+      script.src = url  
+      app.appendChild(script)
+    }
+    jsonp('https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=s')
     // ES3标准中
     function 函数名([参数]){
       //函数体：实现功能的js 代码
@@ -24,14 +43,14 @@
     }
     fn();
     // ES6标准中创建箭头函数
-    let 函数名 = ([参数]) =>{ //函数名也就是变量名
-      // 函数体
-    }
-    函数名()
-    let fn=()=>{
-      let total =10
-    }
-    fn()
+    // let 函数名 = ([参数]) =>{ //函数名也就是变量名
+    //   // 函数体
+    // }
+    // 函数名()
+    // let fn=()=>{
+    //   let total =10
+    // }
+    // fn()
     // 创建函数
     // 1.函数也是引用类型,首先会开辟一个新的堆内存，把函数体中的代码当做'字符串'存储到内存中
     // 对象向内存中存储的是键值对
@@ -48,6 +67,92 @@
       return a+b
     } 
     fn(1,2) //1,2是实参 是具体的数据值
+    // let b
+    // console.log('这个值为 ', b ==1 && b == 2 &&b == 3);
+    // var val = 0 
+    // Object.defineProperty(window,'a',{
+    //   get:function(){
+    //     return  ++val
+    //   }
+    // })
+    // console.log('重写后得值为', a ==1 && a ==2 &&a==3);
+
+
+    // let list = [
+    //   {a:2,b:3},
+    //   {a:4,b:5},
+    //   {a:6,b:8}
+    // ]
+    // let target = list.filter(item=>{
+    //   if(item.a === 4 ){
+    //     return true
+    //   }else {
+    //     return false
+    //   }
+    // })
+    // console.log('target :>> ', target);
+
+    // let name = 'lucy'
+    // let age =12
+    // let person ={name,age}
+    // console.log('person :>> ', person);
+    // let person = {name:'fff',age:23}
+    // let { name ,age} = person
+    // console.log('person :>> ', person);
+
+ let object = {
+   a:0
+ }
+ function fun(obj){
+   obj.a = 1
+   obj = {a:2}
+   obj.b = 2
+ }
+ fun(object)
+ console.log('object :>> ', object);
+
+
+
+ var name = 'window'
+ var obj ={
+   name:'obj',
+   normal(){
+     return ()=>{
+       console.log('this1234 :>> ',  this);
+       console.log('this.name :>> ', this.name);
+     }
+   },
+   arrow:()=>{
+     return function(){
+       console.log('this.name :>> ', this.name);
+     }
+   }
+ }
+ var obj1 ={
+   name:'obj1'
+ }
+ obj.normal.call(obj1)()
+ obj.arrow.call(obj1)()
+
+
+
+ function Test(a,b){
+   this.a = a 
+   this.b = b
+ }
+ Test.prototype.add = function (){
+   return this.a + this.b
+ }
+//  var t1 = new Test(1,2)
+var NewTest = Test.bind(null,3)
+var t2 = new NewTest(4)
+ console.log('t2.add() :>> ', t2.add());
+
+
+
+ var aaa = '123'
+ console.log('aaa.join ', aaa.split(''));
+
   </script>
 </body>
 </html>
