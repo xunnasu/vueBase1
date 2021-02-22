@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型和继承</title>
+  </head>
+  <style>
+   
+  </style>
+  <bod >
+    <div></div>
+    <script>
+     
+      // //什么是构造函数
+      // //构造函数是一种特殊的函数， 主要区分于普通函数，所以使用new关键字来创建构造函数，使用New来生成实例对象
+      // //内部使用的this对象，来指向即将要生成的实例对象
+      // //产生的实例可以访问到构造函数中原型上的方法
+
+      // function AA() {}
+      // // 构造函数通过prototype属性 可以拿到原型，
+      // // 打印原型 console.log(AA.prototype) 也就是说AA.prototype指向(其实就是赋值的意思)了原型
+      // // 小结: 构造函数的prototype指向了他的原型。
+      // AA.prototype
+      // console.log('AA.prototype :>> ', AA.prototype);
+      // AA.prototype.constructor = AA;
+
+      // //总结：我们在定义对象,并打印出来,会发现有一个__proto__这个属性，__proto__是JS创建的对象的内置属性（指针），用于指向创建它的构造函数的原型对象,
+      // //每个对象在创建时都会因为原型对象的继承关系，自动拥有一个constructor属性，也就是构造函数(可以被实例对象继承), 构造函数通过prototype属性指向原型，原型的consructor属性又指向构造函数，这就形成了一个指向的关系
+
+      // var arr =[]
+      // console.log('Object.prototype.toString :>> ', Object.prototype.toString());
+      // console.log('Object.prototype.toString.call() :>> ', Object.prototype.toString.call(arr));
+    </script>
+  </bod>
+</html>

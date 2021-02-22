@@ -585,78 +585,646 @@
     //    }
     //    var arr =[1,1,3,4,5,1,1,6]
     //    console.log('object :>> ', indixes(arr,1));
+  <head>
+    <meta charset="UTF-8" />
+    <title>array</title>
+    <style></style>
+  </head>
+  <style>
+    #bg {
+      width: 100px;
+      height: 100px;
+      border: 2px solid;
+    }
+    .raiod {
+      width: 10px;
+      height: 10px;
+      /* border-radius: 55%; */
+      background-color: rgb(25, 216, 66);
+    }
+  </style>
+  <body>
+    <div id="bg"></div>
+    <p>测试</p>
+    <div class="raiod"></div>
+    <!-- <div v-for="(item,index) in arr">{{index == arr.length -1 && item.name || (item.name +',')}}</div> -->
+    <script type="text/javascript">
+      //   window.onload = function() {
+      //         var span = document.querySelector("div");
+      //         console.log(span,"onload");
+      //     };
+
+      // document.addEventListener("DOMConetentLoaded", function() {
+      //     var span = document.querySelector("div");
+      //     console.log(div, "DOMConetentLoaded");
+      // });
+      //    for(var i = 0 ; i <10;i++){
+      //        (function (i){
+      //            var a = document.createElement('a');
+      //            a.innerHTML  = i + '<br>';
+      //            document.body.appendChild(a);
+      //            a.addEventListener('click',function(e){
+      //                e.preventDefault()
+      //                console.log('i :>> ', i);
+      //            })
+      //        })(i)
+      //    }
+      //     // 查找数组中字符串出现的位置
+      //     var arr4 =  ["c", "a", "z", "a", "x", "a"];
+      //     var index = 0;
+      //     var key = 'a'
+      //     for(var i = 0; i <arr4.length;i++){
+      //         if((index = arr4.indexOf(key,index)) != -1){
+      //             console.log('index :>> ', index);
+      //             index += key.length
+      //             console.log('index222 :>> ', index);
+      //         }
+      //         // console.log('index :>> ', index);
+      //     }
+      //     const beasts = ['ant', 'bison', 'camel', 'duck', 'ss','vvvv','bison'];
+      //     console.log(beasts.indexOf('bison', 2)); //从索引为2的位置开始找bison,所以是6
+
+      // function fun(arr6){
+      //     // var arr6 = [1,2,3,4,5]
+      //     var sum = 0
+      //     for(let i  of arr6){
+      //         sum += i
+      //     }
+      //     return sum
+      // }
+      // var arr6 = [1,2,3,4,5]
+      // console.log('fun(arr6) :>> ', fun(arr6));
+
+      // 求一个数组的和
+      // function fun(arr){
+      //     var sum = 0; //初始值
+      //     arr.forEach(item=>{
+      //         sum += item
+      //     })
+      //     return sum
+      //     // for(var i = 0; i <arr.length;i++){
+      //     //     console.log('arr :>> ', arr);
+      //     //     console.log('iasas :>> ', i);
+      //     //     console.log('arr[i] :>> ', arr[i]);
+      //     //     sum += arr[i]
+      //     // }
+      //     // for(let i of arr){
+      //     //     console.log('i :>> ', i);
+      //     //     sum += i
+      //     // }
+      //     // return sum
+      // }
+      // var arr8 =[34,56,7,889,12]
+      // var arr9 = fun(arr8)
+      // console.log('arr9 :>> ', arr9);
+
+      // console.log('观察脚本加载的顺序')
+      //     window.addEventListener("load", function() {
+      //         console.log('load事件回调')
+      // }, false);
+      // document.addEventListener("DOMContentLoaded", function() {
+      //     console.log('DOMContentLoaded回调') // 不兼容老的浏览器，兼容写法见[jQuery中ready与load事件] ，原理看下文
+      // }, false);
+
+      // var o  = {key:1}
+      // var keys = Object.keys(o)
+      // console.log('keys :>> ', keys);
+      // var value =[]
+      // for(var i = 0 ; i < keys.length;i++){
+      //   var key = keys[i]
+      //   value[i] = o[key]
+      // }
+      // console.log('value :>> ', value);
+
+      // 动态的给js对象添加变量属性
+      // var obj = {}
+      // var eg = ['a','b','c','d']
+      // for(var i = 0 ; i < eg.length;i++){
+      //     obj[eg[i]] = false
+      // }
+      // console.log('动态的给js对象添加变量属性 :>> ', obj);
+
+      // 第一题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
+      // var a = [1,2,3]
+      // var object ={} //转成对象
+      // for(let item in a ){
+      //   object[item] = a[item]
+      // }
+      // console.log('object :>> ', object);
+      // var objA ={} //数组转对象
+      // for(var i = 0 ; i< a.length;i++){ //数组转对象
+      //   objA[i] = i
+      // }
+      // console.log(objA)
+
+      // a.forEach((item,index)=>{ //数组转对象
+      //   objA[index] = item
+      // })
+
+      // var v = a.map(item=>{ //数组添加值
+      //   return {
+      //     key:item
+      //   }
+      // })
+      // console.log('v:>> ', v);
+
+      //第二题: [{key:1},{key:2},{key:3},{key:4}] => [1,2,3,4]
+      // let newArr =  [{key:1},{key:2},{key:3},{key:4}]
+      // let newArr2 = newArr.map(item=>item.key)
+      // console.log(newArr2)
+      // // [1,2,3,4] => [2,3,4]
+      // var b = [1,2,3,4]
+      // // b.shift()//前删,只能删除一个
+      // // b.splice(0,2)//删除前两个 第一个参数是从哪里开始， 第二个参数是删除几个元素
+      // // b.unshift(5) //前加
+      // b.splice(0,0,5)//从第0个开始， 删除第0个，添加一个数字5
+      // console.log(b)
+      //第三题: [{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
+      // var c =[
+      //   {
+      //     key:1
+      //   },
+      //   {
+      //     key:2
+      //   }
+      // ]
+      // var d ={}
+      // c.forEach((item,index)=>{ //数组转对象
+      //   // let key = `key${index+1}`; //es6方法
+      //   let key ='key' + (index+1) //es5方法
+      //   console.log(key)
+      //   d[key] = item.key
+      // })
+      // console.log(d)
+      //第四题:{key1:1,key2:2,key3:3,key4:4}=>[{key:1},{key:2},{key:3},{key:4}]
+      // var cc = {key1:1,key2:2,key3:3,key4:4}
+      // var dd = []
+      // for(let key in cc){//对象转成数组
+      //   console.log(key,'key')
+      //   dd.push({[key.slice(0,-1)]: cc[key]})
+      // }
+      // console.log(dd,'ddd')
+      //第五题 [{key:1},{key:2}]  => `1,2`
+      //   var e =[
+      //     {
+      //       keys:1
+      //     },
+      //     {
+      //       keys:2
+      //     }
+      //   ]
+      //  var f = ''
+      //  for(let item in e){
+      //    for(let key in e[item]){
+      //     // console.log(key,'lll')
+      //     // console.log(e[item],'lo')
+      //     f += e[item][key] + ','
+      //    }
+      //    f = f.slice(0,3) //去掉最后一个逗号
+      //  }
+      // console.log(f)
+
+      //第六题 [ 1, [2,3,[4,5]] , [6,7]] => [1,2,3,4,5,6,7]
+      // var g = [1,[2,3,[4,5]],[6,7]]
+      //  var h = g.flat(2) //1.flat方法: 要重新赋值生效
+      // console.log(h)
+      // var h = g.join().split(',')//2.转成数组字符串
+      // console.log(h)
+
+      // 3.递归方法实现平铺数组(自己调用自己)
+      //   var gg =[]
+      //  function unit(arr){
+      //   for(let item of arr){
+      //     if(Object.prototype.toString.call(item).slice(8,-1)==='Array'){
+      //       unit(item)
+      //     } else {
+      //       gg.push(item)
+      //     }
+      //   }
+      //   return gg
+      //  }
+      //   console.log(unit(g))
+
+      // 第六题：[8,3,5,4,7,20] => [3,4,5,7,8,20]
+      // var ia = [8,3,5,4,7,20]
+      // //  循环
+      // var max =[]
+      // for(var i = 0 ; i < ia.length; i++){
+      //   for(var j = i ; j< ia.length; j++){
+      //     if(ia[i] > ia[j]){
+      //       max = ia[j]  //赋值给最大值变量max
+      //       ia[j] = ia[i]
+      //       ia[i] = max
+      //     }
+      //   }
+      // }
+      // console.log(ia)
+
+      //  ia.sort((a,b)=>{ //sort排序方法
+      //    return a-b
+      //  })
+      //  console.log(ia)
+      // 数组的集合练习题
+      // let a = [1, 2, 3, 4, 5];
+      // let b = [3, 4, 5, 6, 7, 8];
+      // 第一种for循环的方法
+      //  function filters(a,b){
+      //    let c =[]
+      //    for(var i = 0; i<a.length;i++){
+      //     //  console.log('i :>> ', a[i]);
+      //      for(var j = 0; j<b.length;j++){
+      //       if(a[i]==b[j]){
+      //         c.push(a[i])
+      //       }
+      //      }
+      //    }
+      //    return c
+      //  }
+      //  console.log(filters(a,b));
+      //  第二种filter方法
+      // function filters(a,b) {
+      //   // return a.filter(item => b.includes(item)) //b中是否包含a里面的值
+      //   // 第三种方式用 new Set
+      //   let set2 = new Set(b);
+      //   return a.filter(item => set2.has(item))
+      // //   第三种indexOf
+      // //   return a.filter(item => b.indexOf(item) !=-1)
+      // }
+      // console.log(filters(a,b));
+      // 使用filter过滤掉符合条件的元素 (小于4的显示出来)
+      // var aaa = [1,2,3,4]
+      // function bbb(a,b){
+      //     return a.filter(item => item<4)
+      // }
+      // console.log('bbb(aaa) :>> ', bbb(aaa));
+      //slice() 方法可从已有的数组中返回选定的元素。
+      // var arr = new Array(6)
+      // arr[0] = "George"
+      // arr[1] = "John"
+      // arr[2] = "Thomas"
+      // arr[3] = "James"
+      // document.write("变化的值"+arr.slice(0,2)+ '<br>')//从第0个开始选长度为2个的值
+      // document.write('初始值'+ arr)
+      // 第七题: (获得url参数的值) split() 方法用于把一个字符串分割成字符串数组。
+      // let arr = "http://www.baidu.com?a=5&b=2"
+      // let sum1 = arr.split("?")[0]
+      // let sum2 = arr.split("?")[1]
+      // let sum3 = sum2.split("&")
+      // let sum33 = sum2.split("&")[0]
+      // let sum4 = sum2.split("&")[1]
+      // let sum5 ={}
+      // sum3.forEach(item=>{
+      //   let a = item.split("=")
+      //   console.log('sum3里面每一项值 :>> ', item);
+      //   console.log('每一项值去掉等号的后的数组 :>> ', a);
+      //   sum5[a[0]] = a[1]
+      // })
+      // console.log('sum5最终对象中的某一个具体的值:>> ', sum5['a']);
+      // console.log('sum1转换成数组之后取？后面第零项的值 :>> ', sum1);
+      // console.log('sum2转换成数组之后取?后面第一项的值 :>> ', sum2);
+      // console.log('sum3转换成数组之后取&后面的值:>> ', sum3);
+      // console.log('sum5最终对象:>> ', sum5);
+      // console.log('sum4:>> ', sum4);
+      // 第八题: 封装获得url参数的值
+    //   function getUrl(url) {
+    //     let url1 = 'www.baidu.com?a=1&b=2&c=3';
+    //     let url2 = url1.split('?')[1];
+    //     let url3 = url2.split('&');
+    //     let obj = {};
+    //     url3.forEach((item) => {
+    //       let url4 = item.split('=');
+    //       obj[url4[0]] = url4[1];
+    //     });
+    //     console.log('obj[url] :>> ', obj[url]);
+    //     return obj[url];
+    //   }
+    //   let value = getUrl('b');
+    //   console.log('value :>> ', value);
    
-    
-       
-        // arr.forEach((item,index)=>{
-        //     console.log('index :>> ', index);
-        //     console.log('item :>> ', item);
-        // })
-        // for(var i = 0 ; i <arr.length ; i++){
-        //     console.log('i :>> ', i);
-        //     console.log('arr.length-1 :>> ', arr.length-1);
-        // }
+      //第九题,获取参数的url,最后输出[1,2,3]
+      // 要求
+      // 1. 指定参数名称，返回该参数的值 或者 空字符串
+      // 2. 不指定参数名称，返回全部的参数对象 或者 {}
+      // 3. 如果存在多个同名参数，则返回数组
+      // function getUrlParam(sUrl, sKey) {
+      //     let paramArr = sUrl.split('?')[1].split('#')[0].split('&');
+      //     console.log('paramArr :>> ', paramArr);
+      //     const obj = {};
+      //     paramArr.forEach(ele=>{
+      //         const [key,value] = ele.split('=');
+      //         if(obj[key] === void 0){
+      //             obj[key] = value
+      //         }
+      //         else{
+      //             obj[key] = [].concat(obj[key],value);
+      //         }
+      //     })
+      //     console.log('obj :>> ', obj);
+      //     return sKey === void 0 ? obj : obj[sKey] || ''
+      // }
+      // console.log('object 223455:>> ', getUrlParam(url,'key'));
 
-           
-        
+      //有一个从小到大排好序的数组。现输入一个数，要求按原来的规律将它插入数组中。
+      // var arr5 =[]
+      // for(var i = 20 ; i <50;i++){
+      //   arr5.push(i)
+      // }
+      // console.log('arr5 :>> ', arr5);
+      // var arr6 =[]
+      // var num=30.5
+      // for(var j = 0 ; j<arr5.length;j++){
+      //   console.log('j :>> ', arr5.length);
+      //   if(arr5[j]>num){
+      //     console.log('arr5[jdd] :>> ', arr5[j]);
+      //     arr6 = arr5.splice(j,0,num)
+      //     console.log('arr6 :>> ', arr6);
+      //     break;
+      //   }
+      //   if(arr5[arr5.length]- 1 <num){
+      //     arr5.push(num)
+      //   }
+      // }
+      // console.log('arr5 :>> ', arr5);
+      // console.log('arr6 :>> ', arr6);
 
-          
-          
+      // 题1  changeFun   let arr = [1,2,3,4]
+      // changeFun(arr) => {left: [1,2],right: [3,4]}
+      // let arr = [1,2,3,4,5,6]
+      // function changeFun(arr) {
+      //   let len = arr.length;
+      //   let midd = Math.floor(len/2)
+      //   let left = arr.slice(0,midd)
+      //   return {
+      //     left, //es6写法
+      //     right
+      //   }
+      // }
+      // changeFun(arr) // {left: [1,2,3],right: [4,5,6]}
+      // console.log('object :>> ', changeFun(arr));
+      // console.log('object :>> ', changeFun([1,2,3,4,5,6,7]));
 
-          
-            let arr2 = {
-                name: "Ssss",
-                age: 12,
-            };
-            let name = "wang"; //修改其中的值
-            // arr2.job = "it"; //增加属性值
-            // delete arr2.age; //彻底删除 s属性名和属性值都删除了
-            // arr2.name = null; //假删除 ,有属性，只不过值为null
-            console.log("arr2.name :>> ", arr2["job"]);
-            console.log("arr :>> ", arr2.name);
-           
-            var arrPush = ['悟空','八戒']
-            var result = arrPush.push('沙僧')
-            console.log('result :>> ', result);
-            console.log('result :>> ', arrPush);
-            console.log(typeof  NaN === "number"); //  "true"
+      // 设计模式中的策略模式
+      // 1.对象的形(常用)
+      // let intentionObj = {
+      //     '1':'国内',
+      //     '2':'海外',
+      //     '3':'无明显意向'
+      // }
+      // let intention = 1
+      // let value = intentionObj[intention + '']
+      // console.log('value :>> ', value);
+      // 2.数组的形式
+      // let intentionList = ['国内','海外','无明显意向']
+      // let intention = 1
+      // let value = intentionList[intention-1]
+      // console.log('value :>> ', value);
 
-            var v =[1,2,3,34,5,6,7,8,9]
-            var vv= v.splice(2,1,444) //返回被删除的元素，原始数组会被改变
-            console.log('vv :>> ', vv);
-            console.log('v :>> ', v);
+      // 类型转换题: ![]==[]
+      //!true == [] //第一步空数组转布尔值是true
+      //false ==[] //!true就是false
+      // 0 == [] 空数组转数字是0(空数组转布尔值为true)
+      // 0 == 0 //所有相等是0
+      // 答案是true
+      // 类型转换练习
+      // var t = [];
+      // var booleanZ = Boolean(t);
+      // var num = Number(t);
+      // var str = "boolean";
+      // var n = Boolean(Number(t));
+      // var boo = Boolean("str");
+      // console.log("空数组转布尔值", booleanZ); // true
+      // console.log("空数组转数字", num); //0
+      // console.log("字符串转布尔值 :>> ", boo); //true
+      // console.log("空数组现转数字再转布尔值 :>> ", n); //false
 
-            var poppo = [1,2,3,4]
-            var po1 = poppo.reverse()
-            console.log('po1 :>> ', po1);
-            console.log('poppo :>> ', poppo);
+      // 取值
+      // var a = {
+      //   s: [
+      //     {
+      //       key:1
+      //     },
+      //     {
+      //       key:2
+      //     }
+      //   ],
+      //   d: {
+      //     f:[1,2,3,{e:'ee'}],
+      //     g:{
+      //         b:[1,3,4,5],
+      //         ansewr: '{ "a":"0", "b":"24"}',
+      //       }
+      //   }
+      // }
+      // let arr = [
+      //     {
+      //         name: "lll",
+      //         age: "12",
+      //         ansewr: '{ "a":"0", "b":"24"}',
+      //     },
+      // ];
+      // console.log("arr2 :>> ", JSON.parse(arr[0].ansewr).a);
+      // console.log('a.s[1] :>> ', a.s[0].key);
+      // console.log('a.d.g.b0] :>> ', a.d.g.b[0]);
+      // console.log('a000:>> ',JSON.parse(a.d.g.ansewr).a);
 
-            var sort1 = [2,3,44,55,12]
-            console.log('po1 :>> ', sort1.sort());
-            var items = [
-                { name: 'Edward', value: 37},
-                { name: 'Sharpe', value: 24},
-                { name: 'And', value: 45 }
-            ];
-            items.sort(function (a, b) {
-                return (a.value - b.value)
-            });
-            console.log('items :>> ', items);
+      // slice、split、splice的区别和使用
+      // var aa = ["jjj", "oooo", "pppp"];
+      // var bb = aa.slice(0, 2); //第一个参数就是从下标几开始， 第二个数就是数组的长度， 不包括最后一个
+      // console.log("slice方法22222222 :>> ", bb);
+      // console.log("aa原数组:>> ", aa);
+      // var str = "How are you doing today?";
+      // var n = str.split("");
+      // console.log("split方法:>> ", n);
+      // var myEnglish = ["a", "b", "v", "g"];
+      // var myEnglish2 = myEnglish.splice(2, 1, "wsb");
+      // console.log("splice1方法会改变原数组 :>> ", myEnglish);
+      // console.log("splice2方法:>> ", myEnglish2);
+      // var num = 12;
+      // var num1 = "12px";
+      // var num3 = "珠峰";
+      // var num4 = isNaN;
+      // var num5 = [1];
 
-            // {name: "Sharpe", value: 24}
-            // {name: "Edward", value: 37}
-            // {name: "And", value: 45}
+      // isNaN(null) //false
+      // isNaN(isNaN) //true
+      // isNaN(undefined) //true
+      // isNaN(true) //false
+      // isNaN(false) //false
+      // console.log("数字12:>> ", isNaN(num));
+      // console.log("字符串12:>> ", isNaN(num1));
+      // console.log("汉字 ", isNaN(num3));
+      // console.log("boolean ", isNaN(Number(num5)));
 
-            // 使用函数表达式
-            var number = [1,23,4,5,6,7,7,8,9]
-            number.sort(function(a,b){
-                return a-b
-            })
-            console.log('number :>> ', number);
+      // let arr2 = {
+      //     name: "Ssss",
+      //     age: 12,
+      // };
+      // let name = "wang"; //修改其中的值
+      // // arr2.job = "it"; //增加属性值
+      // // delete arr2.age; //彻底删除 s属性名和属性值都删除了
+      // // arr2.name = null; //假删除 ,有属性，只不过值为null
+      // console.log("arr2.name :>> ", arr2["job"]);
+      // console.log("arr :>> ", arr2.name);
 
-            
-            
-          
-        </script>
-    </body>
+      // var arrPush = ['悟空','八戒']
+      // var result = arrPush.push('沙僧')
+      // console.log('result :>> ', result);
+      // console.log('result :>> ', arrPush);
+      // console.log(typeof  NaN === "number"); //  "true"
+
+   
+
+      // let obj = {
+      //     a:1,
+      //     b:3,
+      //     c:5
+      // }
+      // let array =[2,7,8,9,0]
+
+      // // for in 遍历对象
+      // // for(let i in obj){
+      // //     console.log('i :>> ', obj[i]);
+      // // }
+      // for(let i of array){
+      //     console.log('i22 :>> ', array);
+      // }
+
+      //    找出指定元素出现的位置
+      // indexOf(subStr,index)
+      // subStr，是我们要查找的指定字符串，是必须要传的值；
+      // index，值为整数，不是必传的值，规定了在字符串中开始检索的位置；
+      // var indices = []
+      // var array = ['a','b','b','d','f','a','g']
+      // var element = 'a'
+      // var idx = array.indexOf(element)
+      // while (idx != -1){
+      //     indices.push(idx)
+      //     idx = array.indexOf(element,idx +1)
+      // }
+      // console.log('indices :>> ', indices);
+
+      // var indixes = []
+      // var array = [1,2,3,4,5,5,6,6,6]
+      // var element = 5
+      // var idx = array.indexOf(element)
+      // while(idx != -1){
+      //     indixes.push(idx)
+      //     idx = array.indexOf(element,idx+1)
+      // }
+      // console.log('indixes :>> ', indixes);
+
+      // function findall(a,x){
+      //     var results=[],
+      //         len=a.length,
+      //         pos=0;
+      // while(pos<len){
+      //     pos=a.indexOf(x,pos);
+      //     if(pos===-1){//未找到就退出循环完成搜索
+      //     break;
+      //     }
+      //     results.push(pos);//找到就存储索引
+      //     pos+=1;//并从下个位置开始搜索
+      // }
+      // return results;
+      // }
+      // var arr=[1,2,3,1,4,1,4,1];
+      // findall(arr,1);//返回[0,3,5,7]
+      // console.log('findall(arr,1) :>> ', findall(arr,1));
+
+      //    function findall(a,b){
+      //        var results =[]
+      //        var len = a.length
+      //        var pos = 0
+      //        while(pos<len){
+      //            pos = a.indexOf(b,pos)
+      //            if(pos === -1){
+      //                break
+      //            } else {
+      //                results.push(pos)
+      //                pos += 1
+      //            }
+      //        }
+      //        return results
+      //    }
+      //    var arr = [1,1,3,1,3,2,2]
+      //    console.log('findall :>> ', findall(arr,1));
+
+      //    function indixes(a,b){
+      //        var resultes = []
+      //        var len = a.length;
+      //        var pos = 0;
+      //        while(pos < len){
+      //            pos = a.indexOf(b,pos)
+      //           if(pos != -1){
+      //             resultes.push(pos)
+      //             pos+=1
+      //           } else {
+      //             break
+      //           }
+      //        }
+      //        return resultes
+      //    }
+      //    var arr =[1,1,3,4,5,1,1,6]
+      //    console.log('object :>> ', indixes(arr,1));
+
+      // arr.forEach((item,index)=>{
+      //     console.log('index :>> ', index);
+      //     console.log('item :>> ', item);
+      // })
+      // for(var i = 0 ; i <arr.length ; i++){
+      //     console.log('i :>> ', i);
+      //     console.log('arr.length-1 :>> ', arr.length-1);
+      // }
+
+      // let arr2 = {
+      //     name: "Ssss",
+      //     age: 12,
+      // };
+      // let name = "wang"; //修改其中的值
+      // arr2.job = "it"; //增加属性值
+      // delete arr2.age; //彻底删除 s属性名和属性值都删除了
+      // arr2.name = null; //假删除 ,有属性，只不过值为null
+      // console.log("arr2.name :>> ", arr2["job"]);
+      // console.log("arr :>> ", arr2.name);
+
+      // var arrPush = ['悟空','八戒']
+      // var result = arrPush.push('沙僧')
+      // console.log('result :>> ', result);
+      // console.log('result :>> ', arrPush);
+      // console.log(typeof  NaN === "number"); //  "true"
+
+      // var v =[1,2,3,34,5,6,7,8,9]
+      // var vv= v.splice(2,1,444) //返回被删除的元素，原始数组会被改变
+      // console.log('vv :>> ', vv);
+      // console.log('v :>> ', v);
+
+      // var poppo = [1,2,3,4]
+      // var po1 = poppo.reverse()
+      // console.log('po1 :>> ', po1);
+      // console.log('poppo :>> ', poppo);
+
+      // var sort1 = [2,3,44,55,12]
+      // console.log('po1 :>> ', sort1.sort());
+      // var items = [
+      //     { name: 'Edward', value: 37},
+      //     { name: 'Sharpe', value: 24},
+      //     { name: 'And', value: 45 }
+      // ];
+      // items.sort(function (a, b) {
+      //     return (a.value - b.value)
+      // });
+      // console.log('items :>> ', items);
+
+      // // {name: "Sharpe", value: 24}
+      // // {name: "Edward", value: 37}
+      // // {name: "And", value: 45}
+
+      // // 使用函数表达式
+      // var number = [1,23,4,5,6,7,7,8,9]
+      // number.sort(function(a,b){
+      //     return a-b
+      // })
+      // console.log('number :>> ', number);
+    </script>
+  </body>
 </html>

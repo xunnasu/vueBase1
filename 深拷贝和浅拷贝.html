@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+
+  </div>
+  <script>
+     // 实现浅拷贝
+      // function shallowCopy(source){
+      //   var target = source instanceof Array ? [] :{}
+      //   for(let i in target) {
+      //     if(source.hasOwnPrototy(i)){
+      //       target[i] = source[i]
+      //     }
+      //   }
+      //   return target
+      // }
+      // let objY = {
+      //   name:'实现浅拷贝'
+      // }
+      // let obj = shallowCopy(objY)
+      // obj.name = '改变浅拷贝的值'
+      // console.log('obj :>> ', obj);
+
+      // for in、Object.keys()和Object.getOwnPropertyNames的区别
+      // function Person(name){
+      //   this.name = name
+      // }
+      // Person.prototype = {
+      //   sex:'angly'
+      // }
+      // let person = new Person('zhangsan')
+      // for(let i in person){
+      //   console.log('i :>> ', i);
+      // }
+      // let assgin = Object.keys(person)
+      // console.log('assgin :>> ', assgin);
+      // let getOwn = Object.getOwnPropertyNames(person)
+      // console.log('getOwn :>> ', getOwn);
+
+      // console.log('111', a,b);
+      // var a =12;
+      // b =12 //分号是语句的结束字符，逗号是声明变量时分割符。
+      // function fn(){
+      //   console.log('222', a,b);
+      //   var a = b =13 // 等价于var a; b = 13; a = b; var提升赋值过程都是从右向左
+      //   console.log('333', a,b);
+      // }
+      // fn()
+      // console.log('444', a,b);
+
+
+// 实现深拷贝
+      // function deepCopy(obj1) {
+      //   // 检测是不是字符串对象
+      //   if (typeof obj1 !== 'object') return obj1;
+      //   //检测正则
+      //   if (obj1 instanceof RegExp) {
+      //     return new RegExp(obj1);
+      //   }
+      //   // 创建对应的空对象或空数组
+      //   let obj2 = Array.isArray(obj1) ? [] : {};
+      //   for (let i in obj1) {
+      //     // 判断是否是自身的属性：因为for-in会遍历原型链上的属性，
+      //     // 所以需要判断属性是否在原型链上，不是原型链才拷贝
+      //     if (obj1.hasOwnProperty(i)) {
+      //       // 如果子属性为引用数据类型，递归复制deepCopy(obj1[i])，如果是基本数据类型，直接赋值obj1[i]
+      //       obj2[i] = typeof obj1[i] === 'object' ? deepCopy(obj1[i]) : obj1[i];
+      //     }
+      //   }
+      //   return obj2;
+      // }
+      // let target = {
+      //   field: 1,
+      //   field2: 'aa',
+      //   field3: {
+      //     child: 'child',
+      //   },
+      //   reg: /\s/,
+      //   c: function () {
+      //     console.log('c :>> ', c);
+      //   },
+      // };
+      // var result = deepCopy(target);
+      // console.log('result原始 :>> ', result);
+      // target.field = 2;
+      // target.field2 = 'bb';
+      // target.field3.child = 'dddd';
+      // target.reg = /\W/;
+      // console.log('result深拷贝后', result);
+  </script>
+</body>
+</html>

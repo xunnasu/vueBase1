@@ -5,89 +5,252 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>原型和继承</title>
   </head>
-  <body>
-    <div></div>
+  <style>
+   
+  </style>
+  <bod >
+    <div>原型和继承</div>
     <script>
       // instanceof类型检测
-      function Car(name, age) {
-        this.name = name;
-        this.age = age;
-      }
-      let result = new Car('jh', 12);
-      console.log('result :>> ', result);
-      console.log('result :>> ', result instanceof Car);
-      // 原型
-      function Fn() {}
-      Fn.prototype = new Array();
-      var f = new Fn();
-      console.log('Fn构造函数:>> ', f);
-      console.log('fn1', f.constructor == Fn); //false
-      console.log('fn2:>> ', f.constructor === Array);//true  因为f.constructor上的原型已经被new Array覆盖 所以判断结果为true
-      // 大致过程
-      // f -> __proto__ (Fn.prototype) -> constructor
-      // f ->__proto__ (Fn.prototype (new Array())) -> Array.prototype -> constructor -> Array
+      // function Car(name, age) {
+      //   this.name = name;
+      //   this.age = age;
+      // }
+      // let result = new Car('jh', 12);
+      // console.log('result :>> ', result);
+      // console.log('result :>> ', result instanceof Car);
+      // // 原型
+      // function Fn() {}
+      // Fn.prototype = new Array();
+      // var f = new Fn();
+      // console.log('Fn构造函数:>> ', f);
+      // console.log('fn1', f.constructor == Fn); //false
+      // console.log('fn2:>> ', f.constructor === Array);//true  因为f.constructor上的原型已经被new Array覆盖 所以判断结果为true
+      // // 大致过程
+      // // f -> __proto__ (Fn.prototype) -> constructor
+      // // f ->__proto__ (Fn.prototype (new Array())) -> Array.prototype -> constructor -> Array
 
-      function Dog(name, age) {
-        this.name = name;
-        this.age = age;
-      }
-      Dog.prototype.eat = function (food) {
-        console.log('eat方法 :>> ', food, this.name,this.age);
-      };
-      Dog.prototype.play = function () {
-        console.log('play方法 :>> ', 'play');
-      };
-      let fiod = new Dog('jinmao', 18);
-      fiod.eat('ffff');
-      let meil = new Dog('fiod1111', 'meil1111');
-      meil.play('pppp');
-      console.log('Dog.prototype :>> ', Dog.prototype);
+      // function Dog(name, age) {
+      //   this.name = name;
+      //   this.age = age;
+      // }
+      // Dog.prototype.eat = function (food) {
+      //   console.log('eat方法 :>> ', food, this.name,this.age);
+      // };
+      // Dog.prototype.play = function () {
+      //   console.log('play方法 :>> ', 'play');
+      // };
+      // let fiod = new Dog('jinmao', 18);
+      // fiod.eat('ffff');
+      // let meil = new Dog('fiod1111', 'meil1111');
+      // meil.play('pppp');
+      // console.log('Dog.prototype :>> ', Dog.prototype);
 
-      //fido -> Dog.prototype -> eat
-
-      //什么是构造函数
-      //构造函数是一种特殊的函数， 主要区分于普通函数，所以使用new关键字来创建构造函数，使用New来生成实例对象
-      //内部使用的this对象，来指向即将要生成的实例对象
-      //产生的实例可以访问到构造函数中原型上的方法
-
-      function AA() {}
-      // 构造函数通过prototype属性 可以拿到原型，
-      // 打印原型 console.log(AA.prototype) 也就是说AA.prototype指向(其实就是赋值的意思)了原型
-      // 小结: 构造函数的prototype指向了他的原型。
-      AA.prototype
-      console.log('AA.prototype :>> ', AA.prototype);
-      AA.prototype.constructor = AA;
-
-      //总结：我们在定义对象,并打印出来,会发现有一个__proto__这个属性，__proto__是JS创建的对象的内置属性（指针），用于指向创建它的构造函数的原型对象,
-      //每个对象在创建时都会因为原型对象的继承关系，自动拥有一个constructor属性，也就是构造函数(可以被实例对象继承), 构造函数通过prototype属性指向原型，原型的consructor属性又指向构造函数，这就形成了一个指向的关系
-
-      var arr =[]
-      console.log('Object.prototype.toString :>> ', Object.prototype.toString());
-      console.log('Object.prototype.toString.call() :>> ', Object.prototype.toString.call(arr));
-      
+      // //fido -> Dog.prototype -> eat
 
 
-      function foo() {
-        console.log(this.a)
-      }
-      var a = 1
-      foo()
+      // 实现原型链继承
+      // 以一个父类为前提条件，列举 js 继承的继承方式：
+      // function Person(age) {
+      //   this.age = age || 18
+      // }
+      // Person.prototype.sleep = function(sleep){
+      //   console.log(sleep);
+      // }
+      // 原型链继承
+      // function Programmer(){}
+      // Programmer.prototype  = new Person()
+      // Programmer.prototype.name = function(){
+      //   console.log('kk');
+      // }
+      // let result = new Programmer()
+      // result.name()
+      // result.sleep(20 + '小时')
 
-// const obj = {
-//   a: 2,
-//   foo: foo
-// }
-// obj.foo()
+      // console.log('result instanceof Person :>> ', result instanceof Person);
+      // console.log('result instanceof Programmer :>> ', result instanceof Programmer);
+      // let prototypeA = Object.getPrototypeOf(result)
+      // console.log('prototypeA :>> ', prototypeA);
+      // let prototypeB = result.__proto__
+      // console.log('prototypeB :>> ', prototypeB);
+      // 缺点 ：无法向父类构造函数传参
+      // 父类的所有属性被共享，只要一个实例修改了属性，其他所有的子类实例都会被影响
 
-// const c = new foo()
-// console.log('c :>> ', c);
+      // 构造函数实现继承
+      // function Programmer(name){
+      //   Person.call(this)
+      //   this.name = name
+      // }
+      // let jon = new Programmer('jon')
+      // console.log('jon.name :>> ', jon.name);
+      // console.log('jon.age :>> ', jon.age);
+      // jon.sleep()
+      // console.log('jon instanceof Person :>> ', jon instanceof Person);
+      // console.log('jon instanceof Programmer :>> ', jon instanceof Programmer);
+
+      //  组合式继承
+      // function Programmer(age,name){
+      //   Person.call(this,age)
+      //   this.name = name
+      // }
+      // Programmer.prototype = new  Person()
+      // Programmer.prototype.constructor = Programmer//修复构造函数指向
+      // let jon = new Programmer(16,'jon')
+      // console.log('jon.name :>> ', jon.name);
+      // console.log('jon.age :>> ', jon.age);
+
+      // let flash = new Programmer(22,'flash')
+      // console.log('flash.name :>> ', flash.name);
+
+      // console.log('jon instanceof Person :>> ', jon instanceof Person);
+      // console.log('jon instanceof Programmer :>> ', jon instanceof Programmer);
+      // console.log('flash instanceof Person :>> ', flash instanceof Person);
+      // console.log('flash instanceof Programmer :>> ', flash instanceof Programmer);
+
+      // class Person{
+      //   constructor(name){
+      //     this.name = name
+      //   }
+      //   say(){
+      //     console.log('say ');
+      //   }
+      // }
+      // class Child extends Person{
+      //   constructor(name,age){
+      //     super()
+      //     this.name =name
+      //     this.age = age
+      //   }
+      //   eat(){
+      //     console.log('eat :>> ');
+      //   }
+      // }
+      // let child = new Child('opopop',12)
+      // console.log('child.say() :>> ', child);
+
+      // 原型链继承
+      // 定义一个父类
+      //   function Person(age){
+      //     this.age = age
+      //     console.log('age :>> ', age);
+      //   }
+      //  Person.prototype.name = function(){
+      //    console.log(name);
+      //  }
+      //  function Student (){
+
+      //  }
+      //  Student.prototype = new Person(5)
+      //  Student.prototype.style = function (){
+      //    console.log('style ');
+      //  }
+      //  let result = new Student()
+      //  result.style()
+      //  result.name()
+
+      // function Student(age,name){
+      //   Person.call(this)
+      //   this.age = age
+      //   this.name = name
+      // }
+      // let jon = new Student('gh',41)
+      // console.log('jon.age :>> ', jon.age);
+      // console.log('jon.age :>> ', jon.name);
+
+      // 组合式继承
+      // function Super(name){
+      //   this.name = name
+      //   this.color = ['red','blue']
+      // }
+      // Super.prototype.getName = function(){
+      //   console.log('this.name :>> ', this.name);
+      // }
+      // function Sup(name){
+      //   Super.call(this,name)
+      //   this.name = name
+      // }
+      // Sup.prototype = new Super('suuxunna')
+      // Sup.prototype.constructor = Super
+      // Sup.prototype.sayName = function(){
+      //   console.log('this.name :>> ', this.name);
+      // }
+      // let info = new Sup('nana')
+      // info.color.push('lalala')
+      // console.log('info.color :>> ', info.color);
+      // console.log('info.getName() :>> ', info.getName());
+
+      // es6实现继承
+      // class Person{
+      //   constructor(name){
+      //     this.name = name
+      //   }
+      //   say(){
+      //     console.log(this.name);
+      //     console.log(this.age);
+      //   }
+      // }
+      // class Students extends Person {
+      //   constructor(name,age){
+      //     super(name)
+      //     this.name = name
+      //     this.age = age
+      //   }
+      //   eat(){
+      //     console.log(this.name,this.age);
+      //   }
+      // }
+      // let result = new Students('难啊难',2020)
+      // result.say()
+      // result.eat()
+
+      //  let module = (function(mod){
+      //    let count = 0;
+      //    let that = this;
+      //    mod.m3 = function(){
+      //      return that.count ++
+      //    }
+      //    return mod
+      //   //  function add(){
+      //   //    return that.count ++
+      //   //  }
+      //   //  function subb(){
+      //   //    return that.count --
+      //   //  }
+      //   //  return {
+      //   //    add,
+      //   //    subb
+      //   //  }
+      //  })(module)
+      //  console.log('module.count :>> ', module.count);
+      // function m3(){
+      //   console.log('object :>> ');
+      // }
+      //   let mod = {a:2}
+      //  let module = (function (mod){
+      //     mod.m3 = function(){
+      //       // ...
+      //       console.log('123');
+      //     }
+      //     return mod
+      //   })(window.mod || {})
+
+      //   module.m3()
+
+      // var value = 1;
+      // function foo() {
+      //     console.log(value,'lool');//1
+      // }
+      // function bar() {
+      //     var value = 2;
+      //     foo();
+      //     // console.log('value :>> ', value);//2
+      // }
+      // bar();
+      // var a = document.getElementById('a');
+      // var b=document.getElementById('b');
+      // var c=document.getElementById('c');
 
 
-
-
-
-
-      
     </script>
-  </body>
+  </bod>
 </html>
