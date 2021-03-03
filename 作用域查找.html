@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      let x,
+        y,
+        i = 5;
+
+      function fun(x) {
+        // [x=undefined, y=undefined,i=10] => [x=undefined]
+        x = 3;
+        y = 4;
+        i = 10;
+        // [x=undefined, y=4] => [x=3]
+        console.log('x_inner :>> ', x); // 3
+        console.log('y_inner :>> ', y); // 4
+      }
+      fun();
+      // [x=undefined , y=4, i=10]
+      console.log('x :>> ', x); // undefined
+      console.log('y :>> ', y); // 4
+      console.log('i :>> ', i);
+    </script>
+  </body>
+</html>

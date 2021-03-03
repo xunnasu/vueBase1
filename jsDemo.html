@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>数组拍平和大数相加</div>
+</body>
+<script>                
+function sayHi() {
+//  console.log(name);
+ console.log(age);
+ var name = "Lydia";
+ let age = 21;
+}
+// sayHi();
+
+var radius = 10
+const shape = {
+ radius: 10,
+ diameter() {
+ return this.radius * 2;
+ },
+ perimeter: () => 2 * 10 * this.radius
+};
+console.log('shape.diam ', shape.diameter());
+console.log('shape.perimeter() ', shape.perimeter());
+
+const bird = {
+ size: "small"
+};
+
+const mouse = {
+ name: "Mickey",
+ small: true
+};
+console.log('object :>> ', mouse[bird["size"]]);
+
+
+
+
+// function Person(firstName, lastName) {
+//  this.firstName = firstName;
+//  this.lastName = lastName;
+// }
+
+// const member = new Person("Lydia", "Hallie");
+// Person.prototype.getFullName = function() {
+//   console.log('object 123:>> ', this.lastName);
+//   return this.firstName + this.lastName
+// }
+
+// console.log(member.getFullName(),'lll');
+class Chameleon {
+ static colorChange(newColor) {
+   console.log('newColor :>> ', newColor);
+ this.newColor = newColor;
+ }
+
+ constructor({ newColor = "green" } = {}) {
+ this.newColor = newColor;
+ }
+}
+
+const freddie = new Chameleon({ newColor: "purple" });
+console.dir( Chameleon);
+// Object.keys()
+
+function Person(firstName, lastName) {
+  // console.log('firstName :>> ', firstName);
+  // console.log('lastName :>> ', lastName);
+  // console.log('this :>> ', this);
+ 
+ this.firstName = firstName;
+ this.lastName = lastName;
+ return 0
+}
+
+const lydia = new Person("Lydia", "Hallie");
+const sarah = Person("Sarah", "Smith");
+console.log(lydia);
+console.log(sarah);
+
+let number = 15
+let c = 1+ ++number;
+console.log('c :>> ', c);
+// // console.log('number++ :>> ', number++); 
+// console.log('number :>> ', number);
+// number = number+1;
+// // 16
+// // console.log('number22222 :>> ', number++);//2
+// console.log('number :>> ', number);
+// number = number+1;
+// //17
+// console.log('number :>> ', number);
+
+
+
+let a = 'projectId'
+let obj ={
+  [a]:1
+}
+
+console.log('obj.projectId :>> ', obj.projectId);
+console.log('obj["projectId"] :>> ', obj['projectId']);
+console.log('obj[a] :>> ', obj[a]);
+// +true
+// Number(true)
+// "[Object object]"
+// !"llll"
+// !Boolean('llll')
+// let xx = '11'
+// !!xx
+// Boolean(xx)
+</script>
+</html>
