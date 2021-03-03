@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-02 17:05:41
- * @LastEditTime: 2021-01-07 11:07:52
+ * @LastEditTime: 2021-02-05 18:06:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\排序.html
@@ -11,7 +11,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>排序</title>
   </head>
   <body>
     <div></div>
@@ -20,50 +20,107 @@
       // 冒泡排序规则：前后两两进行比较，如果符合比较的条件，就交换两个数的位置，直到所有的数据，都符合从小到大条件，结束排序。
       // 规律：每一轮比较，都会找出一个较大的数，放在正确的位置。
       // 总结: 比较的轮数 = 数组长度 - 1;  每一轮比较的次数 = 数组长度 - 当前轮数
-      var arr1 = [100, 3, 20, 200, 60, 888, 0];
-      console.log("原始数据", arr1);
-      function maoPaoFun(arr1){
-        let len = arr1.length
-        // 比较几轮
-        for(var i = 0 ; i < len -1 ; i++ ){
-          console.log('i :>> ', i);
-          // 每一轮比较几次
-          for(var j =0; j< len -i-1 ; j++ ){
-            console.log(' arr.length -i-1:>> ',  arr1.length -1 -i);
-            if(arr1[j] > arr1[j+1]){
-              var temp = arr1[j+1]
-              arr1[j+1] = arr1[j]
-              arr1[j] = temp
-              // 可以使用ES6方式
-              // [arr1[j+1],arr1[j]] = [arr1[j],arr1[j+1]]
-            }
-          }
-        }
-        return arr1
-      }
-      console.log('冒泡排序后得数据:>> ', maoPaoFun(arr1));
-      
+      // var arr1 = [100, 3, 20, 200, 60, 888, 0];
+      // console.log("原始数据", arr1);
+      // function maoPaoFun(arr1){
+      //   let len = arr1.length
+      //   // 比较几轮
+      //   for(var i = 0 ; i < len ; i++ ){
+      //     console.log('i :>> ', i);
+      //     // 每一轮比较几次
+      //     for(var j =0; j< len -i-1 ; j++ ){
+      //       console.log(' arr.length -i-1:>> ',  arr1.length -1 -i);
+      //       if(arr1[j] > arr1[j+1]){
+      //         var temp = arr1[j+1]
+      //         arr1[j+1] = arr1[j]
+      //         arr1[j] = temp
+      //         // 可以使用ES6方式
+      //         // [arr1[j+1],arr1[j]] = [arr1[j],arr1[j+1]]
+      //       }
+      //     }
+      //   }
+      //   return arr1
+      // }
+      // console.log('冒泡排序后得数据:>> ', maoPaoFun(arr1));
+
       // 选择排序
       // 选择排序/打擂台法：
       // 规律：通过比较首先选出最小的数放在第一个位置上，然后在其余的数中选出次小数放在第二个位置上,依此类推,直到所有的数成为有序序列。
       // 总结：比较的轮数  =  数组长度  - 1 ；每一轮比较次数 = 数组长度 - 当前轮次
-    //   var arr2 = [200, 6, 50, 200, 60, 888, 1];
-    //   function changeSort(arr2){
-    //     //轮数
-    //     for(var i = 0; i < arr2.length - 1; i++){
-    //       //次数
-    //       for(var j = i + 1; j < arr2.length; j++){
-    //           if(arr2[i] > arr2[j]){
-    //               var tmp = arr2[i];
-    //               arr2[i] = arr2[j];
-    //               arr2[j] = tmp;
-    //           }
-    //       }
-    //     }
-    //     return arr2
-    // }
-    // console.log('object :>> ', changeSort(arr2));
+      //   var arr2 = [200, 6, 50, 200, 60, 888, 1];
+      //   function changeSort(arr2){
+      //     //轮数
+      //     for(var i = 0; i < arr2.length; i++){
+      //       //次数
+      //       for(var j = i + 1; j < arr2.length; j++){
+      //           if(arr2[i] > arr2[j]){
+      //               var tmp = arr2[i];
+      //               arr2[i] = arr2[j];
+      //               arr2[j] = tmp;
+      //           }
+      //       }
+      //     }
+      //     return arr2
+      // }
+      // console.log('object :>> ', changeSort(arr2));
 
+      // 第一遍循环用于遍历
+      // 第二遍循环用于找到最小元素下标，并与第一遍循环的当前节点进行交换
+      // var arr = [200, 6, 50, 200, 60, 888, 1];
+      //     function selectionSort(arr) {
+      //     for(let i = 0; i < arr.length; i++) {
+      //       let minIndex = i;
+      //       for(let j = i; j < arr.length; j++) {
+      //         if(arr[j] < arr[minIndex]) {
+      //           minIndex = j;
+      //         }
+      //       }
+      //       [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
+      //     }
+      //     return arr;
+      //   }
+      //   console.log('selectionSort :>> ', selectionSort(arr));
+
+      // var arr3 = [200, 6, 50, 200, 60, 888, 1];
+      // function selectionSortA(arr3){
+      //   for(let i = 0 ; i<arr3.length ; i++){
+      //     let minIindex = i
+      //     for(let j = i ; j <arr3.length; j++){
+      //       console.log('arr3[j] :>> ', arr3[j]);
+      //       if(arr3[j] < arr3[minIindex]) {
+      //         minIindex = j
+      //       }
+      //       [arr3[i] , arr3[minIindex]] = [arr3[minIindex],arr3[i]]
+      //     }
+      //   }
+      //   return arr3
+      // }
+      // console.log('object :>> ', selectionSortA(arr3));
+
+      var str = "qwertyuiopasdfghjklzxcvbnmqazwsxaswazaaa";
+      var arr = str.split("");
+      console.log("arr :>> ", arr);
+      function moreValue(arr) {
+        if (!arr) return false;
+        if (arr.length === 1) return 1;
+        let res = {};
+        let maxNum = 0;
+        let maxValue = null;
+        for (let i = 0; i < arr.length; i++) {
+          let val = arr[i];
+          res[val] === undefined ? (res[val] = 1) : res[val]++;
+          if (res[val] > maxNum) {
+            maxNum = res[val];
+            maxValue = val;
+          }
+        }
+        return maxValue + "," + maxNum;
+      }
+      console.log(moreValue(arr)); // a,7
+
+      
+
+   
     </script>
   </body>
 </html>
