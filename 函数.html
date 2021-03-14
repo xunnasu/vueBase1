@@ -22,26 +22,27 @@
      function suggest_so(res) { //这里的res 就是接口里面suggest_so的参数
       console.log('res :', res);
     }
-    function jsonp(url) {
-      let app = document.getElementById('app');
-      let script = document.createElement("script");
-      script.src = url  
-      app.appendChild(script)
+    function jsonp(url){
+      let app = document.getElementById('app')
+      let script = document.createElement('script') //createElement创建一个元素
+      script.src = url
+      app.appendChild(script) //appendChild 一般是在指定元素节点的最后一个子节点之后添加节点
     }
+    // callback就是和后端统一规定的的函数名称
     jsonp('https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=s')
     // ES3标准中
-    function 函数名([参数]){
-      //函数体：实现功能的js 代码
-    }
-    // 函数名() //把函数执行
-    function fn(){
-      var total = 10;
-      total += 10;
-      total/=2;  //就是total = total /2
-      total = total.toFixed(2)
-      console.log('total :>> ', total);
-    }
-    fn();
+    // function 函数名([参数]){
+    //   //函数体：实现功能的js 代码
+    // }
+    // // 函数名() //把函数执行
+    // function fn(){
+    //   var total = 10;
+    //   total += 10;
+    //   total/=2;  //就是total = total /2
+    //   total = total.toFixed(2)
+    //   console.log('total :>> ', total);
+    // }
+    // fn();
     // ES6标准中创建箭头函数
     // let 函数名 = ([参数]) =>{ //函数名也就是变量名
     //   // 函数体
@@ -63,10 +64,10 @@
     //函数中的参数
     // 参数 是函数的入口,当我们在函数中封装一个功能,发现一些原材料不确定，需要执行
     // 函数的时候用户传递进来才可以，此时我们就基于参数的机制，提供出入口即可
-    function fn(a,b){ //a,b是形参，是变量,是入口
-      return a+b
-    } 
-    fn(1,2) //1,2是实参 是具体的数据值
+    // function fn(a,b){ //a,b是形参，是变量,是入口
+    //   return a+b
+    // } 
+    // fn(1,2) //1,2是实参 是具体的数据值
     // let b
     // console.log('这个值为 ', b ==1 && b == 2 &&b == 3);
     // var val = 0 

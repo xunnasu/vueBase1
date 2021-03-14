@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      // function Foo(){
+      //   getName = function(){
+      //     console.log('1 :>> ');
+      //     //  return this
+      //   }
+      // }
+      // getName()
+      //  console.log(' Foo() :>> ',  Foo());
+      // console.log('Foo.getName() :>> ',  Foo());
+      // Foo.getName = function(){
+      //   console.log('2 :>> ');
+      // }
+      // Foo.prototype.getName = function (){console.log('3 :>> ')}
+      // var getName = function (){console.log('4 :>> ')}
+      // function getName(){console.log('5 :>> ')}
+      // Foo.getName()
+      // getName()
+      // Foo.getName()
+      // getName()
+      // new(Foo.getName)()
+      // (new Foo()).getName()
+      // new Foo.getName()
+      // new new Foo().getName()
+
+      // function Foo(){
+      //   getName = function(){
+      //     console.log('1 :>> ');
+      //      return this
+      //   }
+      // }
+      // var getName
+      // function getName(){}
+
+      function Foo() {//window
+        getName = function () {//window
+          console.log(1);
+        };
+        return this;
+      }
+      function getName() {//window
+        console.log(5);
+      }
+      
+      Foo.getName = function () {//Foo
+        console.log(2); 
+      };
+      Foo.prototype.getName = function () {//new Foo() 出来得结果是实例
+        console.log(3);
+      };
+      getName = function () {//window
+        console.log(4);
+      };
+      
+      //函数Foo的静态方法
+      Foo.getName(); //2
+      //function getName有提前声明的规则，声明后被var getName= 。。覆盖，则getName为4
+      getName(); //4
+      //Foo()的return this为window，window.getName 在Foo里面被覆盖，则输出1
+      Foo().getName(); //1
+      //同上，因调用了Foo();window的getName被覆盖
+      getName(); //1
+      //依然只是调用了Foo对象上的getName,又因为Foo.getNname，所以相当于
+      /**
+       *  function a(){console.log(2)};
+       *  new a();
+       * **/
+      new Foo.getName(); //2
+      //先执行了new Foo()；返回一个对象，这个对象的getName为prototype上的getName,相当于(new Foo()).getName();
+      new Foo().getName(); //3
+      new new Foo().getName(); //3
+
+
+
+      let Foo1 = function() {
+        return new Promise((r) => {
+          setTimeout(()=> {
+            r(1)
+            console.log('1 :>> ', 1);
+          },1000)
+        })
+      }
+      let Foo2 = function() {
+        return new Promise((r) => {
+          setTimeout(()=> {
+            r(2)
+            console.log('2 :>> ', 2);
+          },1000)
+        })
+      }
+    // ;(async function() {
+    //     await Promise.all([Foo1(),Foo2()])
+    //   })()
+      let a ;
+      let b ;
+      Foo1().then((res) => {
+        a = res;
+        return Foo2()
+      }).then((res) => {
+        console.log('a :>> ', a);
+        b = res
+        console.log('b :>> ', b);
+      })
+
+    </script>
+  </body>
+</html>
