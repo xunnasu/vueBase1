@@ -1,20 +1,94 @@
-<!--
- * @Author: your name
- * @Date: 2021-02-18 11:47:05
- * @LastEditTime: 2021-02-22 10:15:35
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \vueBase1\Demo.html
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
+<style>
+	body,html{
+		margin:0;
+		padding:0;
+		height: 100%;
+	}
+	#app{
+		height: 100%;
+	}
+	.bgImg {
+		width:100%;
+		height: 100%;
+		/* height: 1000px; */
+		background:url('./images/xcx/bg3.png')no-repeat;
+		background-size:100%;
+		position: relative;
+	}
+	.peopleBox{
+		width:100%;
+		flex-direction:row;
+		display:flex;
+		align-items: center;
+	}
+	.threeBoxes{
+		width:25px;
+		height:30px;
+		line-height: 30px;
+		background-color: aqua;
+		text-align: center;
+		/* letter-spacing:19px; */
+		margin-right:15px;
+	}
+	.viewMembers{
+		background-color: blue;
+		font-size:18px;
+		text-align: center;
+		width:300px;
+		color:#fff;
+		margin-left: 50%;
+		transform: translateX(-50%);
+		position: absolute;
+		bottom:15px;
+	}
+	.father{
+		width:50px;
+		height: 50px;
+		background-color: aqua;
+		overflow: hidden;
+	}
+	.son{
+		width:20px;
+		height: 20px;
+		background-color:red;
+		margin-top: 15px;
+	}
+</style>
 <body>
-	
+	<div id="app">
+		<div class="bgImg">
+			<div class="peopleBox">
+				<div>累计邀请: </div>
+				<div class="threeBoxes" v-for="(item,index) in formatSum" :key="index">{{item}}</div>人
+			</div>
+			<div class="viewMembers">查看成员</div>
+		</div>
+	</div>
+	<script>
+		var vm = new Vue({
+			el:"#app",
+			data(){
+				return {
+					sum:'1'
+				} 
+			},
+			computed:{
+				formatSum(){
+					// if(!this.sum.length) return '000'
+					// return this.sum.length == 1 ? '00' + this.sum : this.sum.length == 2 ? '0' + this.sum: this.sum
+				  return this.sum.padStart(3, 0);
+				}
+			}
+		})
+	</script>
 </body>
 </html>

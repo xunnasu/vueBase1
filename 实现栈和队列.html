@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 实现一个队列
+      // function Queue() {
+      //   this.queue = [];
+      //   this.inQueue = function (val) {
+      //     this.queue.push(val);
+      //     //或者this.queue.unshift(val)
+      //   };
+      //   this.outQueue = function (val) {
+      //     this.queue.shift();
+      //     //或者this.queue.pop()
+      //   };
+      // }
+      // let p = new Queue();
+      // p.inQueue(1);
+      // p.inQueue(2);
+      // p.outQueue();
+      // console.log('p.queue :>> ', p.queue);
+
+      // 实现一个栈功能
+      function Stack() {
+        this.items = [];
+        this.pushData = function (element) {
+          //实现入栈功能，添加新元素到栈顶
+          this.items.unshift(element); //unshift前面添加 也可以用push 后面添加
+        };
+        this.shiftData = function () {
+          //实现出栈功能，并返回出栈的元素
+          this.items.shift(); // shift前面删除 也可以用 pop 后面删除
+        };
+      }
+      var example = new Stack();
+      example.pushData(1);
+      example.pushData(2);
+      example.pushData(3);
+      console.log('object :>> ', example.items);
+      example.shiftData();
+      console.log(example.items);
+    </script>
+  </body>
+</html>

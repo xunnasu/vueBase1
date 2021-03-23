@@ -1,57 +1,53 @@
 <!--
  * @Author: your name
- * @Date: 2021-03-12 09:35:39
- * @LastEditTime: 2021-03-17 18:03:06
- * @LastEditors: Please set LastEditors
+ * @Date: 2021-03-23 18:28:38
+ * @LastEditTime: 2021-03-23 18:30:36
+ * @LastEditors: your name
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\观察者模式.html
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-      // 观察者模式
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 实现观察者模式
+      let p = {
+        lists: {},
+        // listen里的name 就是要传的事件名称, fn面就是把回调函数传进来
+        listen(name, fn) {
+          if (!this.lists[name]) this.lists[name] = [];
+          this.lists[name].push(fn);
+        },
+        // fire里面就是去执行传进来的函数
+        fire(name, params) {
+          this.lists[name].forEach((item) => {
+            item(params);
+          });
+        },
+      };
+      p.listen('click', function (params) {
+        console.log('click1', params);
+      });
 
-      // let p = {
-      //   lists: {},
-      //   listen(name, fn) {
-      //     if (!this.lists[name]) this.lists[name] = [];
-      //     this.lists[name].push(fn);
-      //   },
-      //   fire(name, params) {
-      //     this.lists[name].forEach((item) => {
-      //       item(params);
-      //     });
-      //   },
-      // };
+      p.listen('click', function (params) {
+        console.log('click2', params);
+      });
 
-      // p.listen("click", function (params) {
-      //   console.log("click1", params);
-      // });
+      p.listen('mouseMove', function (params) {
+        console.log('mouseMove', params);
+      });
 
-      // p.listen("click", function (params) {
-      //   console.log("click2", params);
-      // });
+      p.fire('click', { id: 1 });
+      setTimeout(() => {
+        p.fire('mouseMove', { id: 2 });
+      }, 1000);
 
-      // p.listen("mouseMove", function (params) {
-      //   console.log("mouseMove", params);
-      // });
-
-      // p.fire("click", { id: 1 });
-      // setTimeout(() => {
-      //   p.fire("mouseMove", { id: 2 });
-      // }, 1000);
-      // console.log(p.lists);
-
-
-      
-      
-  </script>
-</body>
+      console.log(p.lists);
+    </script>
+  </body>
 </html>

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-03 11:29:02
- * @LastEditTime: 2021-03-22 14:11:04
+ * @LastEditTime: 2021-03-23 18:31:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\数组方法.html
@@ -43,15 +43,15 @@
       //4.join 将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。
       //如果数组只有一个项目，那么将返回该项目而不使用分隔符。通过传入不同的分隔符,不传就没有分隔符
       let a = [1, 2, 3, 4, 5];
-      console.log("a.join() :>> ", a.join("-"));
-
-      //5.slice 第一个参数从哪开始,第二个参是数到哪儿为止（包括头部 不包括尾部）
+      console.log('a.split() :>> ', a.join('-'));
+      //5.slice 第一个参数从哪开始,第二个参是数到哪儿为止(切片)
       let array = [1, 2, 34, 43, 53];
       console.log("slice方法:>> ", array.slice(0, 3));
 
       //6.splice第一个参数从哪开始，第二个参数是删除(截)几个,第三个参数是加入几项或者加的内容
-      console.log("splice方法 :>> ", array.splice(1, 3, "替换我"));
-      console.log("name原始值 :>> ", array);
+      console.log('d.splice(0,1) :>> ',array.splice(0, 2)[0]); ///删除前两个 第一个参数是从哪里开始第二个参数是删除几个元素,得到具体的值
+      console.log('splice方法 :>> ', array.splice(1, 3, '替换我'));
+      console.log('name原始值 :>> ', array);
 
       // 不会改变原数组的方法
       // 7.reduce 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值

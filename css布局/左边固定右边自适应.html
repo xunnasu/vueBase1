@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局</title>
+</head>
+<style>
+  /* https://www.cnblogs.com/cyfeng/p/13354900.html 实现三栏布局*/  
+  /* https://blog.csdn.net/qq_29545573/article/details/97394383 实现左边固定右边自适应*/
+  /* 左边固定右边自适应*/
+  /* 第一种：BFC（块格式化上下文） – 左边定宽float浮动，右边overflow */
+  .left{
+    width:100px;
+    height: 100%;
+    background: blue;
+    float: left;
+  }
+  .right{
+    background: chartreuse;
+    width: auto;
+    height: 100%;
+    margin-left:100px;
+  }
+</style>
+<body>
+    <div class="left">左边</div>
+    <div class="right">右边</div>
+  
+</body>
+</html>
