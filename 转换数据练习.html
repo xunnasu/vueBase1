@@ -1,0 +1,494 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-12 09:43:35
+ * @LastEditTime: 2021-03-23 18:15:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vueBase1\转换数据练习.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 第一题实现remove函数,该函数根据驶入的数字num，将给定的字符串'abc/def/ghj/jjj/kkk/kkk'中的第num个斜杠移除，在返回所有剩余字符串
+      // 第一种方式
+      // function remove(num) {
+      //   let str = "abc/def/ghj/jjj/kkk/kkk";
+      //   let arr = str.split("/");
+      //   console.log('arr :>> ', arr.length);
+      //   let arr1 = arr.slice(0, num);
+      //   console.log('arr1 :>> ', arr1);
+      //   let arr2 = arr.slice(num, arr.length);
+      //   console.log('arr2 :>> ', arr2);
+      //   return arr1.join("/") + arr2.join("/");
+      // }
+      // // console.log(remove(0));
+      // console.log(remove(3));
+      //  第二种方式
+      // const str = "abc/def/ghj/jjj/kkk/kkk";
+      // function remove(str,num){
+      //   const reg = /\w+(\/)/g
+      //   let i = 1
+      //   str = str.replace(reg,(lint1,lint2) =>{
+      //     if(i == num && num!==0) {
+      //       lint1 = lint1.substr(0,lint1.length - 1)
+      //     }
+      //     i++
+      //     return lint1
+      //   })
+      //   return str
+      // }
+      // console.log('object :>> ', remove(str,3));
+      // 第三种方式（有点差异）
+      // var str = "abc/def/ghj/jjj/kkk/kkk";
+      // function remove(num) {
+      //   var newStr = "";
+      //   var arr = str.split("/");
+      //   console.log("arr :>> ", arr);
+      //   for (let i = 0; i < arr.length; i++) {
+      //     if (i >= num && i !== arr.length - 1) {
+      //       newStr += arr[i] + "/";
+      //     } else {
+      //       newStr += arr[i];
+      //     }
+      //   }
+      //   return newStr;
+      // }
+      // console.log("object :>> ", remove(3));
+
+      // 第二题:查找数组中字符串出现的位置
+      // var arr4 = ["c", "a", "z", "a", "x", "a"];
+      // var index = 0;
+      // var key = "a";
+      // for (var i = 0; i < arr4.length; i++) {
+      //   if ((index = arr4.indexOf(key, index)) != -1) {
+      //     index += key.length;
+      //   }
+      // }
+      // const beasts = ["ant", "bison", "camel", "duck", "ss", "vvvv", "bison"];
+      // console.log(arr4.indexOf("z"));
+      // console.log(beasts.indexOf("bison", 2)); //从索引为2的位置开始找bison,所以是6
+      // var array = [];
+      // var a = 0;
+      // for (var i = 0; i < 50; i++) {
+      //   array.push(i);
+      // }
+      // while (array.length - 1) {
+      //   for (var j = 0; j < 2; j++) {
+      //     a++;
+      //     if (a > array.length - 1) {
+      //       a = 0;
+      //     }
+      //   }
+      //   array.splice(a, 1);
+      // }
+      // console.log("array :>> ", array);
+
+      //第三题:求一个数组的和
+      // function fun(arr){
+      // // 第一种使用forEach
+      //     var sum = 0; //初始值
+      //     // arr.forEach(item=>{
+      //     //     sum += item
+      //     // })
+      //     // return sum
+      // // 第二种使用for循环
+      //     for(var i = 0; i <arr.length;i++){
+      //         sum += arr[i]
+      //     }
+      // // 第三种使用for of
+      //     // for(let i of arr){
+      //     //     sum += i
+      //     // }
+      //     return sum
+      // }
+      // var arr8 =[1,2,3,4]
+      // var arr9 = fun(arr8)
+      // console.log('arr9 :>> ', arr9);
+
+      // 第四题:对象转数组,再循环取值
+      //   var o  = {
+      //     key:1,
+      //     value:'jk'
+      //   }
+      //   var keys = Object.keys(o)
+      //   console.log('keys :>> ', keys);
+      //   var value =[]
+      //   for(var i = 0 ; i < keys.length;i++){
+      //     var key = keys[i]
+      //     value[i] = o[key]
+      // }
+      //  console.log('对象转数组之后得取值 :>> ', value);
+
+      // 动态的给js对象添加变量属性
+      // var obj = {}
+      // var eg = ['a','b','c','d']
+      // for(var i = 0 ; i < eg.length;i++){
+      //     obj[eg[i]] = false
+      // }
+      // // 或者使用for of可以遍历数组
+      // // for(let i of eg){
+      // //     obj[i] = false
+      // // }
+      // console.log('动态的给js对象添加变量属性 :>> ', obj);
+
+      // 第五题数组转对象
+      // var arr5 = [1,2,3,4]
+      // var obj5 = {}
+      // // 第一使用for in
+      // for(let i in arr5){
+      //   obj5[i] = arr5[i]
+      // }
+      // // 第二使用for循环
+      // for(var i = 0 ; i <arr5.length;i++){
+      //   obj5[i] = i
+      // }
+      // // 第三使用forEach
+      // arr5.forEach((item,index)=>{
+      //   obj5[index] = item
+      // })
+      // console.log('obj5 :>> ', obj5);
+
+      // 第六题: [1,2,3,4]  => [{key:1},{key:2},{key:3},{key:4}]
+      // 第一种直接使用map映射
+      // var arr6 = [1,2,3,4]
+      // var newArr6 = arr6.map(item=>{
+      //   return {
+      //     key:item
+      //   }
+      // })
+      // console.log('newArr6 :>> ', newArr6);
+
+      // 第七题：[{key:1},{key:2},{key:3},{key:4}] => [1,2,3,4]
+      // var arr7 = [{key:1},{key:2},{key:3},{key:4}]
+      // var newArr7 = arr7.map(item=>item.key)
+      // console.log('newArr7 :>> ', newArr7);
+
+      // 第八题: 数组中删除一项 [1,2,3,4] => [2,3,4]
+      // var arr8 = [1,2,3,4]
+      // // var newArr8 = arr8.splice(0,1) 删除前一个 第一个参数是从哪里开始， 第二个参数是删除几个元素
+      // var newArr8 = arr8.shift() //前删,只能删除一个
+      // console.log('被删除之后的值 :>> ', newArr8);
+      // console.log('原数组 :>> ', arr8);
+
+      // 第九题：[{key:1},{key:2},{key:3},{key:4}]=>  {key1:1,key2:2,key3:3,key4:4}
+      // var arr9 = [{key:1},{key:2},{key:3},{key:4}]
+      // var obj9 = {}
+      // arr9.forEach((item,index)=>{
+      //   let keys = `key${index+1}` //es6方法
+      //   // let keys = 'key' + (index +1) //es5方法
+      //   obj9[keys] = item.key
+      // })
+      // console.log('obj9 :>> ', obj9);
+
+      //第十题：{key1:1,key2:2,key3:3,key4:4}=>[{key:1},{key:2},{key:3},{key:4}]
+      // var obj10 = {key1:1,key2:2,key3:3,key4:4}
+      // var arr10 = []
+      // for(let i in obj10){
+      //   arr10.push({
+      //     [i.slice(0,-1)] : obj10[i]
+      //   })
+      // }
+      // console.log('arr10',arr10)
+
+      // // 第十一题：[{key:1},{key:2}]  => `1,2`
+      // var arr11 = [{key:1},{key:2}]
+      // var str11 = ''
+      // for(let i in arr11) {
+      //   console.log('i :>> ', i);
+      //   for(let key in arr11[i]) {
+      //     console.log('keyaa :>> ', arr11[i]);
+      //     str11 = str11 + arr11[i][key] + ','
+      //   }
+      //   str11 = str11.slice(0,3) //去掉最后一个逗号
+      // }
+      // console.log('str11 :>> ', str11);
+
+      // 第十二题: [ 1, [2,3,[4,5]] , [6,7]] => [1,2,3,4,5,6,7]
+      // var beatFlat = [1,[2,3,[4,5]],[6,7]]
+      //第一:flat方法会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。
+      // var newArrFlat = beatFlat.flat(2)
+      // console.log('拍平后的数组 :>> ', newArrFlat);
+      //第二:或者使用join 和split配合,先将数组转成字符串，再把分割成字符串数组
+      // var newArrFlat = beatFlat.join().split(',')
+      // console.log('newArrFlat :>> ', newArrFlat);
+      // 第三:递归方法实现平铺数组(自己调用自己)
+      // var gg =[]
+      // function unit(arr){
+      //   for(let item of arr){
+      //     if(Object.prototype.toString.call(item).slice(8,-1)==='Array'){
+      //       unit(item)
+      //     } else {
+      //       gg.push(item)
+      //     }
+      //   }
+      //    return gg
+      //   }
+      // console.log('递归方法实现平铺数组',unit(beatFlat))
+
+      //  第六题：[8,3,5,4,7,20] => [3,4,5,7,8,20]
+      // var ia = [8,3,5,4,7,20]
+      // // var max =[]
+      // for(var i = 0 ; i < ia.length; i++){
+      //   for(var j = i ; j< ia.length; j++){
+      //     if(ia[i] > ia[j]){
+      //       // max = ia[j]  //赋值给最大值变量max
+      //       // ia[j] = ia[i]
+      //       // ia[i] = max
+      //       // 或者
+      //       [ia[j],ia[i]] = [ia[i],ia[j]]
+      //     }
+      //   }
+      // }
+      // console.log(ia)
+      // 或者用sort
+      // ia.sort((a,b)=>{
+      //   return a-b
+      // })
+      // console.log(ia)
+
+      // let a = [1, 2, 3, 4, 5];
+      // let b = [3, 4, 5, 6, 7, 8]; 取交集
+      // 第一种for循环的方法
+      // function filters(a, b) {
+      //   let c = [];
+      //   for (var i = 0; i < a.length; i++) {
+      //     for (var j = 0; j < b.length; j++) {
+      //       if (a[i] == b[j]) {
+      //         c.push(a[i]);
+      //       }
+      //     }
+      //   }
+      //   return c;
+      // }
+      // console.log(filters(a, b));
+
+      // 第七题：{ a: 1, b: 2, c: 3 } =>  a=1&b=2&c=3
+      // var str = Object.keys(obj).map(item=>{
+      //   return `${item}=${obj[item]}`
+      // }).join('&')
+      // console.log('str :>> ', str);
+      // 或者使用for in
+      // var str = ''
+      // for(let i in obj){
+      //   str = str + '&' +`${i}=${obj[i]}`
+      // }
+      // str = str.slice(1)
+      // console.log('str :>> ', str);
+      // 第八题：a=1&b=2&c=3 =>{ a: 1, b: 2, c: 3 }
+      // var str = "a=1&b=2&c=3"
+      // var arr = str.split('&')
+      // var obj = {}
+      // arr.forEach(item=>{
+      //   let arr2 = item.split('=')
+      //   obj[arr2[0]] = arr2[1]
+      // })
+      // console.log('obj :>> ', obj);
+      // 第九题 按属性对object分类
+      // const peoples = [
+      //   { name: "Alice", age: 21 },
+      //   { name: "Max", age: 20 },
+      //   { name: "Jane", age: 20 },
+      // ];
+      // function grouoBy(objectArray, property) {
+      //   return objectArray.reduce((cur, pro) => {
+      //     var key = pro[property];
+      //     if (!cur[key]) {
+      //       cur[key] = [];
+      //     }
+      //     cur[key].push(pro);
+      //     return cur;
+      //   }, {});
+      // }
+      // 或者
+      // function groupBy(objectArray,pro){
+      //   let obj ={}
+      //   let array = []
+      //   objectArray.forEach(item=>{
+      //     if(!obj[item[pro]]){
+      //         array.push(item)
+      //         obj[item[pro]] = array
+      //         array = []
+      //     } else {
+      //       obj[item[pro]].push(item)
+      //     }
+      //   })
+      //   return obj
+      // }
+      // console.log("grouoBy:>> ", grouoBy(peoples, "age"));
+      // 输出的结果
+      // // groupedPeople is:
+      // // {
+      // //   20: [
+      // //     { name: 'Max', age: 20 },
+      // //     { name: 'Jane', age: 20 }
+      // //   ],
+      // //   21: [{ name: 'Alice', age: 21 }]
+      // // }
+      // 将数组里某个属性相同的对象合并成一个数组
+        let resData = [
+          {
+            "name": "住院医疗最高报销",
+            "tagName": "医疗",
+            "insuredAmount": "6000"
+          },
+          {
+            "name": "身故赔付",
+            "tagName": "寿险",
+            "insuredAmount": "36.00"
+          },
+          {
+            "name": "你好，噜噜噜",
+            "tagName": "寿险",
+            "insuredAmount": "66.00"
+          },
+          {
+            "name": "120种重大疾病确诊赔付",
+            "tagName": "重疾",
+            "insuredAmount": "350000"
+          }
+        ]
+        function getData(resData){
+          var obj = {}
+          resData.forEach(item=>{
+            let { tagName } = item
+            console.log('item :>> ', item);
+            if(!obj[tagName]) {
+              obj[tagName] = {
+                tagName,
+                child:[]
+              }
+            }
+            obj[tagName].child.push(item)
+          })
+          return obj
+        }
+        console.log('object :>> ', getData(Object.values(resData)));
+      // 第十题: 闭包应用，只执行一次log
+      // const fn = function() {
+      //   console.log('log')
+      // }
+      // const once = function(fn) {
+      //   let count = false //设置一个计时器， 如果满足就执行，不满足就退出
+      //   return function(){
+      //     if(count) return
+      //     count = true
+      //     fn()
+      //   }
+      // }
+      // const log = once(fn)
+      // log() // log
+      // log() // .
+      // log() //
+
+      //第十一题:传入数组的某一元素,返回这个元素的键值,如果传入的不是该数组的元素,返回-1
+      // var arr = [1,2,3,4,5,'33',false,'plplp']
+      // //   function getStr(arr,value){
+      // //     // arr.forEach((item,index)=>{
+      // //     //   if(item === value){
+      // //     //     return index
+      // //     //   }
+      // //     // })
+
+      // //     for(var i = 0 ; i <arr.length;i++){
+      // //       if(arr[i] === value){
+      // //         return i
+      // //       }
+      // //     }
+      // //     return -1
+      // //   }
+      //   console.log('getS:>> ', getStr(arr,'33'));
+
+      //第十二题：把数组内的数值取出 放到一个新的数组里
+      // function filterNumber(arr){
+      //   var arrValue = []
+      //   for(var i = 0 ; i <arr.length;i++){
+      //     if(typeof arr[i] === 'number'){
+      //       arrValue.push(arr[i])
+      //     }
+      //   }
+      //   return arrValue
+      // }
+      // console.log('filterNumber(arr) :>> ', filterNumber(arr));
+
+      //第十三题:累加对象里的值[{x: 1}, {x:2}, {x:3}]
+      // var array = [{ x: 1 }, { x: 2 }, { x: 3 }];
+      // var sum = 0
+      // array.forEach(item=>{
+      //   sum += item.x
+      // })
+      // console.log('sum :>> ', sum);
+      // 或者
+      // var sum = array.reduce((cur, pro) => {
+      //   return cur + pro.x;
+      // }, 0);
+      // console.log("summ :>> ", sum);
+
+      // 第十四题: 多维数组转一维数组
+      // var array = [[0, 1], [2, 3], [4, 5]]
+      // var newArr = array.reduce((cur,pro)=>{
+      //   // concat方法用于连接两个或多个数组。
+      //   return  cur.concat(pro)
+      // },[])
+      // console.log('newArr :>> ', newArr);
+
+      //第十五题：计算数组中每个元素出现的次数
+    //   const names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+    //   function countTime(names){
+    //     return names.reduce((cur,pro)=>{
+    //       if(pro in cur){
+    //         cur[pro]++
+    //       } else {
+    //         cur[pro] =1 
+    //       }
+    //        return cur
+    //     },{})
+    //   }
+    //   console.log('countTime(names) :>> ', countTime(names));
+
+    //   // 第十六题:合并对象数组中的某一项
+    //   var people = [
+    //     {
+    //       name: 'Anna',
+    //       books: ['Bible', 'Harry Potter'],
+    //       age: 21
+    //     }, 
+    //     {
+    //       name: 'Bob',
+    //       books: ['War and peace', 'Romeo and Juliet'],
+    //       age: 26
+    //     }, 
+    //     {
+    //       name: 'Alice',
+    //       books: ['The Lord of the Rings', 'The Shining'],
+    //       age: 18
+    //     }
+    //  ];
+    //   // 合并所有书的名字
+    //   var allbooks = people.reduce((prev, curr)=> {
+    //     return [...prev, ...curr.books];
+    //   },[])
+    //   console.log('allbooks :>> ', allbooks);
+    //   // 封装
+    //   function allBooks(people){
+    //     var arr= []
+    //     people.forEach(item=>{
+    //       if(item.books){
+    //         arr.push(...item.books)
+    //       }
+    //     })
+    //     return arr 
+    //   }
+    //   console.log('allbooks :>> ', allBooks(people));
+
+   
+
+    </script>
+  </body>
+</html>

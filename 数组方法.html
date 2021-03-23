@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-03 11:29:02
- * @LastEditTime: 2020-12-03 19:00:22
+ * @LastEditTime: 2021-03-22 14:11:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\数组方法.html
@@ -16,43 +16,56 @@
   <body>
     <div></div>
     <script>
+      // split、splice、slice的区别
+      // split()方法是对字符串的操作,把字符串分割成字符串数组,原值不会被改变；他返回源字符串以分隔符出现位置分隔而成的一个 Array ['xxxx']
+      // splice()和slice()是对数组的操作。slice()也可用于字符串。 
+      // splice 方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
+      // 返回值: 由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的数组。如果没有删除元素，则返回空数组。他会改变原数组
+      // slice 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
+
       //会改变原数组得方法
       //1.push 向数组的末尾添加一个或多个元素，并返回新的长度
       let arrPush = [1, 2, 3, 4, 5];
-      console.log('原数组长度:>> ', arrPush.length); //原数组长度
-      console.log('添加后新数组长度:>> ', arrPush.push(6)); //打印6, 所以他返回得是数组得长度
-      console.log('原数组 :>> ', arrPush); //修改原数组
+      console.log("原数组长度:>> ", arrPush.length); //原数组长度
+      console.log("添加后新数组长度:>> ", arrPush.push(6)); //打印6, 所以他返回得是数组得长度
+      console.log("原数组 :>> ", arrPush); //修改原数组
+
       //2.unshift 将参数添加到数组的开头,并返回数组的长度
       let arrUnshift = [6, 7, 8, 9];
-      //3.split把字符串分割成字符串数组,传入的第一个参是以谁分割，第二个参数是以某个字符分割的长度
-      let url = 'http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe key';
-      let str = 'abcdef&ghi&ghjkj&1ee';
-      console.log('abc.split :>> ', str.split('&', 2));
-      let paramUrl = url.split('?')[1].split('#')[0].split('&');
-      console.log('paramArr :>> ', paramUrl);
+
+      //3.split把字符串分割成字符串数组,传入的第一个参是以谁分割，第二个参数是以某个字符分割的长度，原值不会被改变
+      let url = "http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe";
+      let str = "abcdef&ghi&ghjkj&1ee";
+      console.log("abc.split :>> ", str.split("&", 2));
+      let paramUrl = url.split("?")[1].split("#")[0].split("&");
+      console.log("paramArr :>> ", paramUrl);
 
       //4.join 将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。
       //如果数组只有一个项目，那么将返回该项目而不使用分隔符。通过传入不同的分隔符,不传就没有分隔符
       let a = [1, 2, 3, 4, 5];
-      console.log('a.split() :>> ', a.join('-'));
-      //5.slice 第一个参数从哪开始,第二个参是数到哪儿为止
+      console.log("a.join() :>> ", a.join("-"));
+
+      //5.slice 第一个参数从哪开始,第二个参是数到哪儿为止（包括头部 不包括尾部）
       let array = [1, 2, 34, 43, 53];
-      console.log('slice方法:>> ', array.slice(0, 3));
+      console.log("slice方法:>> ", array.slice(0, 3));
+
       //6.splice第一个参数从哪开始，第二个参数是删除(截)几个,第三个参数是加入几项或者加的内容
-      console.log('splice方法 :>> ', array.splice(1, 3, '替换我'));
-      console.log('name原始值 :>> ', array);
+      console.log("splice方法 :>> ", array.splice(1, 3, "替换我"));
+      console.log("name原始值 :>> ", array);
 
       // 不会改变原数组的方法
       // 7.reduce 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值
+
       // 7.1reduce实现数组求和
       let sum = [1, 2, 3, 4, 5, 6];
       let targetSum = sum.reduce((pre, cur, index, sum) => {
         return pre + cur;
       }, 0);
-      console.log('reduce实现数组求和targetSum:>> ', targetSum);
-      console.log('sum原数组:>> ', sum);
+      console.log("reduce实现数组求和targetSum:>> ", targetSum);
+      console.log("sum原数组:>> ", sum);
+
       // 7.2reduce实现去重
-      let myArr = ['a', 'b', 'c', 'a', 'b', 'c', 'd', 'v', 'b',{a:2}];
+      let myArr = ["a", "b", "c", "a", "b", "c", "d", "v", "b", { a: 2 }];
       let newArr = myArr.reduce((pre, cur, index, myArr) => {
         // includes() 方法用于判断字符串是否包含指定的子字符串。如果找到匹配的字符串则返回 true，否则返回 false。 includes() 方法区分大小写。
         // if(!pre.includes(cur)){
@@ -69,18 +82,20 @@
         }
         return pre;
       }, []);
-      console.log('reduce实现去重indexOf或者includes :>> ', newArr);
+      console.log("reduce实现去重indexOf或者includes :>> ", newArr);
+
       // 7.3reduce实现数组拍平
       let arrMore = [1, 2, 3, [4, 5, 6], [7, 8, 9]];
       let arrCont = arrMore.reduce((pre, cur) => {
         return pre.concat(cur);
       }, []);
-      console.log('reduce实现数组拍平', arrCont);
+      console.log("reduce实现数组拍平", arrCont);
+      
       //7.4reduce按照属性对object分类
       var people = [
-        { name: 'Alice', age: 21 },
-        { name: 'Max', age: 20 },
-        { name: 'Jane', age: 20 }
+        { name: "Alice", age: 21 },
+        { name: "Max", age: 20 },
+        { name: "Jane", age: 20 },
       ];
       function groupBy(objectArray, property) {
         return objectArray.reduce(function (acc, obj) {
@@ -92,8 +107,8 @@
           return acc;
         }, {});
       }
-      var groupedPeople = groupBy(people, 'age');
-      console.log('reduce按照属性对object分类:>> ', groupedPeople);
+      var groupedPeople = groupBy(people, "age");
+      console.log("reduce按照属性对object分类:>> ", groupedPeople);
     </script>
   </body>
 </html>

@@ -96,29 +96,29 @@
 
       // 第二版:自己创建一个根节点，找相同得规律，从父节点开始向子节点找
       // 存在问题:不通用，如果把里面的对象调换位置就会出现问题
-      // const root = { //自己创建一个根节点
-      //   id: void 0,
-      // };
-      // function getTree(parentNode, list) {
-      //   var arr =[]
-      //   list.forEach((item) => {
-      //     if (parentNode.id === item.parentId) {
-      //       if (!parentNode.children) {
-      //         parentNode.children = [];
-      //       }
-      //       parentNode.children.push(item);
-      //     } else {
-      //      arr.push(item)
-      //     }
-      //     if (parentNode.children) {
-      //         parentNode.children.forEach((ele) => {
-      //           getTree(ele, [item]);
-      //         });
-      //       }
-      //   });
-      // }
-      // // getTree(root, list);
-      // console.log(root.children)
+      const root = { //自己创建一个根节点
+        id: void 0,
+      };
+      function getTree(parentNode, list) {
+        var arr =[]
+        list.forEach((item) => {
+          if (parentNode.id === item.parentId) {
+            if (!parentNode.children) {
+              parentNode.children = [];
+            }
+            parentNode.children.push(item);
+          } else {
+           arr.push(item)
+          }
+          if (parentNode.children) {
+              parentNode.children.forEach((ele) => {
+                getTree(ele, [item]);
+              });
+            }
+        });
+      }
+      getTree(root, list);
+      console.log(root.children)
 
       // 第三种方法:使用filter过滤, 满足条件的留下，通过父节点找子节点的顺序,一直往下寻找children,直到找不知道位置，返回找到后的元素
       // 终极版
