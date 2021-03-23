@@ -332,44 +332,134 @@
       // //   21: [{ name: 'Alice', age: 21 }]
       // // }
       // 将数组里某个属性相同的对象合并成一个数组
-        let resData = [
-          {
-            "name": "住院医疗最高报销",
-            "tagName": "医疗",
-            "insuredAmount": "6000"
-          },
-          {
-            "name": "身故赔付",
-            "tagName": "寿险",
-            "insuredAmount": "36.00"
-          },
-          {
-            "name": "你好，噜噜噜",
-            "tagName": "寿险",
-            "insuredAmount": "66.00"
-          },
-          {
-            "name": "120种重大疾病确诊赔付",
-            "tagName": "重疾",
-            "insuredAmount": "350000"
+      let resData = [
+        {
+          name: '住院医疗最高报销',
+          tagName: '医疗',
+          insuredAmount: '6000',
+        },
+        {
+          name: '身故赔付',
+          tagName: '寿险',
+          insuredAmount: '36.00',
+        },
+        {
+          name: '你好，噜噜噜',
+          tagName: '寿险',
+          insuredAmount: '66.00',
+        },
+        {
+          name: '120种重大疾病确诊赔付',
+          tagName: '重疾',
+          insuredAmount: '350000',
+        },
+      ];
+      // let obj = {};
+      // resData.forEach((item, index) => {
+      //   let { tagName } = item;
+      //   if (!obj[tagName]) {
+      //     obj[tagName] = {
+      //       tagName,
+      //       dataInfo: [],
+      //     };
+      //   }
+      //   obj[tagName].dataInfo.push(item);
+      // });
+      // let list = Object.values(obj); // list 转换成功的数据
+      // console.log(JSON.stringify(list,null,2));
+      function getTree(resData){
+        let obj = {}
+        for(let item of resData){
+          if(!obj[item.tagName]) {
+            obj[item.tagName] = []
           }
-        ]
-        function getData(resData){
-          var obj = {}
-          resData.forEach(item=>{
-            let { tagName } = item
-            console.log('item :>> ', item);
-            if(!obj[tagName]) {
-              obj[tagName] = {
-                tagName,
-                child:[]
-              }
-            }
-            obj[tagName].child.push(item)
-          })
-          return obj
+          obj[item.tagName].push(item)
         }
-        console.log('object :>> ', getData(Object.values(resData)));
+        return Object.keys(obj).map(item => {
+          return {
+            tagName:item,
+            dataInfo:obj[item]
+          }
+        })
+        return obj
+      }
+      console.log('getTree(resData) :>> ', getTree(resData));
+      // let data = [
+      //   {
+      //     tagName: '医疗',
+      //     dataInfo: [
+      //       {
+      //         name: '住院医疗最高报销',
+      //         tagName: '医疗',
+      //         insuredAmount: '6000',
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     tagName: '寿险',
+      //     dataInfo: [
+      //       {
+      //         name: '身故赔付',
+      //         tagName: '寿险',
+      //         insuredAmount: '36.00',
+      //       },
+      //       {
+      //         name: '烦死了免费陈述事实',
+      //         tagName: '寿险',
+      //         insuredAmount: '8888.00',
+      //       },
+      //       {
+      //         name: '你好，噜噜噜',
+      //         tagName: '寿险',
+      //         insuredAmount: '66.00',
+      //       },
+      //     ],
+      //   },
+      //   {
+      //     tagName: '重疾',
+      //     dataInfo: [
+      //       {
+      //         name: '120种重大疾病确诊赔付',
+      //         tagName: '重疾',
+      //         insuredAmount: '350000',
+      //       },
+      //     ],
+      //   },
+      // ];
+      
+      // function getData(data){
+      //   var arr = []
+      //   for(let i of data){
+      //     arr.push(...i.dataInfo)
+      //   }
+      //   return arr
+      // }
+      // console.log('getData :>> ', getData(data));
+      // // 数组中对象属性值相同的合并
+      // var arr = [
+      //     { a: 1, b: 1, c: 1 },
+      //     { a: 2, b: 1, c: 2 },
+      //     { a: 3, b: 3, c: 3 },
+      //     { a: 1, b: 1, c: 4 },
+      //     { a: 5, b: 5, c: 5 },
+      //   ],
+      //   result = {},
+      //   temp = {};
+      //   for (var i = 0; i < arr.length; ++i){
+      //     for (var j in arr[i]){
+      //       if (!temp[j]) {
+      //         temp[j] = {};
+      //         result[j] = []
+      //       }
+      //     if (!temp[j][arr[i][j]]) {
+      //       console.log('qqq :>> ',temp[j]);
+      //       result[j].push(arr[i][j]);
+      //     }
+      //       temp[j][arr[i][j]] = arr[i][j]
+      //     }
+      //   }
+      //   console.log('result :>> ', result);
+
       // 第十题: 闭包应用，只执行一次log
       // const fn = function() {
       //   console.log('log')
@@ -384,26 +474,24 @@
       // }
       // const log = once(fn)
       // log() // log
-      // log() // .
+      // log() //
       // log() //
 
       //第十一题:传入数组的某一元素,返回这个元素的键值,如果传入的不是该数组的元素,返回-1
       // var arr = [1,2,3,4,5,'33',false,'plplp']
-      // //   function getStr(arr,value){
-      // //     // arr.forEach((item,index)=>{
-      // //     //   if(item === value){
-      // //     //     return index
-      // //     //   }
-      // //     // })
-
-      // //     for(var i = 0 ; i <arr.length;i++){
-      // //       if(arr[i] === value){
-      // //         return i
-      // //       }
-      // //     }
-      // //     return -1
-      // //   }
-      //   console.log('getS:>> ', getStr(arr,'33'));
+      //   function getStr(arr,value){
+      //     return arr.findIndex((item) => item === value)
+      // 或者indexOf
+      // return arr.indexOf(value)
+      //或者for
+      // for(var i = 0 ; i <arr.length;i++){
+      //   if(arr[i] === value){
+      //     return i
+      //   }
+      // }
+      // return -1
+      // }
+      // console.log('getS:>> ', getStr(arr,'33'));
 
       //第十二题：把数组内的数值取出 放到一个新的数组里
       // function filterNumber(arr){
@@ -439,56 +527,53 @@
       // console.log('newArr :>> ', newArr);
 
       //第十五题：计算数组中每个元素出现的次数
-    //   const names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
-    //   function countTime(names){
-    //     return names.reduce((cur,pro)=>{
-    //       if(pro in cur){
-    //         cur[pro]++
-    //       } else {
-    //         cur[pro] =1 
-    //       }
-    //        return cur
-    //     },{})
-    //   }
-    //   console.log('countTime(names) :>> ', countTime(names));
+      //   const names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+      //   function countTime(names){
+      //     return names.reduce((cur,pro)=>{
+      //       if(pro in cur){
+      //         cur[pro]++
+      //       } else {
+      //         cur[pro] =1
+      //       }
+      //        return cur
+      //     },{})
+      //   }
+      //   console.log('countTime(names) :>> ', countTime(names));
 
-    //   // 第十六题:合并对象数组中的某一项
-    //   var people = [
-    //     {
-    //       name: 'Anna',
-    //       books: ['Bible', 'Harry Potter'],
-    //       age: 21
-    //     }, 
-    //     {
-    //       name: 'Bob',
-    //       books: ['War and peace', 'Romeo and Juliet'],
-    //       age: 26
-    //     }, 
-    //     {
-    //       name: 'Alice',
-    //       books: ['The Lord of the Rings', 'The Shining'],
-    //       age: 18
-    //     }
-    //  ];
-    //   // 合并所有书的名字
-    //   var allbooks = people.reduce((prev, curr)=> {
-    //     return [...prev, ...curr.books];
-    //   },[])
-    //   console.log('allbooks :>> ', allbooks);
-    //   // 封装
-    //   function allBooks(people){
-    //     var arr= []
-    //     people.forEach(item=>{
-    //       if(item.books){
-    //         arr.push(...item.books)
-    //       }
-    //     })
-    //     return arr 
-    //   }
-    //   console.log('allbooks :>> ', allBooks(people));
-
-   
-
+      //   // 第十六题:合并对象数组中的某一项
+      //   var people = [
+      //     {
+      //       name: 'Anna',
+      //       books: ['Bible', 'Harry Potter'],
+      //       age: 21
+      //     },
+      //     {
+      //       name: 'Bob',
+      //       books: ['War and peace', 'Romeo and Juliet'],
+      //       age: 26
+      //     },
+      //     {
+      //       name: 'Alice',
+      //       books: ['The Lord of the Rings', 'The Shining'],
+      //       age: 18
+      //     }
+      //  ];
+      //   // 合并所有书的名字
+      //   var allbooks = people.reduce((prev, curr)=> {
+      //     return [...prev, ...curr.books];
+      //   },[])
+      //   console.log('allbooks :>> ', allbooks);
+      //   // 封装
+      //   function allBooks(people){
+      //     var arr= []
+      //     people.forEach(item=>{
+      //       if(item.books){
+      //         arr.push(...item.books)
+      //       }
+      //     })
+      //     return arr
+      //   }
+      //   console.log('allbooks :>> ', allBooks(people));
     </script>
   </body>
 </html>
