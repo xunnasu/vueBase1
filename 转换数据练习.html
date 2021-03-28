@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-12 09:43:35
- * @LastEditTime: 2021-03-23 18:15:10
+ * @LastEditTime: 2021-03-24 20:49:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vueBase1\转换数据练习.html
@@ -282,13 +282,21 @@
       // str = str.slice(1)
       // console.log('str :>> ', str);
       // 第八题：a=1&b=2&c=3 =>{ a: 1, b: 2, c: 3 }
-      // var str = "a=1&b=2&c=3"
+      var str = "a=1&b=2&c=3"
       // var arr = str.split('&')
       // var obj = {}
       // arr.forEach(item=>{
       //   let arr2 = item.split('=')
       //   obj[arr2[0]] = arr2[1]
       // })
+      // console.log('obj :>> ', obj);
+      // 或者使用reduce
+      // var arr = str.split('&')
+      // var obj = arr.reduce((cur,pro)=>{
+      //   let [key,value] = pro.split('=')
+      //   cur[key]= value
+      //   return cur
+      // },{})
       // console.log('obj :>> ', obj);
       // 第九题 按属性对object分类
       // const peoples = [
@@ -307,21 +315,17 @@
       //   }, {});
       // }
       // 或者
-      // function groupBy(objectArray,pro){
-      //   let obj ={}
-      //   let array = []
-      //   objectArray.forEach(item=>{
-      //     if(!obj[item[pro]]){
-      //         array.push(item)
-      //         obj[item[pro]] = array
-      //         array = []
-      //     } else {
-      //       obj[item[pro]].push(item)
+      //   function groupBy(objA,proper){
+      //   let obj = {}
+      //   objA.forEach(item=>{
+      //     if(!obj[item[proper]]){
+      //       obj[item[proper]] = []
       //     }
+      //     obj[item[proper]].push(item)
       //   })
       //   return obj
-      // }
-      // console.log("grouoBy:>> ", grouoBy(peoples, "age"));
+      //  }
+      //  console.log('groupBy() :>> ', groupBy(peoples,'age'));
       // 输出的结果
       // // groupedPeople is:
       // // {
@@ -367,6 +371,7 @@
       // });
       // let list = Object.values(obj); // list 转换成功的数据
       // console.log(JSON.stringify(list,null,2));
+
       function getTree(resData){
         let obj = {}
         for(let item of resData){
