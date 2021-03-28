@@ -97,30 +97,29 @@
       // }
       // console.log('object :>> ', selectionSortA(arr3));
 
-      var str = "qwertyuiopasdfghjklzxcvbnmqazwsxaswazaaa";
-      var arr = str.split("");
-      console.log("arr :>> ", arr);
-      function moreValue(arr) {
-        if (!arr) return false;
-        if (arr.length === 1) return 1;
-        let res = {};
-        let maxNum = 0;
-        let maxValue = null;
-        for (let i = 0; i < arr.length; i++) {
-          let val = arr[i];
-          res[val] === undefined ? (res[val] = 1) : res[val]++;
-          if (res[val] > maxNum) {
-            maxNum = res[val];
-            maxValue = val;
-          }
-        }
-        return maxValue + "," + maxNum;
-      }
-      console.log(moreValue(arr)); // a,7
-
-      
-
-   
+      // 快速排序
+      // function quickSort(arr) {
+      //   if(arr.length <=1) {
+      //     return arr;
+      //   }
+      //   let mid =  Math.floor(arr.length / 2); //随机取中间值
+      //   let midData = arr.splice(mid,1)[0]
+      //   console.log('midData :>> ', midData);
+      //   // let middleData = arr.splice(middle, 1)[0]
+      //   let left = [];
+      //   let right = [];
+      //   for(let i = 0; i < arr.length; i++) {
+      //     // 判断当前值大于中间值 就往右边放 ，否则就放在左边
+      //     // 然后再利用递归 再把左右的值和中间的值，右边的值放进去，进行比较
+      //     if(arr[i] > midData) {
+      //       right.push(arr[i])
+      //     }else {
+      //       left.push(arr[i])
+      //     }
+      //   }
+      //   return [...quickSort(left), midData, ...quickSort(right)]
+      // }
+      // console.log('object :>> ', quickSort(arr));
     </script>
   </body>
 </html>
